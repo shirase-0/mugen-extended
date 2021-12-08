@@ -17,6 +17,7 @@ void reset_air_manager(MU_Air_Manager *air_manager)
 	air_manager->lp_action_list = (Action_Element*) mu_alloc(air_manager->air_allocator, sizeof(Action_Element) * air_manager->n_action_list_size);
 }
 
+// Allocates additional memory to an animation element
 void reallocate_action_block(MU_Air_Manager *air_manager)
 {
 	if(air_manager->n_total_action_block > 0)
@@ -49,10 +50,11 @@ void add_action(MU_Air_Manager *air_manager, s32 n_action_number)
 	// 	mu_log_message("Current total actions: %d", air_manager->n_total_action_block);
 	// 	show_mem_usage(air_manager->air_allocator);
 	// }
-	
-	air_manager->lp_action_list[air_manager->n_total_action_block].loop_start = -1;
-	air_manager->lp_action_list[air_manager->n_total_action_block].n_action_number = n_action_number;
-	air_manager->lp_action_list[air_manager->n_total_action_block].animation_element = (Element*) mu_alloc(air_manager->air_allocator, sizeof(Element) * air_manager->n_element_list_size);
+
+	Action_Element *lp_action_list = &air_manager->lp_action_list[air_manager->n_total_action_block];	
+	lp_action_list->loop_start = -1;
+	lp_action_list->n_action_number = n_action_number;
+	lp_action_list->animation_element = (Element*) mu_alloc(air_manager->air_allocator, sizeof(Element) * air_manager->n_element_list_size);
 
 	air_manager->n_total_action_block++;
 }
@@ -63,11 +65,11 @@ void add_element(MU_Air_Manager *air_manager, s16 n_group_number, s16 n_image_nu
     // 32bit
     // 8Bit ADDOP 8bit ADDOPVALUE 8bit SUBOP 8Bit SUBOPVALUE
     // PrintMessage("%i %i %i %i",nGroupNumber,nImageNumber,x,y);
+    Element *current_animation_element = air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element;
 
     if(air_manager->n_total_element > air_manager->n_element_list_size - 1)
     {
     	air_manager->n_element_list_size += 100;
-    	Element *current_animation_element = air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element;
     	current_animation_element = (Element*) mu_realloc(air_manager->air_allocator, current_animation_element, sizeof(Element) * air_manager->n_element_list_size);
     }
 
@@ -83,18 +85,14 @@ void add_element(MU_Air_Manager *air_manager, s16 n_group_number, s16 n_image_nu
 
     current_animation_element[air_manager->n_total_element].n_number_of_clsn = air_manager->n_total_cns;
 
+    current_animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
+    memcpy(current_animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
+
     if(!air_manager->b_default_clsn)
     {
-    	current_animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
-
-    	memcpy(current_animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
     	air_manager->n_total_cns = 0;
     }
-    else
-    {
-    	current_animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
-    	memcpy(current_animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
-    }
+
 
     air_manager->n_total_element++;
     air_manager->lp_action_list[air_manager->n_total_action_block-1].n_number_of_elements = air_manager->n_total_element;
@@ -107,11 +105,12 @@ void set_loop(MU_Air_Manager *air_manager)
 
 void add_clsn_box(MU_Air_Manager *air_manager, s16 x, s16 y, s16 w, s16 h, int n_number_of_clsn)
 {
-	air_manager->p_clsn[air_manager->n_total_cns].clsn_rect.x = x;
-	air_manager->p_clsn[air_manager->n_total_cns].clsn_rect.y = y;
-	air_manager->p_clsn[air_manager->n_total_cns].clsn_rect.w = w;
-	air_manager->p_clsn[air_manager->n_total_cns].clsn_rect.h = h;
-	air_manager->p_clsn[air_manager->n_total_cns].b_clsn1 = air_manager->b_is_clsn1;
+	Clsn p_clsn = air_manager->p_clsn[air_manager->n_total_cns];
+	p_clsn.clsn_rect.x = x;
+	p_clsn.clsn_rect.y = y;
+	p_clsn.clsn_rect.w = w;
+	p_clsn.clsn_rect.h = h;
+	p_clsn.b_clsn1 = air_manager->b_is_clsn1;
 
 	air_manager->n_total_cns++;
 }
@@ -165,7 +164,10 @@ void open_air(MU_Air_Manager *air_manager, char *str_filename)
 
 			add_action(air_manager, action_num);
 		}
-		else if(check_token_no_consume(tokenizer, "Clsn1Default:") || check_token_no_consume(tokenizer, "Clsn2Default:") || check_token_no_consume(tokenizer, "Clsn1:") || check_token_no_consume(tokenizer, "Clsn2:"))
+		else if(check_token_no_consume(tokenizer, "Clsn1Default:") || 
+			    check_token_no_consume(tokenizer, "Clsn2Default:") || 
+			    check_token_no_consume(tokenizer, "Clsn1:") || 
+			    check_token_no_consume(tokenizer, "Clsn2:"))
 		{
 			const char *token = get_token(tokenizer);
 			bool is_clsn1 = (token[4] == '1');
