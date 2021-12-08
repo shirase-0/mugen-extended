@@ -20,7 +20,7 @@ MU_Video_System *mu_init_video_system()
 	video_system->renderer = NULL;
 
 	video_system->window = SDL_CreateWindow(
-    	"Mugen Ultimate",
+    	"Mugen Extended",
     	SDL_WINDOWPOS_UNDEFINED,
     	SDL_WINDOWPOS_UNDEFINED,
     	XMAX,

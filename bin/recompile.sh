@@ -1,4 +1,4 @@
 cd ..
 make
 cd bin
-./MugenUltimate.exe
+./MugenExtended.exe

@@ -2,7 +2,7 @@
 
 CC   = gcc.exe
 CFLAGS = -g -Wall
-BIN  = bin\MugenUltimate.exe
+BIN  = bin\MugenExtended.exe
 OBJ  = obj\test.o obj\logging.o obj\mem_manager.o obj\sdl_framerate.o obj\video_system.o obj\sdl_manager.o obj\timer.o obj\tokenizer.o obj\air_manager.o obj\sff_manager.o obj\cmd_manager.o obj\state_manager.o obj\state_parser.o obj\input.o obj\player.o obj\controller_executer.o obj\stack.o obj\vm.o obj\engine.o obj\game.o
 LINKOBJ = obj/test.o obj/logging.o obj/mem_manager.o obj/sdl_framerate.o obj/video_system.o obj/sdl_manager.o obj/timer.o obj/tokenizer.o obj/air_manager.o obj/sff_manager.o obj/cmd_manager.o obj/state_manager.o obj/state_parser.o obj/input.o obj/player.o obj/controller_executer.o obj/stack.o obj/vm.o obj/engine.o obj/game.o
 #LIBS = -I/opt/local/x86_64-w64-mingw32/include/SDL2 -Dmain=SDL_main -L/opt/local/x86_64-w64-mingw32/lib -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_mixer
@@ -12,7 +12,7 @@ LIBS = -L"lib" -lmingw32 -lSDL2_mixer -lSDL2main -lSDL2
 INCLUDE = -I D:\MinGW\include\SDL2
 
 $(BIN): $(OBJ)
-	$(CC) $(CFLAGS) $(LINKOBJ) -o "bin/MugenUltimate.exe" $(INCLUDE) $(LIBS)
+	$(CC) $(CFLAGS) $(LINKOBJ) -o "bin/MugenExtended.exe" $(INCLUDE) $(LIBS)
 
 obj\test.o: test.c
 	$(CC) $(CFLAGS) -c test.c -o obj/test.o

@@ -10,7 +10,7 @@ Game *init_game()
 	game->n_game_type = GFIGHTGAME;
 
 	init_log_file();
-	mu_log_message("Welcome to Mugen Ultimate Version %s", VER);
+	mu_log_message("Welcome to Mugen Extended Version %s", VER);
 
 	game->mem_manager = init_mem_manager();
 	game->sdl_manager = mu_sdl_manager_init();
