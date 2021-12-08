@@ -1,16 +1,16 @@
 #ifndef __MUSTATEPARSER__
 #define __MUSTATEPARSER__
 
-// Note to self: This is implemented as a class in the original code, but as it only contains a 
+// Note to self: This is implemented as a class in the original version, but as it only contains a 
 // MU_Allocator, I've decided simply to pass in an allocator as a parameter for all functions that
-// require access to it. The original code uses the player's allocator, so that's the one that should
+// require access to it. The original version uses the player's allocator, so that's the one that should
 // be passed in (P1, P2, P3, or P4)
 // ^^^^^^^^^^^^^^^^^^^^^^^
 // I changed this to a struct because there's also int n_controller
 // If it turns out this variable is unnecessary, refactor this code to the idea above
 // ----------------------------------------------------------------------------------
 
-// The original code uses & instead of * for these pointer arguments
+// The original version uses & instead of * for these pointer arguments
 // May need to change it back to that if this approach doesn't work for whatever reason
 
 // Helper functions

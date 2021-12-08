@@ -1,7 +1,8 @@
 #ifndef __STRUCTS__H
 #define __STRUCTS__H
 
-//simple typedefs
+// Simple Typedefs
+// TODO: replace these with definitions from stdint.h
 typedef unsigned char   u8;
 typedef signed   char   s8;
 typedef unsigned short  u16;
@@ -9,20 +10,14 @@ typedef signed   short  s16;
 typedef unsigned long   u32;
 typedef signed   long   s32;
 
-
-
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
-
-//constants
+// Constants
 #define MEM_MANAGER_NUMBER_OF_ALLOCATORS 7
 #define MAX_COMMAND 30
 #define VER "Alpha"
 // More to be found in state_manager.h
 
 // Macros
-// WARNING: These were copied directly from the original, and idk what they do
+// These should probably be replaced
 #define PLC_KEYMOD_MUST_BE_HELD    ( 1 << 0 )
 #define PLC_KEYMOD_DETECT_AS_4WAY  ( 1 << 1 )
 #define PLC_KEYMOD_BAN_OTHER_INPUT ( 1 << 2 )
@@ -40,7 +35,7 @@ typedef unsigned long DWORD;
 // Taken from vm.h
 #define NUMFUNCT 140
 
-//enums
+// Enums
 
 enum KEY_NAMES
 {
@@ -104,7 +99,7 @@ enum STATE_TYPES
     UNTOUCH
 };
 
-// Copied directly from the original code
+// Copied directly from the original version
 enum OPCODES
 {
     OP_PUSH=0,
@@ -475,7 +470,7 @@ struct SFF_Sprite
 {
     s16 x;
     s16 y;
-    PCX_Header pcx_header; // Might need to change this to a pointer in C
+    PCX_Header pcx_header; // Should this be a pointer?
     s16 group_number;
     s16 image_number;
     unsigned colour_palette[256]; // was u16
@@ -516,7 +511,7 @@ typedef struct Key_Element Key_Element;
 
 struct Keyboard_Data
 {
-    Key_Element key_info[KEY_COUNT]; // Wasn't a pointer in the original code
+    Key_Element key_info[KEY_COUNT]; // Wasn't a pointer in the original version
     bool b_keyboard;
 };
 typedef struct Keyboard_Data Keyboard_Data;
@@ -886,7 +881,7 @@ struct VM
 // ===========Engine===============================
 struct MU_Engine
 {
-    // These weren't pointers in the original code
+    // These weren't pointers in the original version
     Player *p1;
     Player *p2;
     Player *p3;

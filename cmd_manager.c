@@ -36,7 +36,7 @@ MU_CMD_Manager *cmd_manager_init(int key_buffer_size)
 	cmd_manager->current_command_name = NULL;
 
 	cmd_manager->key_buffer = pl_command_frame_input_init(key_buffer_size);
-	cmd_manager->key_buffer_size = key_buffer_size; // This has a default of 120 in the original code
+	cmd_manager->key_buffer_size = key_buffer_size; // This has a default of 120 in the original version
 	cmd_manager->key_index = 0;
 
 	return cmd_manager;
@@ -217,7 +217,7 @@ bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file)
 							}
 							else if(!strcmp(token, "UF"))
 							{
-								command->n_command[command->n_how_many_command].keycode += PLC_KEYCODE(KEY_UP) + PLC_KEYCODE(KEY_RIGHT); // This was set to left in the original code, but I'm pretty sure that was a typo
+								command->n_command[command->n_how_many_command].keycode += PLC_KEYCODE(KEY_UP) + PLC_KEYCODE(KEY_RIGHT); // This was set to left in the original version, but I'm pretty sure that was a typo
 							}
 							else if(!strcmp(token, "a"))
 							{
@@ -343,7 +343,7 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Keyboard_Data *keys, bool facing
 			int keycode = current_command->n_command[b].keycode;
 
 			// current_key_index is defined above, maybe it's not needed in the first part of the for statement?
-			// This is how it was in the original code
+			// This is how it was in the original version
 			for( ; current_key_index < cmd_manager->key_buffer_size; current_key_index++) 
 			{
 				PL_Command_Frame_Input *frame_input = &cmd_manager->key_buffer[adjust_key_index(cmd_manager, cmd_manager->key_index, -current_key_index)];

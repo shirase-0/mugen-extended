@@ -330,7 +330,7 @@ void blit_sprite(MU_SFF_Manager *sff_manager, s16 n_group_number, s16 n_image_nu
 		mu_normal_flip_h(sff_manager->sff_video_system, &sff_manager->lp_sprite_list[i], x, y, true);
 	}
 
-	// It's my guess that we still need to fill in the flip_v and flip_hv functions here, but they weren't written in the original code, so I'll have to write those from scratch later
+	// It's my guess that we still need to fill in the flip_v and flip_hv functions here, but they weren't written in the original version, so I'll have to write those from scratch later
 }
 
 void prepare_anim(MU_SFF_Manager *sff_manager, s32 n_anim)

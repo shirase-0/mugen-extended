@@ -1,6 +1,6 @@
 #include "mu_headers.h"
 
-// Copied from original code
+// Copied from original version
 char *str_state[]={ 
 	"stand",
 	"crouch",
@@ -19,7 +19,7 @@ Player *player_init()
 	player->air_manager = air_manager_init();
 	player->sff_manager = sff_manager_init();
 	player->state_manager = state_manager_init();
-	player->cmd_manager = cmd_manager_init(120); // Default of 120 in the original code
+	player->cmd_manager = cmd_manager_init(120); // Default of 120 in the original version
 	player->kb = keyboard_data_init();
 	memset(player->p_vars.var, 0, sizeof(int) * 60);
 	memset(player->p_vars.fvar, 0, sizeof(float) * 40);
@@ -231,7 +231,7 @@ void player_change_state(Player *player, s32 n_state_number)
 		mu_log_message("TODO: Handle juggle parameter of statedef");
 	}
 
-	// There's probably way more to do in this function still, but this is all there was in the original code
+	// There's probably way more to do in this function still, but this is all there was in the original version
 }
 
 void update_player(Player *player)
@@ -247,7 +247,7 @@ void update_player(Player *player)
 
 void draw_player(Player *player)
 {
-	blit_anim(player->sff_manager, (s16)player->x, (s16)player->y); // Not sure if this cast is needed, but the original code uses it
+	blit_anim(player->sff_manager, (s16)player->x, (s16)player->y); // Not sure if this cast is needed, but the original version uses it
 
 	// Draw debug info
 	if(player->b_debug_info)

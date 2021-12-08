@@ -4,7 +4,6 @@
 MU_Allocator *create_mu_alloc(char *name)
 {
 	mu_log_message("Memory Manager: Initialising %s memory allocator", name);
-	// Note to self: Always malloc variables that will be passed outside the current scope
 	MU_Allocator *allocator = (MU_Allocator*) malloc(sizeof(MU_Allocator));
 	memset(allocator->str_alloc_name, 0, sizeof(allocator->str_alloc_name));
 	strcpy(allocator->str_alloc_name, name); // Set name
@@ -14,7 +13,6 @@ MU_Allocator *create_mu_alloc(char *name)
 	allocator->b_free = true;
 
 	// malloc & zero out the lp_mem_list
-	// Note to self: sizeof calls should reference the actual data type, not a pointer to it :facepalm:
 	allocator->lp_mem_list = (MEMLIST*) malloc(sizeof(MEMLIST) * allocator->n_mem_list_size);
 	
 	set_memlist_free(allocator->lp_mem_list);
@@ -25,9 +23,7 @@ MU_Allocator *create_mu_alloc(char *name)
 // Zero out a MEMLIST
 void set_memlist_free(MEMLIST *lp_list)
 {
-	//mu_log_message("set_memlist_free: begin");
 	memset(lp_list, 0, sizeof(MEMLIST) * 100);
-	//mu_log_message("set_memlist_free: done");
 }
 
 
@@ -41,7 +37,7 @@ void reset_allocator(MU_Allocator *allocator)
 	allocator->b_free = true;
 
 	// malloc & zero out the lp_mem_list
-	//allocator->lp_mem_list = (MEMLIST*) malloc(sizeof(MEMLIST*) * allocator->n_mem_list_size);
+	// allocator->lp_mem_list = (MEMLIST*) malloc(sizeof(MEMLIST*) * allocator->n_mem_list_size);
 	// In theory, the above line would cause a memory leak, and is unnecessary, as memory has already
 	// been allocated before this function is ever run
 	set_memlist_free(allocator->lp_mem_list);
@@ -103,8 +99,6 @@ void *mu_alloc(MU_Allocator *allocator, size_t n_size)
 
 	allocator->n_alloc_number++;
 	allocator->n_alloc_size += n_size;
-
-	//mu_log_message("MU_ALLOC: n_size of current block: %i | Allocated: %s", allocator->lp_mem_list[i].n_size, allocator->lp_mem_list[i].n_type == ALLOC ? "true" : "false");
 
 	return allocator->lp_mem_list[i].address;
 }
@@ -177,22 +171,15 @@ void free_allocator(MU_Allocator *allocator)
 	{
 		for(u32 i = 0; i < allocator->n_mem_list_size; i++)
 		{
-			//mu_log_message("n_size of current block: %i | Allocated: %s", allocator->lp_mem_list[i].n_size, allocator->lp_mem_list[i].n_type == ALLOC ? "true" : "false");
 			if(allocator->lp_mem_list[i].n_type == ALLOC)
 			{
-				// if(i == 0)
-				// {
-				// 	mu_log_message("Current block to be freed: %x", allocator->lp_mem_list[i].address);
-				// 	mu_log_message("lp_mem_list address:       %x", &allocator->lp_mem_list);
-				// }
 				mu_free(allocator, allocator->lp_mem_list[i].address);
 			}
 		}
 	}
-	//mu_log_message("Current allocator size: %i", allocator->n_alloc_size);
 	//free(allocator->lp_mem_list);
 	// Note to self: Technically this free command should be used to free the lp_mem_list, but doing so breaks things
-	// This is probably due to an implementation difference, as in the original code, lp_mem_list was
+	// This is probably due to an implementation difference, as in the original version, lp_mem_list was
 	// part of the mem manager class, rather than a pointer to a struct
 	// As far as I can tell, this function works as intended
 }
@@ -202,7 +189,6 @@ void free_allocator(MU_Allocator *allocator)
 MU_Allocator *init_mem_manager()
 {
 	mu_log_message("Memory Manager: Begin Init");
-	// Note to self: Always malloc variables that will be passed outside the current scope
 	MU_Allocator *mem_manager = malloc(sizeof(MU_Allocator) * MEM_MANAGER_NUMBER_OF_ALLOCATORS);
 
 	MU_Allocator *mem_manager_ptr = NULL;
@@ -235,18 +221,9 @@ MU_Allocator *init_mem_manager()
 // Returns an individual allocator for easier handling
 MU_Allocator *get_allocator(MU_Allocator *mem_manager, int index)
 {
-	// Note to self: Always malloc variables that will be passed outside the current scope
 	MU_Allocator *allocator_ptr = (MU_Allocator*) malloc(sizeof(MU_Allocator));
 	allocator_ptr = &mem_manager[index]; // This should be *mem_manager, right? Or even just mem_manager
 	return allocator_ptr;
-
-	// int i = 0;
-	// while(i < index)
-	// {
-	// 	mem_manager_ptr++;
-	// 	i++;
-	// }
-	// return mem_manager_ptr;
 }
 
 // Free all allocators from memory
@@ -256,15 +233,11 @@ void free_mem_manager(MU_Allocator *mem_manager)
 	for(int i = 0; i < MEM_MANAGER_NUMBER_OF_ALLOCATORS; i++)
 	{
 		current_allocator = get_allocator(mem_manager, i);
-		//mu_log_message("Current allocator: %s", current_allocator->str_alloc_name);
 		free_allocator(current_allocator);
-		//mu_log_message("Free: %s", current_allocator->b_free ? "true" : "false");
-		//free_allocator(&mem_manager[i]);
-		//free(&mem_manager[i]);
 	}
 	//free(mem_manager);
 	// Note to self: Technically this free command should be used to free memory_manager, but doing so breaks things
-	// The same problem occurs in free_allocator
+	// For more info see free_allocator()
 }
 
 // Log detailed memory information

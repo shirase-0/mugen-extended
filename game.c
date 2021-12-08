@@ -94,7 +94,6 @@ void run_game(Game *game)
 		//Now draw the content to the screen
 
 		mu_draw_text(game->sdl_manager, 0, 100, SDL_GetKeyName(game->event.key.keysym.sym));
-		//mu_log_message("Text drawn: %s", SDL_GetKeyName(game->event.key.keysym.sym));
 
 		if((strcmp(SDL_GetKeyName(game->event.key.keysym.sym), "D") == 0) && !(strcmp(SDL_GetKeyName(game->event.key.keysym.sym), current_key) == 0))
 		{

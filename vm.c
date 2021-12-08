@@ -1102,7 +1102,7 @@ void vm_const(VM *vm)
 			break;
 
 		// size.draw.offset.y
-		// Note to self: in the original code, case 26 was a copy of case 25
+		// Note to self: in the original version, case 26 was a copy of case 25
 		// I've changed it here to be offset y, since I think that's what it was supposed to be
 		case 26:
 			mu_log_message("vm_const: case 26, pushing player size draw offset y");
@@ -1164,7 +1164,7 @@ void vm_const(VM *vm)
 			break;
 
 		// velocity.runjump.back.x
-		// Note to self: in the original code, this was a copy of case 31
+		// Note to self: in the original version, this was a copy of case 31
 		// I think it's supposed to be run_jump_back.x though, so I changed it to that
 		case 36:
 			mu_log_message("vm_const: case 36, pushing player velocity run jump backward x");
@@ -1172,7 +1172,7 @@ void vm_const(VM *vm)
 			break;
 
 		// velocity.runjump.fwd.x
-		// Note to self: in the original code, this was a copy of case 29
+		// Note to self: in the original version, this was a copy of case 29
 		// I think it's supposed to be run_jump_fwd.x though, so I changed it to that
 		case 37:
 			mu_log_message("vm_const: case 37, pushing player velocity run jump forward x");

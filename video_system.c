@@ -1,6 +1,6 @@
 #include "mu_headers.h"
 
-void scale2x(SDL_Surface *src, SDL_Surface *dst); // not sure what this does yet
+void scale2x(SDL_Surface *src, SDL_Surface *dst); // TODO: Implement this
 
 // Initialise the MU_Video_System
 MU_Video_System *mu_init_video_system()
@@ -8,7 +8,6 @@ MU_Video_System *mu_init_video_system()
 	mu_log_message("Video System: Initialising");
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0)
     {
-    	mu_log_message("Hello, World!");
     	mu_log_message("Error initialising SDL: %s", SDL_GetError());
     	return NULL;
     }
@@ -48,24 +47,18 @@ MU_Video_System *mu_init_video_system()
     	return NULL;
     }   
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");  // make the scaled rendering look smoother.
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");  // Make the scaled rendering look smoother.
 	SDL_RenderSetLogicalSize(video_system->renderer, XMAX, YMAX); 
 
     SDL_FillRect(video_system->screen_surface, NULL, SDL_MapRGB(video_system->screen_surface->format, 0, 0, 0));
-	//---test code---
-	// SDL_Surface *image;
-	// image = SDL_LoadBMP("box.bmp"); // loads image
-	// SDL_BlitSurface(image, NULL, video_system->screen_surface, NULL);
-    //---------------
 	SDL_UpdateWindowSurface(video_system->window);
 
-	// Extra code I added to zero out initial values
+	// Zero out initial values
 	video_system->delta_ptr = 0;
 	video_system->now_time = 0;
 	video_system->last_time = 0;
 	video_system->n_fps_count = 0;
 	video_system->n_fps = 0;
-	// ---------------------------------------------
 
 	init_framerate(&video_system->fps_manager);
 	set_framerate(&video_system->fps_manager, 60);
@@ -169,7 +162,6 @@ void mu_clear_screen(MU_Video_System *video_system)
 
 unsigned mu_map_rgb(MU_Video_System *video_system, int red, int green, int blue)
 {
-	//mu_log_message("map_rgb values:\nRed: %i\nGreen: %i\nBlue: %i", red, green, blue);
 	return SDL_MapRGB(video_system->screen_surface->format, red, green, blue);
 }
 
@@ -207,11 +199,6 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 	y -= height - (height - lp_sprite->y);
 	x -= width - (width - lp_sprite->x);
 
-	// mu_log_message("x: %i", x);
-	// mu_log_message("y: %i", y);
-	// mu_log_message("lp_sprite->x: %i", lp_sprite->x);
-	// mu_log_message("lp_sprite->y: %i", lp_sprite->y);
-
 	lp_work_data = (unsigned*) video_system->screen_surface->pixels;
 	pitch = video_system->screen_surface->pitch / 2; // Affects height, not width
 
@@ -227,7 +214,7 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 
 	if(x < 0)
 	{
-		x_clip = -x; // not sure if this should be =- or = -
+		x_clip = -x;
 		x = 0;
 	}
 
@@ -238,7 +225,7 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 
 	if(y < 0)
 	{
-		y_clip = -y; // not sure if this should be =- or = -
+		y_clip = -y;
 		y = 0;
 	}
 
@@ -254,9 +241,7 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 			{
 				*lp_work_data = colour_table[by_data[j + i * lp_sprite->pcx_header.width]];
 				lp_work_data++;
-				//SDL_UpdateWindowSurface(video_system->window); // remove later for performance improvements
-				//mu_log_message("J = %d", j);
-				// SDL_Delay(1000);
+
 			}
 			lp_work_data -= width - x_clip; // Skip back to x = 0
 			lp_work_data += pitch / 2; // Skip over remaining x pixels on the previous row to get y++
@@ -276,20 +261,14 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 
 			for(int j = x_clip; j < width; j++)
 			{
-				// For debugging, draws a filled rectangle where the sprite should be
-				//*lp_work_data = colour_table[248];
 
 				// If the current pixel (i * number of rows + j pixels across) is not masked
 				if(by_data[j + i * lp_sprite->pcx_header.width] != by_data[0])
 				{
 					blank_row = false;
 					*lp_work_data = colour_table[by_data[j + i * lp_sprite->pcx_header.width]];
-					// mu_log_message("Current colour index: %i", by_data[j + i * lp_sprite->pcx_header.width]);
-					// SDL_FillRect(video_system->screen_surface, NULL, colour_table[by_data[j + i * lp_sprite->pcx_header.width]]);
-					// SDL_UpdateWindowSurface(video_system->window);
-					// SDL_Delay(1000);
 				}
-				lp_work_data++; // WARNING: not sure if this should be in the if statement above or not
+				lp_work_data++; // Not sure if this should be in the if statement above or not
 			}
 			lp_work_data -= width - x_clip;
 			lp_work_data += pitch / 2; // this shouldn't be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
@@ -329,7 +308,7 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 
 	if(x < 0)
 	{
-		x_clip = -x; // not sure if this should be =- or = -
+		x_clip = -x;
 		x = 0;
 	}
 
@@ -340,7 +319,7 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 
 	if(y < 0)
 	{
-		y_clip = -y; // not sure if this should be =- or = -
+		y_clip = -y;
 		y = 0;
 	}
 
@@ -378,7 +357,7 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 					blank_row = false;
 					*lp_work_data = colour_table[by_data[width - j + x_clip2 - 1 + i * lp_sprite->pcx_header.width]];
 				}
-				lp_work_data++; // WARNING: not sure if this should be in the if statement above or not
+				lp_work_data++; // Not sure if this should be in the if statement above or not
 			}
 			lp_work_data -= width - x_clip;
 			lp_work_data += pitch / 2; // this shouldn't be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
@@ -386,13 +365,15 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 	}
 }
 
+// Not sure if this function is actually being used to render graphics or not currently
+// Initially this function was only used to set the framerate
 void mu_draw(MU_Video_System *video_system, SDL_Texture *sdl_texture)
 {
-	// First clear the screen?
+	// First clear the screen? Maybe unnecessary
 	SDL_SetRenderDrawColor(video_system->renderer, 0, 100, 0, 255);
 	//SDL_RenderClear(video_system->renderer);
-
 	//SDL_UnlockSurface(video_system->screen_surface);
+
 	video_system->now_time = SDL_GetTicks();
 
 	if(video_system->now_time > video_system->last_time + 500)
@@ -404,6 +385,7 @@ void mu_draw(MU_Video_System *video_system, SDL_Texture *sdl_texture)
 
 	mu_draw_text(video_system, 0, 0, "%2.2f FPS", video_system->n_fps);
 
+	// TODO: Implement the following functions
 	// FilterImage();
 	//  scale2x(work,screen);
 

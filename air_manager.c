@@ -42,11 +42,13 @@ void add_action(MU_Air_Manager *air_manager, s32 n_action_number)
 		air_manager->n_action_list_size += 100;
 		air_manager->lp_action_list = (Action_Element*) mu_realloc(air_manager->air_allocator, air_manager->lp_action_list, sizeof(Action_Element) * air_manager->n_action_list_size);
 	}
-	if(air_manager->n_total_action_block == 2047 || air_manager->n_total_action_block == 2050)
-	{
-		mu_log_message("Current total actions: %d", air_manager->n_total_action_block);
-		show_mem_usage(air_manager->air_allocator);
-	}
+
+	// Test Code, TODO: move this check to test.c somehow?
+	// if(air_manager->n_total_action_block == 2047 || air_manager->n_total_action_block == 2050)
+	// {
+	// 	mu_log_message("Current total actions: %d", air_manager->n_total_action_block);
+	// 	show_mem_usage(air_manager->air_allocator);
+	// }
 	
 	air_manager->lp_action_list[air_manager->n_total_action_block].loop_start = -1;
 	air_manager->lp_action_list[air_manager->n_total_action_block].n_action_number = n_action_number;
@@ -65,32 +67,33 @@ void add_element(MU_Air_Manager *air_manager, s16 n_group_number, s16 n_image_nu
     if(air_manager->n_total_element > air_manager->n_element_list_size - 1)
     {
     	air_manager->n_element_list_size += 100;
-    	air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element = (Element*) mu_realloc(air_manager->air_allocator, air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element, sizeof(Element) * air_manager->n_element_list_size);
+    	Element *current_animation_element = air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element;
+    	current_animation_element = (Element*) mu_realloc(air_manager->air_allocator, current_animation_element, sizeof(Element) * air_manager->n_element_list_size);
     }
 
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].n_group_number = n_group_number;
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].n_image_number = n_image_number;
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].x = x;
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].y = y;
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].n_during_time = n_during_time;
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].flip_flags = n_flip;
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].colour_flags = n_colour_flag;
+    current_animation_element[air_manager->n_total_element].n_group_number = n_group_number;
+    current_animation_element[air_manager->n_total_element].n_image_number = n_image_number;
+    current_animation_element[air_manager->n_total_element].x = x;
+    current_animation_element[air_manager->n_total_element].y = y;
+    current_animation_element[air_manager->n_total_element].n_during_time = n_during_time;
+    current_animation_element[air_manager->n_total_element].flip_flags = n_flip;
+    current_animation_element[air_manager->n_total_element].colour_flags = n_colour_flag;
 
     air_manager->lp_action_list[air_manager->n_total_action_block-1].n_complete_anim_time += n_during_time;
 
-    air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].n_number_of_clsn = air_manager->n_total_cns;
+    current_animation_element[air_manager->n_total_element].n_number_of_clsn = air_manager->n_total_cns;
 
     if(!air_manager->b_default_clsn)
     {
-    	air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
+    	current_animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
 
-    	memcpy(air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
+    	memcpy(current_animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
     	air_manager->n_total_cns = 0;
     }
     else
     {
-    	air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
-    	memcpy(air_manager->lp_action_list[air_manager->n_total_action_block-1].animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
+    	current_animation_element[air_manager->n_total_element].p_clsn_data = (Clsn*) mu_alloc(air_manager->air_allocator, sizeof(Clsn) * air_manager->n_total_cns);
+    	memcpy(current_animation_element[air_manager->n_total_element].p_clsn_data, air_manager->p_clsn, sizeof(Clsn) * air_manager->n_total_cns);
     }
 
     air_manager->n_total_element++;

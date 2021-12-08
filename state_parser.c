@@ -613,7 +613,7 @@ void mu_parse_primary(Tokenizer *tokenizer, MU_State_Manager *state_manager)
 		// 	mu_log_message("Debugging time");
 		// }
 		evaluate_expression(tokenizer, state_manager);
-		// while(check_token_consume(tokenizer, "("))// this while test didn't exist in the original code
+		// while(check_token_consume(tokenizer, "("))// this while test didn't exist in the original version
 		// {
 		// 	evaluate_expression(tokenizer, state_manager);
 		// }

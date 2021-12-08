@@ -69,7 +69,7 @@ void vm_fvar(VM *vm);
 void vm_game_time(VM *vm);
 void vm_get_hit_var(VM *vm);
 void vm_hit_count(VM *vm);
-//void vm_hitdef_attr(VM *vm); // This was commented out in the original code
+//void vm_hitdef_attr(VM *vm); // This was commented out in the original version
 void vm_hit_fall(VM *vm);
 void vm_hit_over(VM *vm);
 void vm_hit_pause_time(VM *vm);

@@ -1,6 +1,6 @@
 #include "mu_headers.h"
 
-// Array copied from original code
+// Array copied from original version
 char *str_opcode[] =
 {
 	"OP_PUSH",

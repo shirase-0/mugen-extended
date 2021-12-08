@@ -8,7 +8,7 @@ void mu_set_player_pointers(Player *player, MU_Video_System *video_system, MU_Al
 bool load_player(Player *player, const char *str_player);
 
 bool check_state(PL_State *temp_state); // See player.c
-void execute_controller(PL_State *temp_state); // Empty function in original code
+void execute_controller(PL_State *temp_state); // Empty function in original version
 void handle_physics(Player *player);
 void handle_fsm(); // Original code is commented out
 void update_facing(Player *player);

@@ -124,7 +124,7 @@ void change_state()
 
 void change_anim()
 {
-	// Empty in original code
+	// TODO
 }
 
 void velset()

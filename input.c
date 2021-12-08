@@ -46,7 +46,7 @@ Keyboard_Data *keyboard_data_init()
 
 void mu_process_input(Keyboard_Data *lp_keyboard, SDL_Event event)
 {
-	// Used Uint8 in original code
+	// Used Uint8 in original version
 	u8 *keystate = SDL_GetKeyboardState(NULL);
 
 	// Process keyboard input

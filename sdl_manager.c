@@ -1,5 +1,7 @@
 #include "mu_headers.h"
 
+// TODO: merge the SDL Manager and Video System
+
 // Constructor for the SDL manager
 MU_Video_System *mu_sdl_manager_init()
 {

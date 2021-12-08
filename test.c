@@ -1,7 +1,12 @@
 #include "mu_headers.h"
 
+// This file was initially supposed to be for unit testing, but there are many areas of the code that
+// are not currently being tested, for various reasons. Notably, freeing memory after it's no longer 
+// needed is something that has not yet been implemented through most of the code, and as such is not
+// being tested here. 
+
 int main(int argc, char *argv[]) {
-    bool unit_testing = false;
+    bool unit_testing = false; // Set this to true when you want to run unit tests; This should probably be a constant
 
     // -----------------Tests----------------------------------
     if(unit_testing)
@@ -78,7 +83,7 @@ int main(int argc, char *argv[]) {
         // No feasible way to test framerate_delay (sdl_framerate.c)
         // If I figure out a way to test it, it should go here
         assert(video_system->mu_font != NULL);
-        mu_draw_text(video_system, 0, 20, "Unit Testing Peko");
+        mu_draw_text(video_system, 0, 20, "Unit Testing for mu_draw_text");
         mu_draw_text(video_system, 0, 40, "Our current framerate is %i", get_framerate(&video_system->fps_manager));
         SDL_UpdateWindowSurface(video_system->window);
         SDL_Delay(1000);
@@ -89,87 +94,7 @@ int main(int argc, char *argv[]) {
         // mu_create_surface (video_system.c) is never used, so no test has been included for it
         // If it ends up being used, put a test here for it
 
-        // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        // %%%%%%%%%%%%%%%%%%%% OLD TEST CODE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        // // =================logging================================
-        // init_log_file();
-
-        // // =================mem_manager============================
-        // MU_Allocator *test_manager = init_mem_manager();
-        // MU_Allocator *test_allocator = get_allocator(test_manager, 1);
-        // show_mem_usage(test_allocator);
-
-        // void *to_be_removed = mu_alloc(test_allocator, 1000);
-        // void *to_stay = mu_alloc(test_allocator, 30);
-        // show_mem_usage(test_allocator);
-
-        // mu_log_message("realloc MEMLIST 0 from 1000 to 500");
-        // mu_realloc(test_allocator, to_be_removed, 500);
-        // show_mem_usage(test_allocator);
-
-        // mu_free(test_allocator, to_be_removed);
-        // //mu_log_message("n_size of current block: %i | Allocated: %s", test_allocator->lp_mem_list[0].n_size, test_allocator->lp_mem_list[0].n_type == ALLOC ? "true" : "false");
-        // //mu_log_message("n_size of current block: %i | Allocated: %s", test_allocator->lp_mem_list[1].n_size, test_allocator->lp_mem_list[1].n_type == ALLOC ? "true" : "false");    
-        // show_mem_usage(test_allocator);
-
-        // free_allocator(test_allocator);
-        // show_mem_usage(test_allocator);
-
-        // to_be_removed = mu_alloc(test_allocator, 1000);
-        // to_stay = mu_alloc(test_allocator, 30);
-        // show_mem_usage(test_allocator);
-
-        // free_mem_manager(test_manager);
-        // get_total_mem_usage(test_manager);
-
-        // // ===============SDL==========================================
-        // MU_Video_System *video_system = mu_sdl_manager_init();
-        // video_system->screen_surface->format->BitsPerPixel = 8;
-        // mu_draw_text(video_system, 2, 130, "Hello friendo :3");
-        // SDL_UpdateWindowSurface(video_system->window);
-        // //SDL_Delay(10000);
-        // mu_clear_screen(video_system);
-        // SDL_UpdateWindowSurface(video_system->window);
-        // //SDL_Delay(1000);  // Pause execution for 3000 milliseconds, for example
-        // // Close and destroy the window
-        // //SDL_DestroyWindow(video_system->window);
-
-        // // ===============Player==================================
-        // Player *test_player = player_init();
-
-        // // ===============Air Manager==================================
-        // char *air_filename = "kfm\\kfm.air";
-
-        // test_player->air_manager->air_allocator = get_allocator(test_manager, P1);
-        // reset_air_manager(test_player->air_manager);
-        // open_air(test_player->air_manager, air_filename);
-        // mu_log_message("open_air finished XD");
-
-        // // ===============Timer========================================
-        // MU_Timer *timer = (MU_Timer*) malloc(sizeof(MU_Timer));
-        // mu_reset_timer(timer);
-        // test_player->timer = timer;
-
-        // mu_set_player_pointers(test_player, video_system, get_allocator(test_manager, P1), timer);
-
-        // // ===============SFF Manager==================================
-        // char *sff_filename = "kfm\\kfm.sff";
-        // char *act_filename = "kfm\\kfm6.act";
-
-        // mu_set_sff_pointers(test_player->sff_manager, video_system, get_allocator(test_manager, P1), timer, test_player->air_manager);
-        // reset_sff_manager(test_player->sff_manager);
-        // load_act_to_sff(test_player->sff_manager, act_filename);
-        // load_sff_file(test_player->sff_manager, sff_filename);
-        // test_player->sff_manager->n_flags = BLT_NORMALMASKED;
-        // prepare_anim(test_player->sff_manager, 0);
-
-        // blit_anim(test_player->sff_manager, 18, 105);
-
-        // SDL_UpdateWindowSurface(test_player->video_system->window);
-        // get_total_mem_usage(test_manager);
-        // SDL_Delay(10000);
-        // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        // TODO: Add more unit tests here
     }
     else // Run the game as intended
     {
