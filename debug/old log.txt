@@ -1,0 +1,21 @@
+Logging: Init Successful
+SDL Initialisation successful!
+Memory Manager: Begin Init
+Memory Manager: Initialising Main Menu memory allocator
+Allocator address: 00FBC3C8
+Memory Manager: Initialising Stage memory allocator
+Allocator address: 00FBC6A0
+Memory Manager: Initialising Engine memory allocator
+Allocator address: 00FBC978
+Memory Manager: Initialising Player 1 memory allocator
+Allocator address: 00FBCC50
+Memory Manager: Initialising Player 2 memory allocator
+Allocator address: 00FBCF28
+Memory Manager: Initialising Player 3 memory allocator
+Allocator address: 00FBD200
+Memory Manager: Initialising Player 4 memory allocator
+Allocator address: 00FBD4D8
+Memory Manager: Init Successful
+---Memory usage of Stage allocator
+---Allocated memory 0 in bytes
+---Allocated number of memory 0

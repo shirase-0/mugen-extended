@@ -1,0 +1,336 @@
+Logging: Init Successful
+Memory Manager: Begin Init
+Memory Manager: Initialising Main Menu memory allocator
+Allocator address: 007B1150
+Memory Manager: Initialising Stage memory allocator
+Allocator address: 007B1280
+Memory Manager: Initialising Engine memory allocator
+Allocator address: 007B13B0
+Memory Manager: Initialising Player 1 memory allocator
+Allocator address: 007B14E0
+Memory Manager: Initialising Player 2 memory allocator
+Allocator address: 007B5AC8
+Memory Manager: Initialising Player 3 memory allocator
+Allocator address: 007B60C0
+Memory Manager: Initialising Player 4 memory allocator
+Allocator address: 007B66B8
+Memory Manager: Init Successful
+---Memory usage of Stage allocator
+---Allocated memory 0 in bytes
+---Allocated number of memory 0
+---Memory usage of Stage allocator
+---Allocated memory 1030 in bytes
+---Allocated number of memory 2
+realloc MEMLIST 0 from 1000 to 500
+---Memory usage of Stage allocator
+---Allocated memory 530 in bytes
+---Allocated number of memory 2
+---Memory usage of Stage allocator
+---Allocated memory 30 in bytes
+---Allocated number of memory 1
+---Memory usage of Stage allocator
+---Allocated memory 0 in bytes
+---Allocated number of memory 0
+---Memory usage of Stage allocator
+---Allocated memory 1030 in bytes
+---Allocated number of memory 2
+Current allocator: Main Menu
+Current allocator: Stage
+Current allocator: Engine
+Current allocator: Player 1
+Current allocator: Player 2
+Current allocator: Player 3
+Current allocator: Player 4
+======================Memory Manager============================
+|Name:               |Allocated bytes                          |
+----------------------------------------------------------------
+|           Main Menu                  |                   0  | 
+|               Stage                  |                   0  | 
+|              Engine                  |                   0  | 
+|            Player 1                  |                   0  | 
+|            Player 2                  |                   0  | 
+|            Player 3                  |                   0  | 
+|            Player 4                  |                   0  | 
+Total memory usage: 0
+================================================================
+SDL Manager: Initalising
+SDL Manager: Init successful
+Video System: Initialising
+SDL Initialisation successful!
+Loading font...
+SDL Manager: Video System init successful
+open_air finished XD
+Mapped RGB Value: 12593
+Mapped RGB Value: 23130
+Mapped RGB Value: 17028
+Mapped RGB Value: 29629
+Mapped RGB Value: 38119
+Mapped RGB Value: 48623
+Mapped RGB Value: 0
+Mapped RGB Value: 25509
+Mapped RGB Value: 38084
+Mapped RGB Value: 46558
+Mapped RGB Value: 63479
+Mapped RGB Value: 27482
+Mapped RGB Value: 36989
+Mapped RGB Value: 46501
+Mapped RGB Value: 54982
+Mapped RGB Value: 61415
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 0
+Mapped RGB Value: 65535
+SFF Manager: Loading kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+SFF Manager: 264 images have been decoded
+Current colour: 46558
+Current colour: 46558
+Current colour: 38084
+Current colour: 17028
+Current colour: 29629
+Current colour: 12593
+Current colour: 38119
+Current colour: 38119
+Current colour: 12593
+Current colour: 12593
+Current colour: 29629
+Current colour: 38119
+Current colour: 29629
+Current colour: 12593
+Normal exit :o

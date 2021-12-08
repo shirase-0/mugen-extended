@@ -1,0 +1,768 @@
+Logging: Init Successful
+Welcome to Mugen Ultimate Version Alpha
+Memory Manager: Begin Init
+Memory Manager: Initialising Main Menu memory allocator
+Allocator address: 000001831a431c90
+Memory Manager: Initialising Stage memory allocator
+Allocator address: 000001831a4374e0
+Memory Manager: Initialising Engine memory allocator
+Allocator address: 000001831a437f80
+Memory Manager: Initialising Player 1 memory allocator
+Allocator address: 000001831a438a20
+Memory Manager: Initialising Player 2 memory allocator
+Allocator address: 000001831a4394c0
+Memory Manager: Initialising Player 3 memory allocator
+Allocator address: 000001831a439f60
+Memory Manager: Initialising Player 4 memory allocator
+Allocator address: 000001831a43aa00
+Memory Manager: Init Successful
+SDL Manager: Initalising
+SDL Manager: Init successful
+Video System: Initialising
+SDL Initialisation successful!
+Loading font...
+SDL Manager: Video System init successful
+Freed block 0000018320c96ec0 from Tokenizer
+Freed block 0000018320c96ec0 from Tokenizer
+Freed block 0000018320c9ffd0 from Tokenizer
+SFF Manager: Loading kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+Freed block 0000018320c995d0 from Memory Manager
+Freed block 0000018320cb7930 from Memory Manager
+Freed block 0000018320c78260 from Memory Manager
+Freed block 0000018320caf660 from Memory Manager
+Freed block 0000018320c78260 from Memory Manager
+Freed block 0000018320caf660 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320caf660 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cbe850 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cf4e70 from Memory Manager
+Freed block 0000018320cf7080 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320cb8cb0 from Memory Manager
+Freed block 0000018320caaf30 from Memory Manager
+Freed block 0000018320caaf30 from Memory Manager
+Freed block 0000018320caaf30 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320d08bb0 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320cf9520 from Memory Manager
+Freed block 0000018320c995d0 from Memory Manager
+Freed block 0000018320cf78f0 from Memory Manager
+Freed block 0000018320c995d0 from Memory Manager
+Freed block 0000018320cb4a70 from Memory Manager
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d167c0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320c8e7f0 from Memory Manager
+Freed block 0000018320c90d70 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018321eca510 from Memory Manager
+Freed block 0000018320cf9970 from Memory Manager
+Freed block 0000018320cf9970 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320cf9970 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d14710 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018321f3a1a0 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018320d5e2d0 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321f48770 from Memory Manager
+Freed block 0000018321f4ae20 from Memory Manager
+Freed block 0000018321f4ae20 from Memory Manager
+Freed block 0000018321f4fcf0 from Memory Manager
+Freed block 0000018321f4fcf0 from Memory Manager
+Freed block 0000018321f4fcf0 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321f48770 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321ea6820 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+SFF Manager: 264 images have been decoded
+Freed block 0000018321f20ef0 from Tokenizer
+Freed block 0000018321f20ef0 from Tokenizer
+Freed block 0000018321f7fac0 from Tokenizer
+SFF Manager: Loading kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018321f991b0 from Memory Manager
+Freed block 0000018321f224c0 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f224c0 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f97090 from Memory Manager
+Freed block 0000018321f97090 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321fa83d0 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321fab810 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018320d5eae0 from Memory Manager
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018321f24f10 from Memory Manager
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018320c9b6a0 from Memory Manager
+Freed block 0000018321ff6ab0 from Memory Manager
+Freed block 0000018321ff8b60 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018321f68590 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018322040260 from Memory Manager
+Freed block 0000018321f7a980 from Memory Manager
+Freed block 0000018321f7cf00 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321fa6120 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018322088080 from Memory Manager
+Freed block 0000018322088080 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321fa69b0 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 00000183220ecc60 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 00000183220fb230 from Memory Manager
+Freed block 00000183220fd8e0 from Memory Manager
+Freed block 00000183220fd8e0 from Memory Manager
+Freed block 00000183220fd8e0 from Memory Manager
+Freed block 00000183220fd8e0 from Memory Manager
+Freed block 00000183220fd8e0 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 00000183220fb230 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 00000183220fb230 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+Freed block 00000183220fb230 from Memory Manager
+Freed block 0000018321f5a170 from Memory Manager
+SFF Manager: 264 images have been decoded
+======================Memory Manager============================
+|Name:               |Allocated bytes                          |
+----------------------------------------------------------------
+|           Main Menu                  |                   0  | 
+|               Stage                  |                   0  | 
+|              Engine                  |                   0  | 
+|            Player 1                  |             1672741  | 
+|            Player 2                  |             1672741  | 
+|            Player 3                  |                   0  | 
+|            Player 4                  |                   0  | 
+Total memory usage: 3345482
+================================================================
+wasapi
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdback
+Current command name: holdback
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: BB
+Current command name: BB
+Current command name: BB
+Current command name: BB
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: BB
+Current command name: BB
+Current command name: BB
+Current command name: BB
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: FF
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: holdfwd
+Current command name: start
+Current command name: start
+Current command name: start
+Current command name: start
+Normal exit :o

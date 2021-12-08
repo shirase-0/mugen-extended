@@ -1,0 +1,14 @@
+Scale2x - this is so I can make the sprites render at 2 times the size (which should be really helpful if I want to make it possible to have a fullscreen mode)
+Sound - this should handle loading of all the music and sounds in the game
+Character Definition Parser - this handles finding where all the character's specific files are, what they're called, which colour palette to choose, etc
+Menu - this should handle all the menus in the game, allowing the player to choose arcade mode, survival mode, PvP mode, etc
+Options - this should handle taking input from the user regarding their settings in the game (game difficulty, volume, etc)
+
+Those are the main things I've thought out so far
+There's way more features I have in mind, but I haven't worked out yet how I want to structure those and incorporate them in the engine
+Some of those ideas would be:
+-stage selection/loading
+-specialised AI for each character
+-online mode (PvP against real players around the world)
+-develop a new character creation format that allows for better performace and more customisability
+-make the engine easier to extend, allowing each new addition to be very modular
