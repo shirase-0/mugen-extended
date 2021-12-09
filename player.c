@@ -72,12 +72,16 @@ bool load_player(Player *player, const char *str_player)
 
 	// TODO: handle .def file loading
 	load_cmd_file(player->cmd_manager, "kfm\\kfm.cmd");
+	// The following line has been commented out, as the code it runs is currently under development
+	// When testing the finite state machine, uncomment this line
 	//parse_statefile(state_parser, "kfm\\kfm.cns", player->state_manager, player->player_allocator);
 	open_air(player->air_manager, "kfm\\kfm.air");
 
 	load_act_to_sff(player->sff_manager, "kfm\\kfm6.act");
 	load_sff_file(player->sff_manager, "kfm\\kfm.sff");
 
+	// The following are other characters sometimes used for testing
+	// Uncomment these when in use
 	// load_cmd_file(player->cmd_manager, "Iori_Yagami\\Iori_Yagami.cmd");
 	// //parse_statefile(state_parser, "Iori_Yagami\\Iori_Yagami.cns", player->state_manager, player->player_allocator);
 	// open_air(player->air_manager, "Iori_Yagami\\Iori_Yagami.air");
@@ -93,30 +97,35 @@ bool load_player(Player *player, const char *str_player)
  //    load_sff_file(player->sff_manager, "Mai_Shiranui\\Mai.sff");
 
     // Make always masked blit
+    // This ensures alpha transparency on sprites
     player->sff_manager->n_flags = BLT_NORMALMASKED;
     prepare_anim(player->sff_manager, 0);
 
+    // TODO: implement the finite state machine, and the relevant controllers to uncomment this line
     //  ChangeState(0); 
 
     return true;
 }
 
-// Clearly this code does nothing, so it will need to be redone
+// TODO: finish this function
 bool check_state(PL_State *temp_state)
 {
 	bool b_triggerall = true;
 	bool b_trigger = true;
-	u8 n_trigger_type;
+	// Currently unused, uncomment this when this function is implemented
+	//u8 n_trigger_type;
 
 	return(b_triggerall && b_trigger);
 }
 
+// TODO: this function is likely unfinished
 void handle_physics(Player *player)
 {
 	player->x += player->xvel;
 	player->y += player->yvel;
 }
 
+// TODO: implement this function once state_parser.c is working as intended
 void handle_fsm()
 {
 	/*
@@ -149,6 +158,9 @@ void update_facing(Player *player)
 	}
 }
 
+// Renders debug information to the screen in realtime
+// Some of the information rendered may be incorrect, due to the finite state machine not being fully 
+// implemented yet
 void mu_player_debug(Player *player)
 {
 	Action_Element *anim = player->sff_manager->anim;
@@ -200,7 +212,7 @@ void player_change_state(Player *player, s32 n_state_number)
 	player->b_hitcount_persist = player->lp_current_statedef->b_hitcount_persist;
 	player->b_movehit_persist = player->lp_current_statedef->b_movehit_persist;
 
-	// Change aim if needed
+	// Change animation if needed
 	if(player->lp_current_statedef->n_anim != -1)
 	{
 		prepare_anim(player->sff_manager, player->lp_current_statedef->n_anim);
@@ -231,7 +243,7 @@ void player_change_state(Player *player, s32 n_state_number)
 		mu_log_message("TODO: Handle juggle parameter of statedef");
 	}
 
-	// There's probably way more to do in this function still, but this is all there was in the original version
+	// TODO: handle any additional persistent player variables here
 }
 
 void update_player(Player *player)
@@ -239,7 +251,7 @@ void update_player(Player *player)
 	// Update player inputs
 	mu_cmd_update(player->cmd_manager, player->kb, false);
 
-	handle_fsm(); // To be uncommented when handle_fsm is implemented
+	handle_fsm();
 	handle_physics(player);
 	update_facing(player);
 	player->n_state_time++;

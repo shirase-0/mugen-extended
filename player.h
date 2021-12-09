@@ -10,7 +10,7 @@ bool load_player(Player *player, const char *str_player);
 bool check_state(PL_State *temp_state); // See player.c
 void execute_controller(PL_State *temp_state); // Empty function in original version
 void handle_physics(Player *player);
-void handle_fsm(); // Original code is commented out
+void handle_fsm(); // Original version is commented out
 void update_facing(Player *player);
 void mu_player_debug(Player *player);
 
