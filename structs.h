@@ -871,6 +871,7 @@ struct VM
 
     // Pointer to player
     // Not sure why we need these???
+    // TODO: check if these can be removed
     void *player1;
     void *player2;
 
