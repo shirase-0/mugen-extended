@@ -1,6 +1,15 @@
 #include "mu_headers.h"
 
+/* ############################################
+   This file relies on the finite state machine in state_parser.c working, which it currently does not
+   As such, it's impossible to properly test if any optimisations to this code cause crashes, or whether
+   crashes are simply caused by the FSM not working as intended. With this in mind, this file has been 
+   left unoptimised, with many lines being quite indecipherable. This will be fixed once the FSM is working
+   as intended.
+   ############################################ */
+
 // Array copied from original version
+// TODO: Check Elecbyte documentation to see if there are any OPs missing from this list
 char *str_opcode[] =
 {
 	"OP_PUSH",

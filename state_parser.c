@@ -1,7 +1,20 @@
 #include "mu_headers.h"
 
+/* ############################################
+   This file contains the finite state machine that effectively runs the core of the game. It's currently under
+   development, and as such, is not working as intended. When last tested, using this code caused segfaults
+   unpredictably, sometimes triggering before any states are parsed, and sometimes after many have been parsed.
+   This leads me to believe that the segfaults might actually be caused somewhere else, however further testing
+   will be required for this. Given that my intention is to refactor the entire engine and start from scratch,
+   trying to trace down the cause of these segfaults and fix them is not in my best interest. Once the data 
+   structures the engine is built on are better organised and written with modularity and ease of use in mind,
+   bugs like these will be much easier to trace back to their origin. Additionally, the rewriting of the entire
+   engine will allow me to build in rigorous unit testing from the beginning, allowing me to catch bugs as soon 
+   as they appear. With all of this in mind, the following file has been left uncommented and unoptimised.
+   ############################################ */
+
 // Arrays copied directly from previous code
-//This are all documented Controllers
+// These are all the documented controllers
 //TODO: find the undocumented controllers
 static char *str_controller_types[] = {
 	"AfterImage",

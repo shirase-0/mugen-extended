@@ -3,8 +3,8 @@
 
 #define S_TYPE 2
 #define S_MOVETYPE 4
-#define S_PHYSICS 8 // Not sure why there's this jump from 4 to 8
-#define S_ANIM 10 // Originally this was called anime lol
+#define S_PHYSICS 8
+#define S_ANIM 10
 #define S_CTRL 12
 #define S_POWERADD 14
 #define S_JUGGLE 16
