@@ -49,6 +49,7 @@ void check_sdl(Game *game)
 		game->b_game = false;
 	}
 	
+	// If mu_draw doesn't render the screen properly, uncomment this line?
 	//SDL_UpdateWindowSurface(game->sdl_manager->window);
 }
 
@@ -90,11 +91,16 @@ void run_game(Game *game)
 				mu_log_message("You've reached the menu, which has not been implemented yet");
 				break;
 		}
-		//  m_SdlManager.m_VideoSystem.DrawText(10,20,"%i",m_Timer.GetGameTime());
-		//Now draw the content to the screen
 
+		// Now draw the content to the screen
+		// Display the key currently being pressed on the screen
 		mu_draw_text(game->sdl_manager, 0, 100, SDL_GetKeyName(game->event.key.keysym.sym));
 
+		// The following is merely demonstration code to show that animations and keyboard inputs are working
+		// This test code allows player 1 to switch animations between moving forward (D), moving backwards (A),
+		// and standing idle (P)
+		// This will be removed once the finite state machine in state_parser.c is fully operational, and the actions
+		// associated with these animations actually work as intended
 		if((strcmp(SDL_GetKeyName(game->event.key.keysym.sym), "D") == 0) && !(strcmp(SDL_GetKeyName(game->event.key.keysym.sym), current_key) == 0))
 		{
 			prepare_anim(game->engine->p1->sff_manager, 20);
@@ -111,10 +117,9 @@ void run_game(Game *game)
 			current_key = "P";
 		}
 
-		//Limits the game speed to 60Hz   
+		//Limits the game speed to 60Hz (and also renders the screen?)
+		// TODO: check that SDL2 rendering pipeline is working as intended
 		mu_draw(game->sdl_manager, sdl_texture);
-		//SDL_Delay(500);
-		//mu_log_message("SDL Errors: %s", SDL_GetError());
 	}
 }
 

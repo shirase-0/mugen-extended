@@ -47,6 +47,7 @@ Keyboard_Data *keyboard_data_init()
 void mu_process_input(Keyboard_Data *lp_keyboard, SDL_Event event)
 {
 	// Used Uint8 in original version
+	// TODO: switch to using stdint.h type definitions
 	u8 *keystate = SDL_GetKeyboardState(NULL);
 
 	// Process keyboard input
@@ -57,5 +58,4 @@ void mu_process_input(Keyboard_Data *lp_keyboard, SDL_Event event)
 			lp_keyboard->key_info[k].is_pressed = keystate[lp_keyboard->key_info[k].sdl_keycode];
 		}
 	}
-	//mu_log_message("mu_process_input: current inputs have been taken apparently");
 }
