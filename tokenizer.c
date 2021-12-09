@@ -38,7 +38,7 @@ Tokenizer *tokenizer_init(int buffer_size, char *comment_chars, char **operators
 	memset(tokenizer->buffer, 0, sizeof(char) * buffer_size);
 	tokenizer->comment_chars = comment_chars ? comment_chars : token_default_comment_chars;
 
-	if (operators)
+	if (operators) // This code path is not currently in use
 	{
 		tokenizer->operators = operators;
 		tokenizer->operator_count = operator_count;
@@ -81,7 +81,6 @@ void free_tokenizer(Tokenizer *tokenizer)
 }
 
 // Opens file and reads into buffer
-// Note to self: when modifying the value(s) stored in a pointer, there's no need to return the pointer, as the value has been changed in memory
 bool mu_open_file(Tokenizer *tokenizer, const char* filename)
 {
 	if(tokenizer->file_buffer)
@@ -145,6 +144,10 @@ bool mu_close_file(Tokenizer *tokenizer)
 	return true;
 }
 
+// Debug messages have been left in, but commented out
+// In the event that the tokenizer causes issues down the line, this will allow for faster debugging
+// This function is heavily based on code found online. It's confusing, but it works
+// TODO: Could this be implemented better using strtok?
 const char *get_token(Tokenizer *tokenizer)
 {
 	//mu_log_message("Start of get_token; tokenizer->buffer: %s", tokenizer->buffer);
@@ -223,7 +226,7 @@ const char *get_token(Tokenizer *tokenizer)
 							tokenizer->last_token_was_quoted_string = true;
 							break;
 						}
-						// I don't understand this section
+						// I don't understand this section, but it works
 						*buffer_temp = c;
 						buffer_temp++;
 					}
@@ -297,20 +300,20 @@ const char *get_token(Tokenizer *tokenizer)
 							}
 						}
 
-						if(prev_chars_matched && (c == (tokenizer->operators[a])[tokenizer->num_operator_chars_read]))
+						if(prev_chars_matched && 
+						   (c == (tokenizer->operators[a])[tokenizer->num_operator_chars_read]))
 						{
 							hit_operator = true;
 							// If there is something already in the buffer, back up and return what is already there
 							if(!tokenizer->num_operator_chars_read && (buffer_temp > tokenizer->buffer))
 							{
-								//mu_log_message("Guess where our problem is!!!!!!!!!!!");
 								// Rewind file pointer by one
 								tokenizer->current_file_pos--;
 								break_to_return_token = true;
 							}
 							else
 							{
-								// I still don't understand this bit
+								// I still don't understand this bit, but it works
 								*buffer_temp = c;
 								buffer_temp++;
 								tokenizer->num_operator_chars_read++;
@@ -330,7 +333,7 @@ const char *get_token(Tokenizer *tokenizer)
 					// Check whitespace after token to see if end of line/EOF bits should be set
 					if(!tokenizer->num_operator_chars_read && !have_hit_second_whitespace)
 					{
-						// Seriously what does this do .-.
+						// Seriously what does this do (It works, so don't fix what aint broke ig)
 						*buffer_temp = c;
 						buffer_temp++;
 					}
@@ -357,13 +360,6 @@ const char *get_token(Tokenizer *tokenizer)
 		tokenizer->num_operator_chars_read = 0;
 	}
 	tokenizer->buffer_is_next_token = false;
-
-	//mu_log_message("CHECK: tokenizer->buffer = %s", tokenizer->buffer);
-
-	// if(strcmp(tokenizer->buffer, "170") == 0)
-	// {
-	// 	mu_log_message("CHECK: tokenizer->buffer = %s", tokenizer->buffer);
-	// }
 	
 	return tokenizer->buffer;
 }
@@ -379,6 +375,7 @@ bool get_token_check(Tokenizer *tokenizer, char *dest_string, int max_length)
 	return true;
 }
 
+// TODO: merge check_token_consume and check_token_no_consume using an additional bool parameter?
 bool check_token_consume(Tokenizer *tokenizer, const char *string_to_look_for)
 {
 	if(!tokenizer->buffer_is_next_token)
@@ -389,9 +386,10 @@ bool check_token_consume(Tokenizer *tokenizer, const char *string_to_look_for)
 		}
 	}
 
-	// This has switched to using system-specific implementations of strcmp for case-insensitive comparisons
+	// I've switched to using system-specific implementations of strcmp for case-insensitive comparisons
 	// If I end up figuring out a way to patch this to use my own function, I should probably do that for
 	// true cross-compatibility
+	// TODO: Replace this with my own function, or make this implementation more readable
 #ifdef _WIN32 // If we're on windows
 	bool result = tokenizer->is_case_sensitive ? (strcmp(string_to_look_for, tokenizer->buffer) == 0) : (stricmp(string_to_look_for, tokenizer->buffer) == 0);
 #else // If we're on a POSIX-compliant system (UNTESTED)
@@ -411,9 +409,10 @@ bool check_token_no_consume(Tokenizer *tokenizer, const char *string_to_look_for
 		}
 	}
 
-	// This has switched to using system-specific implementations of strcmp for case-insensitive comparisons
+	// I've switched to using system-specific implementations of strcmp for case-insensitive comparisons
 	// If I end up figuring out a way to patch this to use my own function, I should probably do that for
 	// true cross-compatibility
+	// TODO: Replace this with my own function, or make this implementation more readable
 #ifdef _WIN32 // If we're on windows
 	bool result = tokenizer->is_case_sensitive ? (strcmp(string_to_look_for, tokenizer->buffer) == 0) : (stricmp(string_to_look_for, tokenizer->buffer) == 0);
 #else // if we're on a POSIX-compliant system (UNTESTED)
@@ -470,11 +469,15 @@ bool check_token_is_number(Tokenizer *tokenizer)
 
 	int buffer_len = strlen(tokenizer->buffer);
 	char *c = tokenizer->buffer;
-	//mu_log_message("check_token_is_number; Current value of tokenizer->buffer: %s", c);
 
 	for(int a = 0; a < buffer_len; a++)
 	{
-		if(((*c < '0') || (*c > '9')) && (*c != '.') && !(!tokenizer->return_negative_separately_from_number && (a == 0) && (*c == '-') && (buffer_len > 1)))
+		if(((*c < '0') || (*c > '9')) && 
+			(*c != '.') && 
+			!(!tokenizer->return_negative_separately_from_number && 
+			(a == 0) && 
+			(*c == '-') && 
+			(buffer_len > 1)))
 		{
 			return false;
 		}
