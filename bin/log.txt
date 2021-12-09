@@ -2,19 +2,19 @@ Logging: Init Successful
 Welcome to Mugen Extended Version Alpha
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000002a4368f1c90
+Allocator address: 00000141dba81c90
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000002a4368f85d0
+Allocator address: 00000141dba885d0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000002a4368f9070
+Allocator address: 00000141dba89070
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000002a4368f9b10
+Allocator address: 00000141dba89b10
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000002a4368fa5b0
+Allocator address: 00000141dba8a5b0
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000002a4368fb050
+Allocator address: 00000141dba8b050
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000002a4368fbaf0
+Allocator address: 00000141dba8baf0
 Memory Manager: Init Successful
 SDL Manager: Initalising
 SDL Manager: Init successful
@@ -22,15 +22,15 @@ Video System: Initialising
 SDL Initialisation successful!
 Loading font...
 SDL Manager: Video System init successful
-Freed block 000002a43d1b7fb0 from Tokenizer
-Freed block 000002a43d1b7fb0 from Tokenizer
-Freed block 000002a43d1c10c0 from Tokenizer
+Freed block 00000141e2237fb0 from Tokenizer
+Freed block 00000141e2237fb0 from Tokenizer
+Freed block 00000141e22410c0 from Tokenizer
 SFF Manager: Loading kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
-Freed block 000002a43e442640 from Tokenizer
-Freed block 000002a43e442640 from Tokenizer
-Freed block 000002a43e4a0740 from Tokenizer
+Freed block 00000141e34c2640 from Tokenizer
+Freed block 00000141e34c2640 from Tokenizer
+Freed block 00000141e3520740 from Tokenizer
 SFF Manager: Loading kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
@@ -53,6 +53,14 @@ Current command name: holdback
 Current command name: holdback
 Current command name: holdback
 Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdback
+Current command name: holdfwd
+Current command name: holdfwd
 Current command name: holdfwd
 Current command name: holdfwd
 Current command name: holdfwd

@@ -30,12 +30,13 @@ MU_Engine *mu_engine_init(MU_Allocator *mem_manager, MU_Video_System *video_syst
 	engine->p1->n_ground = 220;
 	engine->p2->n_ground = 220;
 
+	// TODO: calculate these values based on XMAX and YMAX defined in video_system.h
 	engine->p1->x = 70;
 	engine->p1->y = 220;
 	engine->p2->x = 570; // 640 - 70
 	engine->p2->y = 220;
 
-	// strings are empty because the player being loaded is hardcoded into this function for now
+	// Strings are empty because the player being loaded is hardcoded into this function for now
 	load_player(engine->p1, "");
 	load_player(engine->p2, "");
 
@@ -50,8 +51,9 @@ void mu_run_engine(MU_Engine *engine)
 {
 	/*
 	================================================================================
-	Upates all the engine members and draw them to the screen
-	Handels also AI and player movement
+	Upates all players and draws them to the screen
+	Currently the functions this function calls are very barebones, and do not fully
+	handle AI and player movement.
 	================================================================================
 	*/
 
