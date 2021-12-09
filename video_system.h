@@ -1,7 +1,8 @@
 #ifndef __MUVIDEO__
 #define __MUVIDEO__
 
-// Note to self: in the original version, these were consts. For some reason, the linker hates this, so I had to change them to #defines
+// Note to self: in the original version, these were consts. For some reason, the linker hates this, so I had to 
+// change them to #defines
 #define SCREENX_LIMIT 639
 #define SCREENY_LIMIT 479
 #define XMAX 640

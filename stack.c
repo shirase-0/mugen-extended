@@ -4,6 +4,8 @@ MU_Stack *mu_stack_init()
 {
 	// CHECK: replace this malloc call with calloc and avoid the remaining steps?
 	MU_Stack *stack = (MU_Stack*) malloc(sizeof(MU_Stack));
+
+	// CHECK: is it worth repeating this code here, or should I just call mu_reset_stack?
 	stack->n_pos = 0; // Not sure why we're setting this to 0 if we're gonna memset the whole stack anyway
 	memset(stack, 0, sizeof(MU_Stack));
 

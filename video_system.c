@@ -5,6 +5,7 @@ void scale2x(SDL_Surface *src, SDL_Surface *dst); // TODO: Implement this
 // Initialise the MU_Video_System
 MU_Video_System *mu_init_video_system()
 {
+	// SDL Initialisation
 	mu_log_message("Video System: Initialising");
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0)
     {
@@ -13,6 +14,7 @@ MU_Video_System *mu_init_video_system()
     }
     mu_log_message("SDL Initialisation successful!");
 
+    // Create and render a window
 	MU_Video_System *video_system = (MU_Video_System*) malloc(sizeof(MU_Video_System));
 	video_system->window = NULL;
 	video_system->screen_surface = NULL;
@@ -48,7 +50,7 @@ MU_Video_System *mu_init_video_system()
     }   
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");  // Make the scaled rendering look smoother.
-	SDL_RenderSetLogicalSize(video_system->renderer, XMAX, YMAX); 
+	SDL_RenderSetLogicalSize(video_system->renderer, XMAX, YMAX); // XMAX and YMAX are defined in video_system.h
 
     SDL_FillRect(video_system->screen_surface, NULL, SDL_MapRGB(video_system->screen_surface->format, 0, 0, 0));
 	SDL_UpdateWindowSurface(video_system->window);
@@ -60,9 +62,11 @@ MU_Video_System *mu_init_video_system()
 	video_system->n_fps_count = 0;
 	video_system->n_fps = 0;
 
+	// Set the framerate to 60
 	init_framerate(&video_system->fps_manager);
 	set_framerate(&video_system->fps_manager, 60);
 
+	// Load raster font
 	mu_load_font(video_system);
 
 	return video_system;
@@ -111,6 +115,7 @@ void mu_draw_text(MU_Video_System *video_system, int x, int y, char *str_text, .
 	SDL_Rect font_rect;
 	SDL_Rect screen_rect;
 
+	// Parse any string interpolation arguments
 	va_list ap;
 	va_start(ap, str_text); // Parses the string for variables
 	vsprintf(str_temp, str_text, ap); // Converts symbols to actual numbers
@@ -152,6 +157,7 @@ void mu_draw_text(MU_Video_System *video_system, int x, int y, char *str_text, .
 	}
 }
 
+// Render a black rectangle over the current screen composite, effectively "clearing" the screen
 void mu_clear_screen(MU_Video_System *video_system)
 {
 	u32 colour;
@@ -160,12 +166,15 @@ void mu_clear_screen(MU_Video_System *video_system)
 	SDL_FillRect(video_system->screen_surface, NULL, colour);
 }
 
+// This function call seems unnecessary
+// TODO: remove this function?
 unsigned mu_map_rgb(MU_Video_System *video_system, int red, int green, int blue)
 {
 	return SDL_MapRGB(video_system->screen_surface->format, red, green, blue);
 }
 
 // This function is never used
+// Probably no longer necessary in SDL2
 // TODO: possibly remove this?
 SDL_Surface *mu_create_surface(MU_Video_System *video_system, int x, int y)
 {
@@ -185,6 +194,9 @@ SDL_Surface *mu_create_surface(MU_Video_System *video_system, int x, int y)
 	return temp_surface;
 }
 
+// The main function that draws pixels to the screen
+// This is used to render any given pcx image file
+// Used for rendering player 1 sprites
 void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, s16 y, bool b_mask)
 {
 	unsigned *lp_work_data;
@@ -207,6 +219,8 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 	u16 x_clip = 0;
 	u16 x_clip2 = 0;
 
+	// Ensure that sprites render exactly where they're supposed to
+	// i.e. if a sprite is half off screen, render only the half that is on screen
 	if(x + width > XMAX)
 	{
 		width -= x + width - XMAX;
@@ -232,7 +246,7 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 	lp_work_data += y * pitch;
 	lp_work_data += x;
 
-	if(!b_mask)
+	if(!b_mask) // Currently unused code path?
 	{
 		// Iterate across each pixel on the screen
 		for(int i = y_clip; i < height; i++)
@@ -248,7 +262,7 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 			// ^ ^ ^ ^ ^ ^ ^this shouldn't be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
 		}
 	}
-	else
+	else // Always used when an alpha mask is required
 	{
 		bool blank_row = true;
 		for(int i = y_clip; i < height; i++)
@@ -276,6 +290,8 @@ void mu_normal_blt(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, 
 	}
 }
 
+// Operates as the function above does, but flipped on the horizontal axis
+// This is used for rendering player 2 sprites
 void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 x, s16 y, bool b_mask)
 {
 	unsigned *lp_work_data;
@@ -298,11 +314,13 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 	u16 x_clip = 0;
 	u16 x_clip2 = 0;
 
+	// Ensure that sprites render exactly where they're supposed to
+	// i.e. if a sprite is half off screen, render only the half that is on screen
 	if(x + width > XMAX)
 	{
 		x_clip2 = width;
 		width -= x + width - XMAX;
-		// Needed for h flip
+		// Needed for horizontal flip
 		x_clip2 = x_clip2 - width;
 	}
 
@@ -339,7 +357,7 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 			lp_work_data += pitch / 2; // this shouldn't be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
 		}
 	}
-	else
+	else // Always used when an alpha mask is required
 	{
 		bool blank_row = true;
 		for(int i = y_clip; i < height; i++)
@@ -367,6 +385,7 @@ void mu_normal_flip_h(MU_Video_System *video_system, SFF_Sprite *lp_sprite, s16 
 
 // Not sure if this function is actually being used to render graphics or not currently
 // Initially this function was only used to set the framerate
+// TODO: update this function so that every tick of the game uses this function to render the screen composite
 void mu_draw(MU_Video_System *video_system, SDL_Texture *sdl_texture)
 {
 	// First clear the screen? Maybe unnecessary
