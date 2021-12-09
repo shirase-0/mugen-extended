@@ -1,5 +1,11 @@
 #include "mu_headers.h"
 
+/* #########################################################
+    This file currently doesn't do anything
+    In the future, its intention is to execute every controller that MUGEN offers
+    This will be implemented once the finite state machine in state_parser.c is fully functional
+   ######################################################### */
+
 MU_Controller_Executer *controller_executer_init()
 {
 	MU_Controller_Executer *exec = (MU_Controller_Executer*) malloc(sizeof(MU_Controller_Executer));
@@ -99,6 +105,9 @@ void init_func_table(MU_Controller_Executer *exec)
     exec->p_func_table[86] = NULL;
     exec->p_func_table[87] = NULL;
 }
+
+// The following are code snippets found online
+// TODO: convert these from C++, or rewrite them from scratch
 
 void mu_execute_controller(int n_controller)
 {
