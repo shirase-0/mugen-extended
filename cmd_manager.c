@@ -18,14 +18,14 @@ PL_Command *pl_command_init(int command_count)
 	return pl_command;
 }
 
-PL_Command_Frame_Input *pl_command_frame_input_init(int key_buffer_size)
+PL_Cmd_Frame_Input *pl_command_frame_input_init(int key_buffer_size)
 {
-	PL_Command_Frame_Input *pl_command_frame_input = (PL_Command_Frame_Input*) malloc(sizeof(PL_Command_Frame_Input) * key_buffer_size);
-	memset(pl_command_frame_input, 0, sizeof(PL_Command_Frame_Input) * key_buffer_size);
-	//pl_command_frame_input->key_bitfield = 0;
-	//pl_command_frame_input->game_ticks = 0;
+	PL_Cmd_Frame_Input *pl_cmd_frame_input = (PL_Cmd_Frame_Input*) malloc(sizeof(PL_Cmd_Frame_Input) * key_buffer_size);
+	memset(pl_cmd_frame_input, 0, sizeof(PL_Cmd_Frame_Input) * key_buffer_size);
+	pl_cmd_frame_input->key_bitfield = 0;
+	pl_cmd_frame_input->game_ticks = 0;
 
-	return pl_command_frame_input;
+	return pl_cmd_frame_input;
 }
 
 MU_CMD_Manager *cmd_manager_init(int key_buffer_size)
@@ -42,6 +42,8 @@ MU_CMD_Manager *cmd_manager_init(int key_buffer_size)
 	return cmd_manager;
 }
 
+// The commands (buttons) a player needs to press to execute moves are stored in CMD files
+// This function loads the CMD file passed to it into the cmd manager
 bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file)
 {
 	int default_command_time = 15;
@@ -113,7 +115,7 @@ bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file)
 	}
 
 	cmd_manager->commands = pl_command_init(cmd_manager->command_count);
-	PL_Command *command = cmd_manager->commands; // For easier access to the same thing?
+	PL_Command *command = cmd_manager->commands;
 
 	while(!tokenizer->at_end_of_file)
 	{
@@ -133,7 +135,8 @@ bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file)
 				command->str_command[0] = 0;
 				command->n_how_many_command = 0;
 
-				while(command->n_how_many_command < MAX_COMMAND && !check_token_no_consume(tokenizer, "[") && !tokenizer->at_end_of_file)
+				while(command->n_how_many_command < MAX_COMMAND && 
+					!check_token_no_consume(tokenizer, "[") && !tokenizer->at_end_of_file)
 				{
 					if(check_token_consume(tokenizer, "name"))
 					{
@@ -151,6 +154,9 @@ bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file)
 
 						}
 
+						// This uses macros defined in structs.h to create a bitfield for any given button input
+						// This includes the difference between holding a button and simply pressing it, as well
+						// as pressing multiple buttons simultaneously
 						while(!tokenizer->at_end_of_line)
 						{
 							const char *token = get_token(tokenizer);
@@ -304,7 +310,7 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Keyboard_Data *keys, bool facing
 
 	cmd_manager->key_buffer[cmd_manager->key_index].game_ticks = get_game_time(cmd_manager->cmd_timer);
 
-	// Add current keystrokes to input buffer
+	// Add current keystrokes to input buffer using macros defined in structs.h
 	for(int k = 0; k < KEY_COUNT; k++)
 	{
 		if(keys->key_info[k].is_pressed)
@@ -332,13 +338,15 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Keyboard_Data *keys, bool facing
 		int n_last_time = -1;
 		int current_key_index = 0;
 
+		// For every command in the CMD file
 		for(int b = current_command->n_how_many_command - 1; b >= 0; b--)
 		{
 			bool b_command = false;
 			bool on_release = ((current_command->n_command[b].key_modifier & PLC_KEYMOD_ON_RELEASE) != 0);
 			bool on_hold = ((current_command->n_command[b].key_modifier & PLC_KEYMOD_MUST_BE_HELD) != 0);
 			bool use_4way = ((current_command->n_command[b].key_modifier & PLC_KEYMOD_DETECT_AS_4WAY) != 0);
-			bool ban_other_input = ((current_command->n_command[b].key_modifier & PLC_KEYMOD_BAN_OTHER_INPUT) != 0);
+			// Currently unused, uncomment this when necessary
+			//bool ban_other_input = ((current_command->n_command[b].key_modifier & PLC_KEYMOD_BAN_OTHER_INPUT) != 0);
 			int game_ticks_to_hold = current_command->n_command[b].game_ticks_for_hold;
 			int keycode = current_command->n_command[b].keycode;
 
@@ -346,7 +354,7 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Keyboard_Data *keys, bool facing
 			// This is how it was in the original version
 			for( ; current_key_index < cmd_manager->key_buffer_size; current_key_index++) 
 			{
-				PL_Command_Frame_Input *frame_input = &cmd_manager->key_buffer[adjust_key_index(cmd_manager, cmd_manager->key_index, -current_key_index)];
+				PL_Cmd_Frame_Input *frame_input = &cmd_manager->key_buffer[adjust_key_index(cmd_manager, cmd_manager->key_index, -current_key_index)];
 				bool key_down = ((frame_input->key_bitfield & keycode) == keycode);
 
 				if(key_down && !use_4way)
@@ -364,7 +372,7 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Keyboard_Data *keys, bool facing
 					int game_ticks_held = 0;
 					for(int k = current_key_index + 1; k < cmd_manager->key_buffer_size; k++)
 					{
-						PL_Command_Frame_Input *frame_input2 = &cmd_manager->key_buffer[adjust_key_index(cmd_manager, cmd_manager->key_index, -k)];
+						PL_Cmd_Frame_Input *frame_input2 = &cmd_manager->key_buffer[adjust_key_index(cmd_manager, cmd_manager->key_index, -k)];
 						bool key_down2 = ((frame_input2->key_bitfield & keycode) == keycode);
 
 						if(key_down2 && !use_4way)
@@ -431,8 +439,10 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Keyboard_Data *keys, bool facing
 			// The last button of the sequence must be pressed in the current game tick to
 			// be valid, and then it must be checked for how long it has taken to do the input
 			//int gameTicks = GetGameTicks();
+			// TODO
 
-			if((n_last_time >= (get_game_time(cmd_manager->cmd_timer) - current_command->n_buffer_time)) && (n_last_time - n_time) <= current_command->n_command_time)
+			if((n_last_time >= (get_game_time(cmd_manager->cmd_timer) - current_command->n_buffer_time)) && 
+				(n_last_time - n_time) <= current_command->n_command_time)
 			{
 				cmd_manager->current_command_name = current_command->str_command;
 				mu_log_message("Current command name: %s", cmd_manager->current_command_name);

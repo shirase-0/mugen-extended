@@ -534,12 +534,12 @@ struct PL_Command
 };
 typedef struct PL_Command PL_Command;
 
-struct PL_Command_Frame_Input
+struct PL_Cmd_Frame_Input
 {
     u16 key_bitfield;
     u32 game_ticks;
 };
-typedef struct PL_Command_Frame_Input PL_Command_Frame_Input;
+typedef struct PL_Cmd_Frame_Input PL_Cmd_Frame_Input;
 
 struct MU_CMD_Manager
 {
@@ -549,7 +549,7 @@ struct MU_CMD_Manager
     const char *current_command_name;
 
     // Keyboard buffer
-    PL_Command_Frame_Input *key_buffer;
+    PL_Cmd_Frame_Input *key_buffer;
     short key_buffer_size;
     short key_index;
 };

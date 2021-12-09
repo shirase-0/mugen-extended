@@ -3,7 +3,7 @@
 
 PL_Command_Element *pl_command_element_init();
 PL_Command *pl_command_init(int command_count);
-PL_Command_Frame_Input *pl_command_frame_input_init(int key_buffer_size);
+PL_Cmd_Frame_Input *pl_command_frame_input_init(int key_buffer_size);
 MU_CMD_Manager *cmd_manager_init(int key_buffer_size);
 
 bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file);
