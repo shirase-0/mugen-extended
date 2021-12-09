@@ -11,12 +11,14 @@ VM *vm_init()
 	return vm;
 }
 
+// CHECK: Is this function really necessary?
 void vm_set_players(VM *vm, Player *p1, Player *p2)
 {
 	vm->p1 = p1;
 	vm->p2 = p2;
 }
 
+// The function table contains every operation which the FSM can execute
 void vm_init_func_table(VM *vm)
 {
 	vm->p_func_table[0] = &vm_push_value;
@@ -161,6 +163,7 @@ void vm_init_func_table(VM *vm)
 	vm->p_func_table[139] = &vm_win;
 }
 
+// This code is untested, as the FSM is not fully implemented
 float vm_execute(VM *vm, Instruction *p_inst)
 {
 	vm->n_current_ins = 0;
@@ -787,7 +790,7 @@ void vm_anim_elem_no(VM *vm)
 
 	if(n_time_check > t_action_element->n_complete_anim_time)
 	{
-		//Should return SFalse
+		// Should return false
 		mu_log_message("vm_anim_elem_no: pushing 0 to stack and returning");
 		mu_push(vm->stack, 0, "#");
 		return;
@@ -826,7 +829,7 @@ void vm_anim_elem_time(VM *vm)
 	}
 	else
 	{
-		//Should return SFalse
+		// Should return false
 		mu_log_message("vm_anim_elem_time: unable to get anim elem time");
 		mu_push(vm->stack, -1, "#");
 	}
@@ -1759,6 +1762,7 @@ void vm_parent_dist(VM *vm)
 
 void vm_pi(VM *vm)
 {
+	// TODO: implement pi properly
 	mu_log_message("vm_pi: pushing pi to stack");
 	mu_push(vm->stack, 3.141592653589f, "#");
 }

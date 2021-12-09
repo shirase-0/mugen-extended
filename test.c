@@ -96,7 +96,10 @@ int main(int argc, char *argv[]) {
 
         // TODO: Add more unit tests here
     }
-    else // Run the game as intended
+    // Run the game as intended
+    // Note that this is a temporary setup, the game should actually be run from main.c, but as it's still in 
+    // testing, I'm just running it from here to test various things, such as loading music
+    else 
     {
         Game *mugen = init_game();
 
