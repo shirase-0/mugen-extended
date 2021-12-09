@@ -155,7 +155,8 @@ void mu_free(MU_Allocator *allocator, void *current_memory)
 	}
 
 	free(allocator->lp_mem_list[i].address);
-	mu_log_message("Freed block %p from Memory Manager", allocator->lp_mem_list[i].address);
+	// Uncomment this when debugging state_parser.c
+	//mu_log_message("Freed block %p from Memory Manager", allocator->lp_mem_list[i].address);
 	allocator->lp_mem_list[i].address = NULL;
 	allocator->lp_mem_list[i].n_type = FREE;
 	allocator->n_alloc_size -= allocator->lp_mem_list[i].n_size;

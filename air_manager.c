@@ -51,6 +51,8 @@ void add_action(MU_Air_Manager *air_manager, s32 n_action_number)
 	// 	show_mem_usage(air_manager->air_allocator);
 	// }
 
+	// TODO: This seems to work fine, but an error occurred in sff_manager when trying to do something similar
+	// Check this code to ensure it actually works as intended, and isn't just being glossed over somewhere
 	Action_Element *lp_action_list = &air_manager->lp_action_list[air_manager->n_total_action_block];	
 	lp_action_list->loop_start = -1;
 	lp_action_list->n_action_number = n_action_number;

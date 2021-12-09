@@ -1,3 +1,4 @@
+rm MugenExtended.exe
 cd ..
 make
 cd bin
