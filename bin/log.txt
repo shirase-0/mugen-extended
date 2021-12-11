@@ -1,0 +1,26 @@
+Logging: Init Successful
+debug_print working as intended
+mu_log_message working as intended
+Memory Manager: Initialising Test Allocator memory allocator
+Allocator address: 000002baf3e31b00
+------------------------------------------------------------
+Name		Size (bytes)		Allocated MEMLISTs
+Test Allocator	0			0
+
+Total MEMLISTs	Memlist Pointer		Free?
+100		000002baf3e37440	1
+------------------------------------------------------------
+------------------------------------------------------------
+Name		Size (bytes)		Allocated MEMLISTs
+Test Allocator	1000			1
+
+Total MEMLISTs	Memlist Pointer		Free?
+100		000002baf3e37440	0
+------------------------------------------------------------
+------------------------------------------------------------
+Name		Size (bytes)		Allocated MEMLISTs
+Test Allocator	0			0
+
+Total MEMLISTs	Memlist Pointer		Free?
+100		000002baf3e37440	1
+------------------------------------------------------------
