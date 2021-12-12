@@ -91,17 +91,26 @@ void *mu_alloc(MU_Allocator *allocator, size_t size)
 		}
 	}
 
-	// TODO: move this error check outside of this function?
+
+	// For the following section, I've chosen to disable these checks unless debugging is turned on
+	// It may be useful to enable these again at some point for logging purposes (TODO: profiling)
+	// Currently I've chosen to disable them, since this function should be as fast as possible
+#if DEBUG == 1
 	if(i > allocator->memlist_count)
 	{
 		debug_print("Memory Manager: No free block found");
 	}
+#endif
 
 	allocator->lp_memlist[i].type = ALLOC;
 	allocator->lp_memlist[i].address = malloc(size);
 
-	// There was an error check here, but this should be moved elsewhere in order to ensure this function is
-	// as fast as possible
+#if DEBUG == 1
+	if(allocator->lp_memlist[i].address == 0)
+	{
+		debug_print("Memory Manager: malloc failed");
+	}
+#endif
 
 	memset(allocator->lp_memlist[i].address, 0, size);
 	allocator->lp_memlist[i].size = size;
@@ -110,3 +119,90 @@ void *mu_alloc(MU_Allocator *allocator, size_t size)
 
 	return allocator->lp_memlist[i].address;
 }
+
+// Used to locate a memory address index in the allocator's lp_memlist
+uint32_t mu_find_address(MU_Allocator *allocator, void *address)
+{
+	uint32_t i;
+
+	// Iterate over lp_memlist
+	for(i = 0; i < allocator->memlist_count; i++)
+	{
+		// If the address matches the one we're looking for and is allocated
+		if(address == allocator->lp_memlist[i].address && allocator->lp_memlist[i].type == ALLOC)
+		{
+			return i;
+			break;
+		}
+	}
+	// If the address is not found, 
+	return UINT32_MAX;
+}
+
+// Reallocates the given memory block and saves the new address in the lp_memlist
+void *mu_realloc(MU_Allocator *allocator, void *address, size_t size)
+{
+	uint32_t i = mu_find_address(allocator, address);
+
+	// See mu_alloc for why this is disabled outside of debugging
+#if DEBUG == 1
+	if(i == UINT32_MAX)
+	{
+		debug_print("Memory Manager: Realloc failed; %x was never allocated", address);
+	}
+#endif
+
+	allocator->alloc_size -= allocator->lp_memlist[i].size;
+	allocator->lp_memlist[i].address = realloc(allocator->lp_memlist[i].address, size);
+	allocator->lp_memlist[i].size = size;
+	allocator->alloc_size += size;
+
+	return allocator->lp_memlist[i].address;
+}
+
+// Free allocated block
+void mu_free(MU_Allocator *allocator, void *address)
+{
+	uint32_t i = mu_find_address(allocator, address);
+
+	// See mu_alloc for why this is disabled outside of debugging
+#if DEBUG == 1
+	if(i == UINT32_MAX)
+	{
+		debug_print("Memory Manager: Free failed; %x was never allocated", address);
+	}
+#endif
+
+	free(allocator->lp_memlist[i].address);
+
+	// Uncomment this line if required for debugging
+	//debug_print("Freed block %p from Memory Manager", allocator->lp_memlist[i].address);
+	allocator->lp_memlist[i].address = NULL;
+	allocator->lp_memlist[i].type = FREE;
+	allocator->alloc_size -= allocator->lp_memlist[i].size;
+	allocator->lp_memlist[i].size = 0;
+	allocator->alloc_count--;
+
+	if(allocator->alloc_size == 0)
+	{
+		allocator->free = true;
+	}
+}
+
+// Free all allocated memory in the allocator
+void free_allocator(MU_Allocator *allocator)
+{
+	if(!allocator->free)
+	{
+		for (uint32_t i = 0; i < allocator->memlist_count; i++)
+		{
+			if(allocator->lp_memlist[i].type == ALLOC)
+			{
+				mu_free(allocator, allocator->lp_memlist[i].address);
+			}
+		}
+	}
+
+	allocator->free = true;
+}
+

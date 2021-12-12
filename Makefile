@@ -2,7 +2,7 @@
 
 CC   = gcc.exe
 CFLAGS = -g -Wall
-BIN  = bin\MugenUltimate.exe
+BIN  = bin\MugenExtended.exe
 OBJ  = obj\main.o obj\logging.o obj\unit_testing.o obj\mem_manager.o
 LINKOBJ = obj/main.o obj/logging.o obj/unit_testing.o obj/mem_manager.o
 #LIBS = -I/opt/local/x86_64-w64-mingw32/include/SDL2 -Dmain=SDL_main -L/opt/local/x86_64-w64-mingw32/lib -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_mixer
@@ -12,7 +12,7 @@ LIBS = -L"lib" -lmingw32 -lSDL2_mixer -lSDL2main -lSDL2
 INCLUDE = -I D:\MinGW\include\SDL2
 
 $(BIN): $(OBJ)
-	$(CC) $(CFLAGS) $(LINKOBJ) -o "bin/MugenUltimate.exe" $(INCLUDE) $(LIBS)
+	$(CC) $(CFLAGS) $(LINKOBJ) -o "bin/MugenExtended.exe" $(INCLUDE) $(LIBS)
 
 obj\main.o: main.c
 	$(CC) $(CFLAGS) -c main.c -o obj/main.o
