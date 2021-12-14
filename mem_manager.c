@@ -206,3 +206,63 @@ void free_allocator(MU_Allocator *allocator)
 	allocator->free = true;
 }
 
+// Constructor for array of MU_Allocators
+MU_Allocator *init_mem_manager()
+{
+	debug_print("Memory Manager: Begin Init");
+	MU_Allocator *mem_manager = malloc(sizeof(MU_Allocator) * MEM_MANAGER_ALLOCATOR_COUNT);
+	MU_Allocator *mem_manager_ptr = NULL;
+
+	mem_manager_ptr = create_mu_alloc("Main Menu");
+	mem_manager[MAINMENU] = *mem_manager_ptr;
+
+	mem_manager_ptr = create_mu_alloc("Stage");
+	mem_manager[STAGE] = *mem_manager_ptr;
+
+	mem_manager_ptr = create_mu_alloc("Engine");
+	mem_manager[ENGINE] = *mem_manager_ptr;
+
+	mem_manager_ptr = create_mu_alloc("Player 1");
+	mem_manager[P1] = *mem_manager_ptr;
+
+	mem_manager_ptr = create_mu_alloc("Player 2");
+	mem_manager[P2] = *mem_manager_ptr;
+
+	mem_manager_ptr = create_mu_alloc("Player 3");
+	mem_manager[P3] = *mem_manager_ptr;
+
+	mem_manager_ptr = create_mu_alloc("Player 4");
+	mem_manager[P4] = *mem_manager_ptr;
+
+	debug_print("Memory Manager: Init Successful");
+
+	return mem_manager;
+}
+
+// Free all allocators from memory
+void free_mem_manager(MU_Allocator *mem_manager)
+{
+	for(int i = 0; i < MEM_MANAGER_ALLOCATOR_COUNT; i++)
+	{
+		free_allocator(&mem_manager[i]);
+	}
+}
+
+// Log detailed memory information
+size_t get_total_mem_usage(MU_Allocator *mem_manager)
+{
+	size_t total_mem = 0;
+	mu_log_message("======================Memory Manager============================");
+	mu_log_message("|Name:               |Allocated bytes                          |");
+	mu_log_message("----------------------------------------------------------------");
+
+	for(int i = 0; i < MEM_MANAGER_ALLOCATOR_COUNT; i++)
+	{
+		mu_log_message("|%20s                  |%20i  | ", mem_manager[i].alloc_name, mem_manager[i].alloc_size);
+		total_mem += mem_manager[i].alloc_size;
+	}
+
+	mu_log_message("Total memory usage: %i", total_mem);
+	mu_log_message("================================================================");
+	return total_mem;
+}

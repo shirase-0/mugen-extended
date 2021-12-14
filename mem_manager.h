@@ -14,7 +14,6 @@ void mu_free(MU_Allocator *allocator, void *address); // Free allocated block
 void free_allocator(MU_Allocator *allocator); // Free all allocated memory
 
 MU_Allocator *init_mem_manager(); // Constructor for array of MU_Allocators
-MU_Allocator *get_allocator(MU_Allocator *mem_manager, int index); // Returns an individual allocator for easier handling
 void free_mem_manager(MU_Allocator *mem_manager); // Free all allocators from memory
 size_t get_total_mem_usage(MU_Allocator *mem_manager); // Log detailed memory information
 

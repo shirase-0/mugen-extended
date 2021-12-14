@@ -1,6 +1,21 @@
 #ifndef __STRUCTS__H
 #define __STRUCTS__H
 
+// Constants
+#define MEM_MANAGER_ALLOCATOR_COUNT 7
+
+// Enums
+enum MEM_ALLOCATOR_NAMES
+{
+    MAINMENU = 0,
+    STAGE = 1,
+    ENGINE = 2,
+    P1 = 3,
+    P2 = 4,
+    P3 = 5,
+    P4 = 6
+};
+
 // ========Memory Manager===========================
 
 struct MEMLIST

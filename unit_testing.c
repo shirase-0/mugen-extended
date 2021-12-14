@@ -44,4 +44,21 @@ void unit_test()
 	assert(test_allocator->alloc_size == 0);
 	assert(test_allocator->free == true);
 	debug_print("free_allocator working as intended");
+
+	MU_Allocator *test_manager = init_mem_manager();
+	assert(strcmp(test_manager[MAINMENU].alloc_name, "Main Menu") == 0);
+	assert(strcmp(test_manager[STAGE].alloc_name, "Stage") == 0);
+	assert(strcmp(test_manager[ENGINE].alloc_name, "Engine") == 0);
+	assert(strcmp(test_manager[P1].alloc_name, "Player 1") == 0);
+	assert(strcmp(test_manager[P2].alloc_name, "Player 2") == 0);
+	assert(strcmp(test_manager[P3].alloc_name, "Player 3") == 0);
+	assert(strcmp(test_manager[P4].alloc_name, "Player 4") == 0);
+	debug_print("init_mem_manager working as intended");
+
+	// TODO: figure out a way to test if free_mem_manager is working
+
+	mu_alloc(&test_manager[STAGE], 700000);
+	mu_alloc(&test_manager[P3], 123456);
+	get_total_mem_usage(test_manager);
+	debug_print("get_total_mem_usage working as intended");
 }
