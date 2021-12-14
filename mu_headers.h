@@ -23,5 +23,7 @@
 #include "logging.h"
 #include "unit_testing.h"
 #include "mem_manager.h"
+#include "sdl_framerate.h"
+#include "graphics_manager.h"
 
 #endif

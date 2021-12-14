@@ -37,4 +37,42 @@ struct MU_Allocator
 };
 typedef struct MU_Allocator MU_Allocator;
 
+// ==========FPS Manager============================
+
+struct MU_FPS_Manager
+{
+    uint32_t framecount;
+    double rateticks;
+    uint32_t lastticks;
+    uint32_t rate;
+};
+typedef struct MU_FPS_Manager MU_FPS_Manager;
+
+// ========Video System============================
+
+struct MUGENFONT
+{
+    uint8_t c;
+    int16_t x;
+    uint8_t width;
+};
+typedef struct MUGENFONT MUGENFONT;
+
+struct MU_Graphics_Manager
+{
+    SDL_Window *window;
+    SDL_Surface *screen_surface;
+    SDL_Renderer *renderer;
+    SDL_Surface *font;
+
+    uint8_t delta_ptr;
+    uint32_t now_time;
+    uint32_t last_time;
+    uint32_t fps_count;
+    double fps;
+    MU_FPS_Manager fps_manager;
+    MUGENFONT *raster_font;
+};
+typedef struct MU_Graphics_Manager MU_Graphics_Manager;
+
 #endif

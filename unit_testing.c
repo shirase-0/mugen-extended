@@ -2,12 +2,12 @@
 
 void unit_test()
 {
-	// Logging
+	// ===Logging===
 	init_log_file();
 	debug_print("debug_print working as intended");
 	mu_log_message("mu_log_message working as intended");
 
-	// Memory Manager
+	// ===Memory Manager===
 	MU_Allocator *test_allocator = create_mu_alloc("Test Allocator");
 	assert(test_allocator != NULL);
 	show_mem_usage(test_allocator);
@@ -61,4 +61,11 @@ void unit_test()
 	mu_alloc(&test_manager[P3], 123456);
 	get_total_mem_usage(test_manager);
 	debug_print("get_total_mem_usage working as intended");
+
+	// ===Framerate===
+	// TODO: Add tests for sdl_framerate
+
+	// ===Graphics Manager===
+	MU_Graphics_Manager *graphics_manager = mu_init_graphics_manager();
+	SDL_Delay(5000);
 }
