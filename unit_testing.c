@@ -63,9 +63,23 @@ void unit_test()
 	debug_print("get_total_mem_usage working as intended");
 
 	// ===Framerate===
-	// TODO: Add tests for sdl_framerate
+	// Framerate tests are conducted in the graphics manager section, as the graphics manager needs to initialise
+	// an FPS manager anyway
+	// There is currently no feasible way to test framerate_delay() without running a game
 
 	// ===Graphics Manager===
 	MU_Graphics_Manager *graphics_manager = mu_init_graphics_manager();
-	SDL_Delay(5000);
+	assert(graphics_manager->window != NULL);
+	assert(graphics_manager->screen_surface != NULL);
+	assert(graphics_manager->renderer != NULL);
+	assert(graphics_manager->delta_ptr == 0);
+	assert(graphics_manager->now_time == 0);
+	assert(graphics_manager->last_time == 0);
+	assert(graphics_manager->fps_count == 0);
+	assert(graphics_manager->fps == 0);
+	assert(get_framerate(&graphics_manager->fps_manager) == 60);
+	debug_print("init_framerate working as intended");
+	debug_print("set_framerate working as intended");
+	debug_print("get_framerate working as intended");
+	debug_print("mu_init_graphics_manager working as intended");
 }
