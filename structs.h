@@ -63,7 +63,6 @@ struct MU_Graphics_Manager
     SDL_Window *window;
     SDL_Surface *screen_surface; // TODO: Remove if unused
     SDL_Renderer *renderer;
-    SDL_Surface *font; // TODO: Remove if unused
     SDL_Texture *font_texture;
 
     uint8_t delta_ptr;

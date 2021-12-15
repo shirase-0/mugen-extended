@@ -2,13 +2,13 @@ Logging: Init Successful
 debug_print working as intended
 mu_log_message working as intended
 Memory Manager: Initialising Test Allocator memory allocator
-Allocator address: 000002f787231b00
+Allocator address: 000001a2ce081b00
 ------------------------------------------------------------
 Name		Size (bytes)		Allocated MEMLISTs
 Test Allocator	0			0
 
 Total MEMLISTs	Memlist Pointer		Free?
-100		000002f787237450	1
+100		000001a2ce087450	1
 ------------------------------------------------------------
 create_mu_alloc working as intended
 set_memlist_free working as intended
@@ -20,19 +20,19 @@ mu_free working as intended
 free_allocator working as intended
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000002f787231c30
+Allocator address: 000001a2ce081c30
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000002f787231d60
+Allocator address: 000001a2ce081d60
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000002f787239cb0
+Allocator address: 000001a2ce089cb0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000002f787239de0
+Allocator address: 000001a2ce089de0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000002f788a01360
+Allocator address: 000001a2cf8a1360
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000002f788a01e00
+Allocator address: 000001a2cf8a1e00
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000002f788a028a0
+Allocator address: 000001a2cf8a28a0
 Memory Manager: Init Successful
 init_mem_manager working as intended
 ======================Memory Manager============================

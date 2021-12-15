@@ -44,8 +44,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 	SDL_RenderSetLogicalSize(graphics_manager->renderer, XMAX, YMAX);
 
 	SDL_SetRenderDrawColor(graphics_manager->renderer, 0, 0, 0, 255);
-	SDL_RenderClear(graphics_manager->renderer);
-	SDL_RenderPresent(graphics_manager->renderer);
+	mu_clear_screen(graphics_manager);
 
 	// Set the framerate to 60
 	init_framerate(&graphics_manager->fps_manager);
@@ -64,11 +63,9 @@ void mu_load_font(MU_Graphics_Manager *graphics_manager)
 	char temp[255];
 	int i = 0;
 	graphics_manager->raster_font = calloc(255, sizeof(MUGENFONT));
+	SDL_Surface *font_surface = SDL_LoadBMP("DebugFonts.bmp");
 
-	graphics_manager->font = SDL_LoadBMP("DebugFonts.bmp");
-	
-
-	if(graphics_manager->font == NULL)
+	if(font_surface == NULL)
 	{
 		debug_print("Graphics Manager: DebugFonts not found");
 	}
@@ -86,12 +83,11 @@ void mu_load_font(MU_Graphics_Manager *graphics_manager)
 		i++;
 	}
 
-	SDL_SetColorKey(graphics_manager->font, SDL_TRUE, SDL_MapRGB(graphics_manager->font->format, 0, 0, 0));
+	SDL_SetColorKey(font_surface, SDL_TRUE, SDL_MapRGB(font_surface->format, 0, 0, 0));
 
 	// TODO: Implement the font using textures instead of surfaces, change the MU_Graphics_Manager to reflect this
-	graphics_manager->font_texture = SDL_CreateTextureFromSurface(graphics_manager->renderer, graphics_manager->font);
-	SDL_FreeSurface(graphics_manager->font);
-	graphics_manager->font = NULL;
+	graphics_manager->font_texture = SDL_CreateTextureFromSurface(graphics_manager->renderer, font_surface);
+	SDL_FreeSurface(font_surface);
 }
 
 void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, char *text, ...)

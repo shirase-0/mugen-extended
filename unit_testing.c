@@ -85,6 +85,7 @@ void unit_test()
 	debug_print("mu_init_graphics_manager working as intended");
 
 	// This isn't scaling correctly yet, not sure why
+	// Spaces also look smaller than they should be
 	// Revisit this when the graphics manager is more functional
 	mu_draw_text(graphics_manager, 0 , 0, "Hello World!", graphics_manager->fps);
 	SDL_Delay(1000);
