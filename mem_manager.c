@@ -103,7 +103,7 @@ void *mu_alloc(MU_Allocator *allocator, size_t size)
 #endif
 
 	allocator->lp_memlist[i].type = ALLOC;
-	allocator->lp_memlist[i].address = malloc(size);
+	allocator->lp_memlist[i].address = calloc(1, size);
 
 #if DEBUG == 1
 	if(allocator->lp_memlist[i].address == 0)
@@ -112,7 +112,8 @@ void *mu_alloc(MU_Allocator *allocator, size_t size)
 	}
 #endif
 
-	memset(allocator->lp_memlist[i].address, 0, size);
+	// If this breaks things, change back from calloc to malloc+memset
+	//memset(allocator->lp_memlist[i].address, 0, size);
 	allocator->lp_memlist[i].size = size;
 	allocator->alloc_count++;
 	allocator->alloc_size += size;

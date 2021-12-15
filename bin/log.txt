@@ -2,13 +2,13 @@ Logging: Init Successful
 debug_print working as intended
 mu_log_message working as intended
 Memory Manager: Initialising Test Allocator memory allocator
-Allocator address: 000001da24311b00
+Allocator address: 000002f787231b00
 ------------------------------------------------------------
 Name		Size (bytes)		Allocated MEMLISTs
 Test Allocator	0			0
 
 Total MEMLISTs	Memlist Pointer		Free?
-100		000001da24317450	1
+100		000002f787237450	1
 ------------------------------------------------------------
 create_mu_alloc working as intended
 set_memlist_free working as intended
@@ -20,19 +20,19 @@ mu_free working as intended
 free_allocator working as intended
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000001da24311c30
+Allocator address: 000002f787231c30
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000001da24311d60
+Allocator address: 000002f787231d60
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000001da24319cb0
+Allocator address: 000002f787239cb0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000001da24319de0
+Allocator address: 000002f787239de0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000001da25ac1360
+Allocator address: 000002f788a01360
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000001da25ac1e00
+Allocator address: 000002f788a01e00
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000001da25ac28a0
+Allocator address: 000002f788a028a0
 Memory Manager: Init Successful
 init_mem_manager working as intended
 ======================Memory Manager============================
@@ -50,7 +50,10 @@ Total memory usage: 823456
 get_total_mem_usage working as intended
 Graphics Manager: Initialising
 SDL Initialisation successful!
+Graphics Manager: Loading font...
 init_framerate working as intended
 set_framerate working as intended
 get_framerate working as intended
+mu_load_font working as intended
 mu_init_graphics_manager working as intended
+mu_clear_screen working as intended

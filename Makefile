@@ -8,7 +8,7 @@ LINKOBJ = obj/main.o obj/logging.o obj/unit_testing.o obj/mem_manager.o obj/sdl_
 #LIBS = -I/opt/local/x86_64-w64-mingw32/include/SDL2 -Dmain=SDL_main -L/opt/local/x86_64-w64-mingw32/lib -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_mixer
 LIBS = -L"lib" -lmingw32 -lSDL2_mixer -lSDL2main -lSDL2
 # The mwindows library supresses/hides the console window, hence we're using the incorrect library config here
-# To work out what should actually go in this field, run sdl-config --cflags --libs
+# To work out what should actually go in this field, run sdl2-config --cflags --libs
 INCLUDE = -I D:\MinGW\include\SDL2
 
 $(BIN): $(OBJ)

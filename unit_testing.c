@@ -81,5 +81,17 @@ void unit_test()
 	debug_print("init_framerate working as intended");
 	debug_print("set_framerate working as intended");
 	debug_print("get_framerate working as intended");
+	debug_print("mu_load_font working as intended");
 	debug_print("mu_init_graphics_manager working as intended");
+
+	// This isn't scaling correctly yet, not sure why
+	// Revisit this when the graphics manager is more functional
+	mu_draw_text(graphics_manager, 0 , 0, "Hello World!", graphics_manager->fps);
+	SDL_Delay(1000);
+
+	mu_clear_screen(graphics_manager);
+	debug_print("mu_clear_screen working as intended");
+	SDL_Delay(1000);
+	mu_draw_text(graphics_manager, 0 , 0, "What if we try to print a really long sentence", graphics_manager->fps);
+	SDL_Delay(3000);
 }
