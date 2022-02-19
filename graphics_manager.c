@@ -42,6 +42,8 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear"); // Make the scaled rendering look smoother.
 	SDL_RenderSetLogicalSize(graphics_manager->renderer, XMAX, YMAX);
+	// Not really necessary in fullscreen mode, but in the future, users should have an option to switch to windowed
+	SDL_SetWindowIcon(graphics_manager->window, SDL_LoadBMP("icon.bmp")); 
 
 	SDL_SetRenderDrawColor(graphics_manager->renderer, 0, 0, 0, 255);
 	mu_clear_screen(graphics_manager);

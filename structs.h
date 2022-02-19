@@ -3,6 +3,7 @@
 
 // Constants
 #define MEM_MANAGER_ALLOCATOR_COUNT 7
+#define TOKEN_DEFAULT_OPERATORS_COUNT 23
 
 // Enums
 enum MEM_ALLOCATOR_NAMES
@@ -74,5 +75,33 @@ struct MU_Graphics_Manager
     MUGENFONT *raster_font;
 };
 typedef struct MU_Graphics_Manager MU_Graphics_Manager;
+
+// ============Tokenizer===============================
+
+struct Tokenizer
+{
+    char *buffer;
+    int buffer_size;
+
+    char filename[256];
+    char *file_buffer;
+    int filesize; // TODO: change this to size_t?
+    int cur_file_pos;
+    int cur_file_line;
+    int last_line_pos;
+
+    bool buffer_is_next_token;
+    bool at_end_of_line;
+    bool at_eof;
+    char *comment_chars;
+    char **operators;
+    int operator_count;
+    int num_operator_chars_read;
+
+    bool case_sensitive;
+    bool negative_separate_from_number;
+    bool last_token_was_quoted_string;
+};
+typedef struct Tokenizer Tokenizer;
 
 #endif

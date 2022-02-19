@@ -95,4 +95,19 @@ void unit_test()
 	SDL_Delay(1000);
 	mu_draw_text(graphics_manager, 0 , 0, "What if we try to print a really long sentence", graphics_manager->fps);
 	SDL_Delay(3000);
+
+	// ===Tokenizer===
+	// Tokenizer *tokenizer_init(int buffer_size, char *comment_chars, char **operators, int operator_count);
+	// void free_tokenizer(Tokenizer *tok);
+	// bool mu_open_file(Tokenizer *tok, const char* filename);
+	// bool mu_close_file(Tokenizer *tok);
+	// bool mu_check_eof(Tokenizer *tok);
+	// bool mu_check_newline(Tokenizer *tok, char c);
+	// const char *get_token(Tokenizer *tok);
+	// bool get_token_check(Tokenizer *tok, char *dest_str, int max_len);
+	// float mu_get_float(Tokenizer *tok); 
+	// int mu_get_int(Tokenizer *tok);
+	// bool check_token(Tokenizer *tok, const char *str_to_look_for, bool consume); 
+	// bool is_token_number(Tokenizer *tok);
+	// bool is_token_quoted_str(Tokenizer *tok);
 }

@@ -25,5 +25,6 @@
 #include "mem_manager.h"
 #include "sdl_framerate.h"
 #include "graphics_manager.h"
+#include "tokenizer.h"
 
 #endif
