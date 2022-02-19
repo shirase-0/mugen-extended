@@ -26,5 +26,6 @@
 #include "sdl_framerate.h"
 #include "graphics_manager.h"
 #include "tokenizer.h"
+#include "timer.h"
 
 #endif

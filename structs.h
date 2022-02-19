@@ -104,4 +104,13 @@ struct Tokenizer
 };
 typedef struct Tokenizer Tokenizer;
 
+// =============Timer=====================
+
+struct MU_Timer
+{
+    uint32_t game_time;
+    bool is_paused;
+};
+typedef struct MU_Timer MU_Timer;
+
 #endif
