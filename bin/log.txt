@@ -2,13 +2,13 @@ Logging: Init Successful
 debug_print working as intended
 mu_log_message working as intended
 Memory Manager: Initialising Test Allocator memory allocator
-Allocator address: 0000020b6d651b00
+Allocator address: 00000246abe01b00
 ------------------------------------------------------------
 Name		Size (bytes)		Allocated MEMLISTs
 Test Allocator	0			0
 
 Total MEMLISTs	Memlist Pointer		Free?
-100		0000020b6d6573e0	1
+100		00000246abe073e0	1
 ------------------------------------------------------------
 create_mu_alloc working as intended
 set_memlist_free working as intended
@@ -20,19 +20,19 @@ mu_free working as intended
 free_allocator working as intended
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 0000020b6d651c30
+Allocator address: 00000246abe01c30
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 0000020b6d6592d0
+Allocator address: 00000246abe092d0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 0000020b6d659d70
+Allocator address: 00000246abe09d70
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 0000020b6d659ea0
+Allocator address: 00000246abe09ea0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 0000020b6ee71360
+Allocator address: 00000246abce1360
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 0000020b6ee71e00
+Allocator address: 00000246abce1e00
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 0000020b6ee728a0
+Allocator address: 00000246abce28a0
 Memory Manager: Init Successful
 init_mem_manager working as intended
 ======================Memory Manager============================
@@ -57,3 +57,8 @@ get_framerate working as intended
 mu_load_font working as intended
 mu_init_graphics_manager working as intended
 mu_clear_screen working as intended
+mu_reset_timer working as intended
+mu_update_timer working as intended
+get_game_time working as intended
+mu_pause working as intended
+mu_resume working as intended

@@ -97,6 +97,8 @@ void unit_test()
 	SDL_Delay(3000);
 
 	// ===Tokenizer===
+	// TODO once air_manager is implemented
+
 	// Tokenizer *tokenizer_init(int buffer_size, char *comment_chars, char **operators, int operator_count);
 	// void free_tokenizer(Tokenizer *tok);
 	// bool mu_open_file(Tokenizer *tok, const char* filename);
@@ -110,4 +112,31 @@ void unit_test()
 	// bool check_token(Tokenizer *tok, const char *str_to_look_for, bool consume); 
 	// bool is_token_number(Tokenizer *tok);
 	// bool is_token_quoted_str(Tokenizer *tok);
+
+	// ===Timer===
+	MU_Timer *test_timer = (MU_Timer*) malloc(sizeof(MU_Timer));
+	mu_reset_timer(test_timer);
+	assert(test_timer->game_time == 0);
+	assert(test_timer->is_paused == false);
+	debug_print("mu_reset_timer working as intended");
+
+	mu_update_timer(test_timer);
+	assert(test_timer->game_time == 1);
+	debug_print("mu_update_timer working as intended");
+
+	assert(get_game_time(test_timer) == 1);
+	debug_print("get_game_time working as intended");
+
+	mu_pause(test_timer);
+	assert(test_timer->is_paused == true);
+	mu_update_timer(test_timer);
+	assert(get_game_time(test_timer) == 1);
+	debug_print("mu_pause working as intended");
+
+	mu_resume(test_timer);
+	assert(test_timer->is_paused == false);
+	mu_update_timer(test_timer);
+	assert(get_game_time(test_timer) == 2);
+	debug_print("mu_resume working as intended");
+
 }
