@@ -26,7 +26,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 		SDL_WINDOWPOS_UNDEFINED,
 		XMAX,
 		YMAX,
-		SDL_WINDOW_FULLSCREEN_DESKTOP
+		SDL_WINDOW_BORDERLESS // SDL_WINDOW_FULLSCREEN_DESKTOP
 	);
 	if(graphics_manager->window == NULL)
 	{

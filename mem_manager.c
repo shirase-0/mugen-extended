@@ -104,6 +104,7 @@ void *mu_alloc(MU_Allocator *allocator, size_t size)
 
 	allocator->lp_memlist[i].type = ALLOC;
 	allocator->lp_memlist[i].address = calloc(1, size);
+	//allocator->lp_memlist[i].address = malloc(size);
 
 #if DEBUG == 1
 	if(allocator->lp_memlist[i].address == 0)
@@ -154,6 +155,7 @@ void *mu_realloc(MU_Allocator *allocator, void *address, size_t size)
 #endif
 
 	allocator->alloc_size -= allocator->lp_memlist[i].size;
+
 	allocator->lp_memlist[i].address = realloc(allocator->lp_memlist[i].address, size);
 	allocator->lp_memlist[i].size = size;
 	allocator->alloc_size += size;

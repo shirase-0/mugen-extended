@@ -97,7 +97,8 @@ void unit_test()
 	SDL_Delay(3000);
 
 	// ===Tokenizer===
-	// TODO once air_manager is implemented
+	// These tests are being implemented under the Air Manager section, as this is the first place the tokenizer is
+	// put to use
 
 	// Tokenizer *tokenizer_init(int buffer_size, char *comment_chars, char **operators, int operator_count);
 	// void free_tokenizer(Tokenizer *tok);
@@ -139,4 +140,35 @@ void unit_test()
 	assert(get_game_time(test_timer) == 2);
 	debug_print("mu_resume working as intended");
 
+	// ===Air Manager===
+	MU_Air_Manager *air_manager = air_manager_init();
+	assert(air_manager != NULL);
+	debug_print("air_manager_init working as intended");
+
+	air_manager->air_allocator = &test_manager[P1];
+	reset_air_manager(air_manager);
+	assert(air_manager->total_action_block == 0);
+	assert(air_manager->action_list_size == 100);
+	assert(air_manager->element_list_size == 100);
+	assert(air_manager->total_clsn == 0);
+	assert(air_manager->is_default_clsn == false);
+	assert(air_manager->action_list != NULL);
+	debug_print("reset_air_manager working as intended");
+	debug_print("action_list_init working as intended");
+
+	// TODO: Add test for mu_free_air_manager when it's implemented
+
+	open_air(air_manager, "chars\\kfm\\kfm.air");
+	// debug_print("tokenizer_init working as intended");
+	// debug_print("check_token working as intended");
+	// debug_print("is_token_number working as intended");
+	// debug_print("mu_get_int working as intended");
+	// debug_print("add_action working as intended");
+	// debug_print("create_clsn_box working as intended");
+	// debug_print("add_clsn_box working as intended");
+	// debug_print("set_loop working as intended");
+	// debug_print("add_element working as intended");
+	// debug_print("mu_close_file working as intended");
+
+	debug_print("open_air working as intended");
 }
