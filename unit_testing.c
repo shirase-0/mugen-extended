@@ -97,8 +97,11 @@ void unit_test()
 	SDL_Delay(3000);
 
 	// ===Tokenizer===
-	// These tests are being implemented under the Air Manager section, as this is the first place the tokenizer is
-	// put to use
+	// These tests will be left unimplemented until I can figure out how to implement them. It should stand to reason 
+	// that if any of these functions fail, they will cause failures further down the line. This being the case, I'll 
+	// eventually track those errors back to the one place that isn't being thoroughly tested: here. At the very 
+	// least, errors in the Tokenizer should be semantic in nature, rather than inexplicable segfaults.
+	// Below is a list of all the functions in Tokenizer.c that are not being tested.
 
 	// Tokenizer *tokenizer_init(int buffer_size, char *comment_chars, char **operators, int operator_count);
 	// void free_tokenizer(Tokenizer *tok);
@@ -159,16 +162,33 @@ void unit_test()
 	// TODO: Add test for mu_free_air_manager when it's implemented
 
 	open_air(air_manager, "chars\\kfm\\kfm.air");
-	// debug_print("tokenizer_init working as intended");
-	// debug_print("check_token working as intended");
-	// debug_print("is_token_number working as intended");
-	// debug_print("mu_get_int working as intended");
-	// debug_print("add_action working as intended");
+	assert(air_manager->action_list[107].action_num == 5300);
+	// Unsure how to test reallocate_action_block()
+	debug_print("add_action working as intended");
+	Action_Element *test_action = get_action(air_manager, 5040);
+	assert(test_action != NULL);
+	assert(get_action(air_manager, 1) == NULL);
+	debug_print("get_action working as intended");
+	// These two functions run internally during open_air, making it rather difficult to test outside that context
 	// debug_print("create_clsn_box working as intended");
 	// debug_print("add_clsn_box working as intended");
-	// debug_print("set_loop working as intended");
-	// debug_print("add_element working as intended");
-	// debug_print("mu_close_file working as intended");
-
+	assert(test_action->loop_start == 6);
+	debug_print("set_loop working as intended");
+	assert(test_action->anim_element->group_num == 42);
+	assert(test_action->anim_element->image_num == 5);
+	assert(test_action->anim_element->x == 0);
+	assert(test_action->anim_element->y == 0);
+	assert(test_action->anim_element->during_time == 3);
+	assert(test_action->anim_element->clsn_count == 1);
+	assert(test_action->anim_element->clsn_data->is_clsn1 == false);
+	assert(test_action->anim_element->clsn_data->x == -18);
+	assert(test_action->anim_element->clsn_data->y == -77);
+	assert(test_action->anim_element[7].group_num == 41);
+	assert(test_action->anim_element[7].image_num == 8);
+	assert(test_action->anim_element[7].clsn_data->x == 14);
+	assert(test_action->anim_element[7].clsn_data->y == -23);
+	assert(test_action->anim_element[7].clsn_data[1].x == -4);
+	assert(test_action->anim_element[7].clsn_data[1].y == -105);
+	debug_print("add_element working as intended");
 	debug_print("open_air working as intended");
 }

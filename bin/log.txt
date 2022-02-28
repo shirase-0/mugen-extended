@@ -2,13 +2,13 @@ Logging: Init Successful
 debug_print working as intended
 mu_log_message working as intended
 Memory Manager: Initialising Test Allocator memory allocator
-Allocator address: 000001d8f6f71b00
+Allocator address: 0000028d9bbb1b00
 ------------------------------------------------------------
 Name		Size (bytes)		Allocated MEMLISTs
 Test Allocator	0			0
 
 Total MEMLISTs	Memlist Pointer		Free?
-100		000001d8f6f773e0	1
+100		0000028d9bbb73e0	1
 ------------------------------------------------------------
 create_mu_alloc working as intended
 set_memlist_free working as intended
@@ -20,19 +20,19 @@ mu_free working as intended
 free_allocator working as intended
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000001d8f6f71c30
+Allocator address: 0000028d9bbb1c30
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000001d8f6f792d0
+Allocator address: 0000028d9bbb92d0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000001d8f6f79d70
+Allocator address: 0000028d9bbb9d70
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000001d8f6f79ea0
+Allocator address: 0000028d9bbb9ea0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000001d8f8721360
+Allocator address: 0000028d9d361360
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000001d8f8721e00
+Allocator address: 0000028d9d361e00
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000001d8f87228a0
+Allocator address: 0000028d9d3628a0
 Memory Manager: Init Successful
 init_mem_manager working as intended
 ======================Memory Manager============================
@@ -65,5 +65,10 @@ mu_resume working as intended
 air_manager_init working as intended
 reset_air_manager working as intended
 action_list_init working as intended
-Freed block 000001d8f87f9a60 from Tokenizer
+Freed block 0000028d9d439a60 from Tokenizer
+add_action working as intended
+Animation number 1 is not defined
+get_action working as intended
+set_loop working as intended
+add_element working as intended
 open_air working as intended
