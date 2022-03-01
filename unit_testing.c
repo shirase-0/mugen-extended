@@ -88,13 +88,15 @@ void unit_test()
 	// Spaces also look smaller than they should be
 	// Revisit this when the graphics manager is more functional
 	mu_draw_text(graphics_manager, 0 , 0, "Hello World!", graphics_manager->fps);
+	SDL_RenderPresent(graphics_manager->renderer);
 	SDL_Delay(1000);
 
 	mu_clear_screen(graphics_manager);
 	debug_print("mu_clear_screen working as intended");
 	SDL_Delay(1000);
 	mu_draw_text(graphics_manager, 0 , 0, "What if we try to print a really long sentence", graphics_manager->fps);
-	SDL_Delay(3000);
+	SDL_RenderPresent(graphics_manager->renderer);
+	SDL_Delay(1000);
 
 	// ===Tokenizer===
 	// These tests will be left unimplemented until I can figure out how to implement them. It should stand to reason 
@@ -191,4 +193,58 @@ void unit_test()
 	assert(test_action->anim_element[7].clsn_data[1].y == -105);
 	debug_print("add_element working as intended");
 	debug_print("open_air working as intended");
+
+	// ===SFF Manager===
+	MU_SFF_Manager *sff_manager = sff_manager_init();
+	assert(sff_manager->graphics_manager == NULL);
+	assert(sff_manager->sff_allocator == NULL);
+	assert(sff_manager->x_scale_value == 1.0);
+	assert(sff_manager->y_scale_value == 1.0);
+	debug_print("sff_manager_init working as intended");
+
+	mu_set_sff_pointers(sff_manager, graphics_manager, &test_manager[P1], test_timer, air_manager);
+	assert(sff_manager->graphics_manager != NULL);
+	assert(sff_manager->sff_allocator != NULL);
+	debug_print("mu_set_sff_pointers working as intended");
+
+	reset_sff_manager(sff_manager);
+	assert(sff_manager->is_palette_loaded == false);
+	assert(sff_manager->sff_file == 0);
+	assert(sff_manager->total_images == 0);
+	assert(sff_manager->current_image == 0);
+	assert(sff_manager->image_list_size == 100);
+	assert(sff_manager->flags == BLT_NORMAL);
+	debug_print("reset_sff_manager working as intended");
+
+	load_act_to_sff(sff_manager, "chars\\kfm\\kfm6.act");
+	load_sff_file(sff_manager, "chars\\kfm\\kfm.sff");
+
+	sff_manager->flags = BLT_NORMALMASKED;
+	prepare_anim(sff_manager, 200);
+
+	// Potentially useful testing code for mu_map_rgb
+	// const char *pixel_format = SDL_GetPixelFormatName(370546692);
+	// debug_print("%s", pixel_format);
+
+	// debug_print("6604950");
+	// SDL_PixelFormat *format = SDL_AllocFormat(SDL_PIXELFORMAT_RGB888);
+	// uint32_t desired_value = SDL_MapRGB(format, 100, 200, 150);
+	// debug_print("%u", desired_value);
+
+	// debug_print("6604950");
+	// uint32_t desired_value = mu_map_rgb(graphics_manager, 100, 200, 150);
+	// debug_print("%u", desired_value);
+	assert(mu_map_rgb(graphics_manager, 100, 200, 150) == 6604950);
+	debug_print("mu_map_rgb working as intended");
+
+	blit_anim(sff_manager, 70, 220);
+	SDL_Texture *sprite = SDL_CreateTextureFromSurface(graphics_manager->renderer, graphics_manager->screen_surface);
+	mu_draw(graphics_manager, sprite);
+	SDL_Delay(1000);
+
+	mu_clear_screen(graphics_manager);
+	blit_sprite(sff_manager, 1000, 4, 70, 220);
+	SDL_UpdateTexture(sprite, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
+	mu_draw(graphics_manager, sprite);
+	SDL_Delay(1000);
 }

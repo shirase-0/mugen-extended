@@ -3,8 +3,8 @@
 CC   = gcc.exe
 CFLAGS = -g -Wall
 BIN  = bin\MugenExtended.exe
-OBJ  = obj\main.o obj\logging.o obj\unit_testing.o obj\mem_manager.o obj\sdl_framerate.o obj\graphics_manager.o obj\tokenizer.o obj\timer.o obj\air_manager.o
-LINKOBJ = obj/main.o obj/logging.o obj/unit_testing.o obj/mem_manager.o obj/sdl_framerate.o obj/graphics_manager.o obj/tokenizer.o obj/timer.o obj/air_manager.o
+OBJ  = obj\main.o obj\logging.o obj\unit_testing.o obj\mem_manager.o obj\sdl_framerate.o obj\graphics_manager.o obj\tokenizer.o obj\timer.o obj\air_manager.o obj\sff_manager.o
+LINKOBJ = obj/main.o obj/logging.o obj/unit_testing.o obj/mem_manager.o obj/sdl_framerate.o obj/graphics_manager.o obj/tokenizer.o obj/timer.o obj/air_manager.o obj/sff_manager.o
 #LIBS = -I/opt/local/x86_64-w64-mingw32/include/SDL2 -Dmain=SDL_main -L/opt/local/x86_64-w64-mingw32/lib -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_mixer
 LIBS = -L"lib" -lmingw32 -lSDL2_mixer -lSDL2main -lSDL2
 # The mwindows library supresses/hides the console window, hence we're using the incorrect library config here
@@ -40,3 +40,6 @@ obj\timer.o: timer.c
 
 obj\air_manager.o: air_manager.c
 	$(CC) $(CFLAGS) -c air_manager.c -o obj/air_manager.o
+
+obj\sff_manager.o: sff_manager.c
+	$(CC) $(CFLAGS) -c sff_manager.c -o obj/sff_manager.o

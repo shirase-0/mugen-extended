@@ -4,6 +4,8 @@
 // Constants
 #define MEM_MANAGER_ALLOCATOR_COUNT 7
 #define TOKEN_DEFAULT_OPERATORS_COUNT 23
+#define BIT_DEPTH 8
+#define COLOUR_PALETTE_SIZE 256
 
 // Enums
 enum MEM_ALLOCATOR_NAMES
@@ -22,6 +24,22 @@ enum FLIPFLAGS_ENUM
     HFLIPFLAG=1,
     VFLIPFLAG=2,
     HVFLIPFLAG=3
+};
+
+// Note to self: Possibly incomplete?
+// Additionally, why start this enum at 10?
+enum BLT_Flags 
+{
+   BLT_NORMAL = 10,
+   BLT_NORMALMASKED,
+   BLT_FLIPH,
+   BLT_FLIPHMASKED,
+   BLT_FLIPV,
+   BLT_FLIPVMASKED,
+   BLT_FLIPHV,
+   BLT_FLIPHVMASKED,
+   BLT_ADDALPHA,
+   BLT_SUBALPHA   
 };
 
 // ========Memory Manager===========================
@@ -161,7 +179,7 @@ struct Action_Element
 	int16_t complete_anim_time;
 	uint32_t current_time;
 	uint16_t current_image_time;
-	bool looped; 
+	bool has_loop; 
 };
 typedef struct Action_Element Action_Element;
 
@@ -183,5 +201,100 @@ struct MU_Air_Manager
 	Clsn clsn_arr[200]; // temp storage space whilst initialising clsn data
 };
 typedef struct MU_Air_Manager MU_Air_Manager;
+
+// ============SFF Manager=====================
+struct PCX_Header
+{
+    uint8_t manufacturer;
+    uint8_t version;
+    uint8_t encoding;
+    uint8_t bpp;
+    uint16_t x;
+    uint16_t y;
+    uint16_t width;
+    uint16_t height;
+    uint16_t hres;
+    uint16_t vres;
+    uint8_t colour_map[48];
+    uint8_t reserved;
+    uint8_t planes_count;
+    uint8_t bytes_per_line;
+    uint8_t palette_info;
+    uint8_t filler[58]; // Can we remove this and just discard it when we encounter it?
+};
+typedef struct PCX_Header PCX_Header;
+
+struct SFF_Header
+{
+    uint8_t signature[11];
+    uint8_t ver_hi;
+    uint8_t ver_lo;
+    uint8_t ver_hi2;
+    uint8_t ver_lo2;
+    uint32_t groups_count;
+    uint32_t images_count;
+    uint32_t subheader_file_offset;
+    uint32_t sizeof_subheader;
+    uint8_t palette_type;
+    uint8_t blank[476]; // Can we remove this and just discard it when we encounter it?
+};
+typedef struct SFF_Header SFF_Header;
+
+struct SFF_Subheader
+{
+    uint32_t next_subheader_file_offset;
+    uint32_t subheader_len;
+    int16_t x;
+    int16_t y;
+    int16_t group_num;
+    int16_t image_num;
+    int16_t index_of_previous;
+    bool is_same_palette;
+    uint8_t blank[13]; // Can we remove this and just discard it when we encounter it?
+};
+typedef struct SFF_Subheader SFF_Subheader;
+
+struct SFF_Sprite
+{
+    int16_t x;
+    int16_t y;
+    PCX_Header pcx_header; // Should this be a pointer?
+    int16_t group_num;
+    int16_t image_num;
+    uint32_t colour_palette[256];
+
+    uint8_t *pcx_file_bytes;
+};
+typedef struct SFF_Sprite SFF_Sprite;
+
+struct MU_SFF_Manager
+{
+    bool is_palette_loaded; 
+    FILE *sff_file;
+    MU_Graphics_Manager *graphics_manager;
+    MU_Allocator *sff_allocator;
+    MU_Timer *timer;
+    MU_Air_Manager *air_manager;
+
+    uint32_t colour_palette[256];
+    uint16_t total_images;
+    uint16_t current_image;
+    uint16_t image_list_size;
+    uint16_t flags;
+
+    SFF_Sprite *sprite_list;
+    float x_scale_value; // TODO: if it doesn't break anything, change these to doubles
+    float y_scale_value;
+    Action_Element *anim;
+};
+typedef struct MU_SFF_Manager MU_SFF_Manager;
+
+// Skipping a few sections that require a lot of reworking, to get to a "bare minimum" working game_time
+// Will come back to these and rework them once I can render animated sprites to the screen
+// ========CMD Manager==============================
+// =========State Manager==============================
+// ==========State Parser============================
+// ==========Player==================================
+
 
 #endif
