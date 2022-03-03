@@ -1,7 +1,7 @@
 #ifndef __MUHEADERS__H
 #define __MUHEADERS__H
 
-#define DEBUG 1
+#define DEBUG 0
 
 //Standard Libraries
 #include <stdio.h>
@@ -29,5 +29,7 @@
 #include "timer.h"
 #include "air_manager.h"
 #include "sff_manager.h"
+
+#include "game.h"
 
 #endif

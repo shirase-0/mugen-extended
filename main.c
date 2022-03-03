@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        //init_game();
+        init_game();
     }  
     return 0;
 }

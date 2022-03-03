@@ -31,6 +31,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 	if(graphics_manager->window == NULL)
 	{
 		debug_print("Could not create window: %s\n", SDL_GetError());
+		return NULL;
 	}
 
 	// graphics_manager->screen_surface = NULL;
@@ -39,6 +40,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 	if(graphics_manager->renderer == NULL)
 	{
 		debug_print("Could not create renderer: %s\n", SDL_GetError());
+		return NULL;
 	}
 
 	//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best"); // Make the scaled rendering look smoother.
@@ -46,8 +48,6 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 	SDL_RenderSetScale(graphics_manager->renderer, 2.0, 2.0);
 	// Not really necessary in fullscreen mode, but in the future, users should have an option to switch to windowed
 	SDL_SetWindowIcon(graphics_manager->window, SDL_LoadBMP("icon.bmp")); 
-
-	SDL_SetRenderDrawColor(graphics_manager->renderer, 0, 0, 0, 255);
 	mu_clear_screen(graphics_manager);
 
 	// Set the framerate to 60

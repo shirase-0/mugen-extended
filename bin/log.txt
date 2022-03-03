@@ -1,81 +1,29 @@
 Logging: Init Successful
-debug_print working as intended
-mu_log_message working as intended
-Memory Manager: Initialising Test Allocator memory allocator
-Allocator address: 000001c467811b00
-------------------------------------------------------------
-Name		Size (bytes)		Allocated MEMLISTs
-Test Allocator	0			0
-
-Total MEMLISTs	Memlist Pointer		Free?
-100		000001c4678173e0	1
-------------------------------------------------------------
-create_mu_alloc working as intended
-set_memlist_free working as intended
-show_mem_usage working as intended
-mu_alloc working as intended
-reset_allocator working as intended
-mu_realloc working as intended
-mu_free working as intended
-free_allocator working as intended
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000001c467811c30
+Allocator address: 000001f25d2e1b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000001c4678192d0
+Allocator address: 000001f25d2e1cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000001c467819d70
+Allocator address: 000001f25d2e8ee0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000001c467819ea0
+Allocator address: 000001f25d2e9980
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000001c468fc1360
+Allocator address: 000001f25d2ea420
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000001c468fc1e00
+Allocator address: 000001f25d2eaec0
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000001c468fc28a0
+Allocator address: 000001f25d2eb960
 Memory Manager: Init Successful
-init_mem_manager working as intended
 ======================Memory Manager============================
 |Name:               |Allocated bytes                          |
 ----------------------------------------------------------------
 |           Main Menu                  |                   0  | 
-|               Stage                  |              700000  | 
+|               Stage                  |                   0  | 
 |              Engine                  |                   0  | 
 |            Player 1                  |                   0  | 
 |            Player 2                  |                   0  | 
-|            Player 3                  |              123456  | 
+|            Player 3                  |                   0  | 
 |            Player 4                  |                   0  | 
-Total memory usage: 823456
+Total memory usage: 0
 ================================================================
-get_total_mem_usage working as intended
-Graphics Manager: Initialising
-SDL Initialisation successful!
-Graphics Manager: Loading font...
-init_framerate working as intended
-set_framerate working as intended
-get_framerate working as intended
-mu_load_font working as intended
-mu_init_graphics_manager working as intended
-mu_clear_screen working as intended
-mu_reset_timer working as intended
-mu_update_timer working as intended
-get_game_time working as intended
-mu_pause working as intended
-mu_resume working as intended
-air_manager_init working as intended
-reset_air_manager working as intended
-action_list_init working as intended
-Freed block 000001c469099a60 from Tokenizer
-add_action working as intended
-Animation number 1 is not defined
-get_action working as intended
-set_loop working as intended
-add_element working as intended
-open_air working as intended
-sff_manager_init working as intended
-mu_set_sff_pointers working as intended
-reset_sff_manager working as intended
-SFF Manager: Loading chars\kfm\kfm.sff
-SFF Manager: SFF file contains 264 images
-SFF Manager: 264 images have been decoded
-mu_map_rgb working as intended

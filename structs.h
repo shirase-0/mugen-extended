@@ -6,6 +6,7 @@
 #define TOKEN_DEFAULT_OPERATORS_COUNT 23
 #define BIT_DEPTH 8
 #define COLOUR_PALETTE_SIZE 256
+#define VER "Alpha"
 
 // Enums
 enum MEM_ALLOCATOR_NAMES
@@ -40,6 +41,12 @@ enum BLT_Flags
    BLT_FLIPHVMASKED,
    BLT_ADDALPHA,
    BLT_SUBALPHA   
+};
+
+enum Program_State
+{
+	GMENU = 1,
+	GFIGHTGAME
 };
 
 // ========Memory Manager===========================
@@ -295,6 +302,28 @@ typedef struct MU_SFF_Manager MU_SFF_Manager;
 // =========State Manager==============================
 // ==========State Parser============================
 // ==========Player==================================
+// ==========Controller Executer===================
+// ===========Stack================================
+// ==========VM====================================
+// ===========Engine===============================
+// =========Game==================================
+struct Game
+{
+	MU_Graphics_Manager *graphics_manager;
+	MU_Allocator *mem_manager;
+	MU_Timer *timer;
+	//MU_Engine *engine;
 
+	bool error;
+	bool in_game; // This will be used to determine if you're in the menu or in an actual game
+	uint16_t game_type;
+	// These doubles were originally floats
+	double start_time;
+	double end_time;
+	double framerate;
+
+	SDL_Event event; // Should this be a pointer?
+};
+typedef struct Game Game;
 
 #endif

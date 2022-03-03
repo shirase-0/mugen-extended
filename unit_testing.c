@@ -247,4 +247,6 @@ void unit_test()
 	SDL_UpdateTexture(sprite, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
 	mu_draw(graphics_manager, sprite);
 	SDL_Delay(1000);
+
+	// TODO: Tidy up these tests, and ensure proper testing of the SFF Manager occurs
 }
