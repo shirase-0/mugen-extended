@@ -36,6 +36,9 @@ MU_Engine *mu_engine_init(MU_Allocator *mem_manager, MU_Graphics_Manager *graphi
 	load_player(engine->p1, "");
 	load_player(engine->p2, "");
 
+	engine->p2->right_faced = false;
+	engine->p1->debug_info = true;
+
 	return engine;
 }
 

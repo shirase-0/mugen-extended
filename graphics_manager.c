@@ -382,13 +382,20 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 
 	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
 
+	// TODO: Make these rectangles into constants in structs.h
 	SDL_Rect destination;
 	destination.x = 0;
 	destination.y = 50;
 	destination.w = XMAX / 2;
 	destination.h = (YMAX / 2) - 51;
 
-	SDL_RenderCopy(renderer, texture, NULL, &destination);
+	SDL_Rect src;
+	src.x = 0;
+	src.y = 0;
+	src.w = XMAX / 2;
+	src.h = YMAX / 2;
+
+	SDL_RenderCopy(renderer, texture, &src, &destination);
 	// SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	// SDL_RenderClear(renderer);
 	// SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
