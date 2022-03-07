@@ -25,7 +25,7 @@ Game *init_game()
 	mu_reset_timer(game->timer);
 
 	// Init the main engine
-	//game->engine = mu_engine_init()
+	game->engine = mu_engine_init(game->mem_manager, game->graphics_manager, game->timer);
 
 	get_total_mem_usage(game->mem_manager);
 
@@ -34,23 +34,35 @@ Game *init_game()
 
 void run_game(Game *game)
 {
+	MU_Graphics_Manager *graphics = game->graphics_manager;
+	SDL_Texture *texture = SDL_CreateTexture(graphics->renderer, 
+											 graphics->screen_surface->format->format, 
+											 SDL_TEXTUREACCESS_STREAMING, 
+											 XMAX, YMAX);
+	uint32_t current_ticks;
+
 	while(game->in_game)
 	{
 		mu_update_timer(game->timer);
-		mu_clear_screen(game->graphics_manager);
 
 		switch(game->game_type)
 		{
 			case GFIGHTGAME:
-				//mu_run_engine(game->engine);
+				mu_run_engine(game->engine);
 				break;
 			case GMENU:
 				debug_print("You've reached the menu, which has not been implemented yet");
 				break;
 		}
 
-		mu_draw_text(game->graphics_manager, 0, 100, SDL_GetKeyName(game->event.key.keysym.sym));
+		mu_draw_text(graphics, 0, 100, SDL_GetKeyName(game->event.key.keysym.sym));
 
-		//mu_draw(game->graphics_manager, texture);
+		mu_draw(graphics, texture);
+
+		current_ticks = SDL_GetTicks();
+		if(current_ticks >= 5000)
+		{
+			game->in_game = false;
+		}
 	}
 }

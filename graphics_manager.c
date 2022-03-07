@@ -95,7 +95,7 @@ void mu_load_font(MU_Graphics_Manager *graphics_manager)
 	SDL_FreeSurface(font_surface);
 }
 
-void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, char *text, ...)
+void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, const char *text, ...)
 {
 	char temp[255];
 	// TODO: Remove these?
@@ -159,7 +159,7 @@ void mu_clear_screen(MU_Graphics_Manager *graphics_manager)
 {
 	SDL_SetRenderDrawColor(graphics_manager->renderer, 0, 0, 0, 255);
 	SDL_RenderClear(graphics_manager->renderer);
-	SDL_RenderPresent(graphics_manager->renderer);
+	//SDL_RenderPresent(graphics_manager->renderer);
 }
 
 
@@ -278,7 +278,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 	pitch = graphics_manager->screen_surface->pitch / 2;
 
 	uint16_t y_clip = 0;
-	uint16_t y_clip2 = 0;
+	//uint16_t y_clip2 = 0;
 	uint16_t x_clip = 0;
 	uint16_t x_clip2 = 0;
 
@@ -355,8 +355,8 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 {
 	SDL_Renderer *renderer = graphics_manager->renderer;
-	mu_clear_screen(graphics_manager);
-	//SDL_RenderClear(renderer);
+	//mu_clear_screen(graphics_manager);
+	SDL_RenderClear(renderer);
 
 	graphics_manager->now_time = SDL_GetTicks();
 	// TODO: This function needs to be as fast as possible. If these declarations slow down execution, revert to less
@@ -380,23 +380,23 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 	// FilterImage();
 	//  scale2x(work,screen);
 
-	//SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
+	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
 
-	// Why does this code fix the scaling on the sprite?????????
-	// Also, that definitely does not render at y coordinate 30
-	// TODO: Figure out why this code "works"
 	SDL_Rect destination;
 	destination.x = 0;
-	destination.y = 30;
-	destination.w = XMAX;
-	destination.h = YMAX - 30;
+	destination.y = 50;
+	destination.w = XMAX / 2;
+	destination.h = (YMAX / 2) - 51;
 
-	SDL_RenderCopy(graphics_manager->renderer, texture, NULL, &destination);
-	SDL_RenderPresent(graphics_manager->renderer);
+	SDL_RenderCopy(renderer, texture, NULL, &destination);
+	// SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	// SDL_RenderClear(renderer);
+	// SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	// SDL_RenderDrawRect(renderer, &destination);
+	SDL_RenderPresent(renderer);
 
 	// Limit the framerate to 60 Hz
 	framerate_delay(&graphics_manager->fps_manager);
 
 	graphics_manager->fps_count++;
-	SDL_Delay(3000);
 }

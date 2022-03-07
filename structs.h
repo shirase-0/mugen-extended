@@ -302,17 +302,82 @@ typedef struct MU_SFF_Manager MU_SFF_Manager;
 // =========State Manager==============================
 // ==========State Parser============================
 // ==========Player==================================
+struct Player_Vars
+{
+	int var[60];
+	double fvar[40]; // Was float in the previous version
+};
+typedef struct Player_Vars Player_Vars;
+
+struct Player
+{
+	MU_Allocator *player_allocator;
+	MU_Graphics_Manager *graphics_manager;
+	MU_SFF_Manager *sff_manager;
+	MU_Air_Manager *air_manager;
+	MU_Timer *timer;
+	// MU_State_Manager *state_manager;
+	// VM *vm;
+	// MU_Controller_Executer *controller_exec;
+	// MU_CMD_Manager *cmd_manager;
+
+	// Variable player information
+	// These doubles were formerly floats
+	double x;
+	double y;
+	double xvel;
+	double yvel;
+	double ground; // Rename to something more descriptive?
+	int anim_num;
+	uint32_t state_time;
+	uint8_t state_type;
+	uint8_t physics;
+	uint8_t movetype;
+	uint8_t spr_prio;
+	int16_t life;
+	int16_t power;
+	bool hitdef_persist;
+	bool hitcount_persist;
+	bool movehit_persist;
+	bool ctrl;
+	bool right_faced;
+	bool debug_info;
+	bool hitdef;
+	bool alive;
+	char command[50];
+	//Statedef *current_statedef;
+	Player_Vars player_vars;
+	// Player_Const player_const;
+};
+typedef struct Player Player;
+
 // ==========Controller Executer===================
 // ===========Stack================================
 // ==========VM====================================
 // ===========Engine===============================
+struct MU_Engine
+{
+	Player *p1;
+	Player *p2;
+	// These last two should be null unless needed
+	Player *p3;
+	Player *p4;
+
+	MU_Allocator *mem_manager;
+	MU_Graphics_Manager *graphics_manager;
+	MU_Timer *timer;
+	// VM *vm_p1;
+	// VM *vm_p2;
+};
+typedef struct MU_Engine MU_Engine;
+
 // =========Game==================================
 struct Game
 {
 	MU_Graphics_Manager *graphics_manager;
 	MU_Allocator *mem_manager;
 	MU_Timer *timer;
-	//MU_Engine *engine;
+	MU_Engine *engine;
 
 	bool error;
 	bool in_game; // This will be used to determine if you're in the menu or in an actual game

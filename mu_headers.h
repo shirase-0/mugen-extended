@@ -30,6 +30,8 @@
 #include "air_manager.h"
 #include "sff_manager.h"
 
+#include "player.h"
+#include "engine.h"
 #include "game.h"
 
 #endif

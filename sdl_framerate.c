@@ -40,9 +40,9 @@ int get_framerate(MU_FPS_Manager *fps_manager)
 // Delay execution to maintain a constant framerate. Calculate FPS
 void framerate_delay(MU_FPS_Manager *fps_manager)
 {
-	uint32_t current_ticks;
-	uint32_t target_ticks;
-	uint32_t delay;
+	uint32_t current_ticks = 0;
+	uint32_t target_ticks = 0;
+	uint32_t delay = 0;
 
 	fps_manager->framecount++;
 

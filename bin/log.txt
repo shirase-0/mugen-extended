@@ -1,29 +1,37 @@
 Logging: Init Successful
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000001f25d2e1b80
+Allocator address: 00000229545a1b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000001f25d2e1cb0
+Allocator address: 00000229545a1cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000001f25d2e8ee0
+Allocator address: 00000229545a8ee0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000001f25d2e9980
+Allocator address: 00000229545a9980
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000001f25d2ea420
+Allocator address: 00000229545aa420
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000001f25d2eaec0
+Allocator address: 00000229545aaec0
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000001f25d2eb960
+Allocator address: 00000229545ab960
 Memory Manager: Init Successful
+Freed block 000002295623b540 from Tokenizer
+SFF Manager: Loading chars\kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+SFF Manager: 264 images have been decoded
+Freed block 000002295db45f30 from Tokenizer
+SFF Manager: Loading chars\kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+SFF Manager: 264 images have been decoded
 ======================Memory Manager============================
 |Name:               |Allocated bytes                          |
 ----------------------------------------------------------------
 |           Main Menu                  |                   0  | 
 |               Stage                  |                   0  | 
 |              Engine                  |                   0  | 
-|            Player 1                  |                   0  | 
-|            Player 2                  |                   0  | 
+|            Player 1                  |             1663261  | 
+|            Player 2                  |             1663261  | 
 |            Player 3                  |                   0  | 
 |            Player 4                  |                   0  | 
-Total memory usage: 0
+Total memory usage: 3326522
 ================================================================

@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
     }
     else
     {
-        init_game();
+        Game *mugen = init_game();
+        run_game(mugen);
     }  
     return 0;
 }

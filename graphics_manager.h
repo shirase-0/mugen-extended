@@ -10,7 +10,7 @@
 
 MU_Graphics_Manager *mu_init_graphics_manager();
 void mu_load_font(MU_Graphics_Manager *graphics_manager);
-void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, char *text, ...);
+void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, const char *text, ...);
 void mu_clear_screen(MU_Graphics_Manager *graphics_manager);
 // TODO: Remove the next two functions unless a use is found for them
 // SDL_Surface *mu_create_surface(MU_Graphics_Manager *graphics_manager, int x, int y);
