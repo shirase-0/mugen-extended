@@ -6,6 +6,8 @@
 #define TOKEN_DEFAULT_OPERATORS_COUNT 23
 #define BIT_DEPTH 8
 #define COLOUR_PALETTE_SIZE 256
+#define ONE_SECOND 1000
+#define HALF_SECOND 500
 #define VER "Alpha"
 
 // Enums
@@ -97,6 +99,9 @@ struct MU_Graphics_Manager
     SDL_Surface *screen_surface; // TODO: Remove if unused
     SDL_Renderer *renderer;
     SDL_Texture *font_texture;
+    SDL_PixelFormat *colour_format;
+    SDL_Rect destination_rect;
+    SDL_Rect src_rect;
 
     uint8_t delta_ptr;
     uint32_t now_time;

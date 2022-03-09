@@ -34,7 +34,6 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 		return NULL;
 	}
 
-	// graphics_manager->screen_surface = NULL;
 	graphics_manager->screen_surface = SDL_GetWindowSurface(graphics_manager->window);
 	graphics_manager->renderer = SDL_CreateRenderer(graphics_manager->window, -1, 0);
 	if(graphics_manager->renderer == NULL)
@@ -42,6 +41,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 		debug_print("Could not create renderer: %s\n", SDL_GetError());
 		return NULL;
 	}
+	graphics_manager->colour_format = SDL_AllocFormat(SDL_PIXELFORMAT_RGB888);
 
 	//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best"); // Make the scaled rendering look smoother.
 	SDL_RenderSetLogicalSize(graphics_manager->renderer, XMAX, YMAX);
@@ -56,6 +56,17 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 
 	// Load raster font
 	mu_load_font(graphics_manager);
+
+	// Set up rectangles for rendering
+	graphics_manager->destination_rect.x = 0;
+	graphics_manager->destination_rect.y = 100;
+	graphics_manager->destination_rect.w = XMAX / 2;
+	graphics_manager->destination_rect.h = (YMAX / 2) - 101;
+
+	graphics_manager->src_rect.x = 0;
+	graphics_manager->src_rect.y = 0;
+	graphics_manager->src_rect.w = XMAX / 2;
+	graphics_manager->src_rect.h = YMAX / 2;
 
 	return graphics_manager;
 }
@@ -90,7 +101,6 @@ void mu_load_font(MU_Graphics_Manager *graphics_manager)
 	// Switching font_surface->format to screen_surface->format fixes the text rendering badly
 	SDL_SetColorKey(font_surface, SDL_TRUE, SDL_MapRGB(graphics_manager->screen_surface->format, 0, 0, 0)); 
 
-	// TODO: Implement the font using textures instead of surfaces, change the MU_Graphics_Manager to reflect this
 	graphics_manager->font_texture = SDL_CreateTextureFromSurface(graphics_manager->renderer, font_surface);
 	SDL_FreeSurface(font_surface);
 }
@@ -98,9 +108,6 @@ void mu_load_font(MU_Graphics_Manager *graphics_manager)
 void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, const char *text, ...)
 {
 	char temp[255];
-	// TODO: Remove these?
-	// int row = 0;
-	// int col = 0;
 	SDL_Rect font_rect;
 	SDL_Rect screen_rect;
 
@@ -142,10 +149,8 @@ void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, const cha
 			// TODO: abstract this into a generalised render method
 			// Tidy this up once the scaling issue has been fixed
 			//SDL_UpdateTexture(graphics_manager->font_texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
-			
 			// The following two lines were working code, commented out now to try and fix the rendering pipeline
 			SDL_RenderCopy(graphics_manager->renderer, graphics_manager->font_texture, &font_rect, &screen_rect);
-			// SDL_RenderPresent(graphics_manager->renderer);
 			screen_rect.x += font_rect.w;
 		}
 		else
@@ -159,17 +164,11 @@ void mu_clear_screen(MU_Graphics_Manager *graphics_manager)
 {
 	SDL_SetRenderDrawColor(graphics_manager->renderer, 0, 0, 0, 255);
 	SDL_RenderClear(graphics_manager->renderer);
-	//SDL_RenderPresent(graphics_manager->renderer);
 }
 
-
-// TODO: allocating and freeing the format for every call of this function is inefficient
-// Move SDL_PixelFormat *format into the graphics_manager to replace screen_surface
 uint32_t mu_map_rgb(MU_Graphics_Manager *graphics_manager, int red, int green, int blue)
 {
-	SDL_PixelFormat *format = SDL_AllocFormat(SDL_PIXELFORMAT_RGB888);
-	uint32_t rgb = SDL_MapRGB(format, red, green, blue);
-	SDL_FreeFormat(format);
+	uint32_t rgb = SDL_MapRGB(graphics_manager->colour_format, red, green, blue);
 	return rgb;
 }
 
@@ -219,7 +218,6 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 	work_data += y * pitch;
 	work_data += x;
 
-	// Swapping if-else around from previous version to put more used codepath first
 	if(has_mask)
 	{
 		bool blank_row = true;
@@ -243,7 +241,7 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; // This wasn't supposed to be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
+			work_data += pitch / 2;
 		}
 	}
 	else
@@ -256,7 +254,7 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; // This wasn't supposed to be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
+			work_data += pitch / 2; 
 		}
 	}
 }
@@ -278,7 +276,6 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 	pitch = graphics_manager->screen_surface->pitch / 2;
 
 	uint16_t y_clip = 0;
-	//uint16_t y_clip2 = 0;
 	uint16_t x_clip = 0;
 	uint16_t x_clip2 = 0;
 
@@ -312,7 +309,6 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 	work_data += y * pitch;
 	work_data += x;
 
-	// Swapping if-else around from previous version to put more used codepath first
 	if(has_mask)
 	{
 		bool blank_row = true;
@@ -334,7 +330,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; // This wasn't supposed to be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
+			work_data += pitch / 2; 
 		}
 	}
 	else
@@ -347,29 +343,25 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; // This wasn't supposed to be divided by 2, change back to just pitch when the bug that caused a need for this workaround is found
+			work_data += pitch / 2; 
 		}
 	}
 }
 
+// TODO: Profile this function and speed it up as much as possible
 void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 {
 	SDL_Renderer *renderer = graphics_manager->renderer;
-	//mu_clear_screen(graphics_manager);
-	SDL_RenderClear(renderer);
+	SDL_Rect destination = graphics_manager->destination_rect;
+	SDL_Rect src = graphics_manager->src_rect;
 
 	graphics_manager->now_time = SDL_GetTicks();
-	// TODO: This function needs to be as fast as possible. If these declarations slow down execution, revert to less
-	// readable version
 	uint32_t now_time = graphics_manager->now_time;
 	uint32_t last_time = graphics_manager->last_time;
 
-	// TODO: figure out what this 500 is doing, and turn it into a constant
-	if(now_time > last_time + 500)
+	if(now_time > last_time + HALF_SECOND)
 	{
-		// TODO: figure out what this 1000 is doing, and turn it into a constant
-		// This was formerly using a (float) conversion, but graphics_manager->fps is a double
-		graphics_manager->fps = (double) graphics_manager->fps_count * 1000 / (now_time - last_time);
+		graphics_manager->fps = (double) graphics_manager->fps_count * ONE_SECOND / (now_time - last_time);
 		graphics_manager->fps_count = 0;
 		graphics_manager->last_time = now_time;
 	}
@@ -381,21 +373,8 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 	//  scale2x(work,screen);
 
 	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
-
-	// TODO: Make these rectangles into constants in structs.h
-	SDL_Rect destination;
-	destination.x = 0;
-	destination.y = 50;
-	destination.w = XMAX / 2;
-	destination.h = (YMAX / 2) - 51;
-
-	SDL_Rect src;
-	src.x = 0;
-	src.y = 0;
-	src.w = XMAX / 2;
-	src.h = YMAX / 2;
-
 	SDL_RenderCopy(renderer, texture, &src, &destination);
+	// Test code to render a boundary around the destination rectangle
 	// SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	// SDL_RenderClear(renderer);
 	// SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -404,6 +383,9 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 
 	// Limit the framerate to 60 Hz
 	framerate_delay(&graphics_manager->fps_manager);
-
 	graphics_manager->fps_count++;
+
+	// Clear screen before next frame renders
+	SDL_RenderClear(graphics_manager->renderer);
+	SDL_FillRect(graphics_manager->screen_surface, NULL, 0x000000);
 }

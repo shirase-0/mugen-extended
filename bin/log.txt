@@ -1,25 +1,25 @@
 Logging: Init Successful
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000002300d091b80
+Allocator address: 000001abfae81b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000002300d091cb0
+Allocator address: 000001abfae81cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000002300d098ee0
+Allocator address: 000001abfae88ee0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000002300d099980
+Allocator address: 000001abfae89980
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000002300d09a420
+Allocator address: 000001abfae8a420
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000002300d09aec0
+Allocator address: 000001abfae8aec0
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000002300d09b960
+Allocator address: 000001abfae8b960
 Memory Manager: Init Successful
-Freed block 000002300ef8b540 from Tokenizer
+Freed block 000001abfcb4b690 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
-Freed block 0000023016885f30 from Tokenizer
+Freed block 000001ab84636870 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded

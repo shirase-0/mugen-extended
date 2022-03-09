@@ -1,6 +1,6 @@
 #include "mu_headers.h"
 
-char *states[]={ 
+const char *states[]={ 
 	"stand",
 	"crouch",
 	"air",
