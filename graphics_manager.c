@@ -99,7 +99,7 @@ void mu_load_font(MU_Graphics_Manager *graphics_manager)
 	}
 
 	// Switching font_surface->format to screen_surface->format fixes the text rendering badly
-	SDL_SetColorKey(font_surface, SDL_TRUE, SDL_MapRGB(graphics_manager->screen_surface->format, 0, 0, 0)); 
+	SDL_SetColorKey(font_surface, SDL_TRUE, SDL_MapRGB(graphics_manager->colour_format, 0, 0, 0)); 
 
 	graphics_manager->font_texture = SDL_CreateTextureFromSurface(graphics_manager->renderer, font_surface);
 	SDL_FreeSurface(font_surface);

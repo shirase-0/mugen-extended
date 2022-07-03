@@ -77,10 +77,22 @@ bool load_player(Player *player, const char *player_def_filename)
 	// Maybe set the allocator for the state parser in this function
 	// Also, remember to free() state_parser at the bottom of this function
 	//parse_statefile(state_parser, "chars\\kfm\\kfm.cns", player->state_manager, player->player_allocator);
-	open_air(player->air_manager, "chars\\kfm\\kfm.air");
+	// open_air(player->air_manager, "chars\\kfm\\kfm.air");
 
-	load_act_to_sff(player->sff_manager, "chars\\kfm\\kfm6.act");
-	load_sff_file(player->sff_manager, "chars\\kfm\\kfm.sff");
+	// load_act_to_sff(player->sff_manager, "chars\\kfm\\kfm6.act");
+	// load_sff_file(player->sff_manager, "chars\\kfm\\kfm.sff");
+
+	// ===Additional characters for testing purposes===
+	// open_air(player->air_manager, "chars\\OrochiBest\\Orochi_.air");
+
+	// load_act_to_sff(player->sff_manager, "chars\\OrochiBest\\original.act");
+	// load_sff_file(player->sff_manager, "chars\\OrochiBest\\Orochi_.sff");
+
+	open_air(player->air_manager, "Iori_Yagami\\Iori_Yagami.air");
+
+	load_act_to_sff(player->sff_manager, "Iori_Yagami\\Paletas\\Iori_01.act");
+	load_sff_file(player->sff_manager, "Iori_Yagami\\Iori_Yagami.SFF");
+
 
 	// Make always masked blit
 	// This ensures alpha transparency on sprites
@@ -111,7 +123,7 @@ void update_facing(Player *player)
 // implemented yet
 void mu_player_debug(Player *player)
 {
-	Action_Element *anim = player->sff_manager->anim;
+	Action *anim = player->sff_manager->anim;
 
 	// Print information about the current animation
 	mu_draw_text(player->graphics_manager, 0, 20, "Action %3i | AnimElem %3i/%3i | AnimTime %3i/%3i ", anim->action_num

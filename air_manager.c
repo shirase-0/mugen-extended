@@ -11,16 +11,7 @@ void action_list_init(MU_Air_Manager *air_manager)
 	MU_Allocator *air_allocator = air_manager->air_allocator;
 	uint16_t action_list_size = air_manager->action_list_size;
 
-	// if action list size is greater than 100, use realloc
-	// untested, may or may not work
-	if(action_list_size > 100)
-	{
-		air_manager->action_list = (Action_Element*) mu_realloc(air_allocator, air_manager->action_list, sizeof(Action_Element) * action_list_size);
-	}
-	else
-	{
-		air_manager->action_list = (Action_Element*) mu_alloc(air_allocator, sizeof(Action_Element) * action_list_size);
-	}
+	air_manager->action_list = (Action*) mu_alloc(air_allocator, sizeof(Action) * action_list_size);
 }
 
 void reset_air_manager(MU_Air_Manager *air_manager)
@@ -45,13 +36,15 @@ void reallocate_action_block(MU_Air_Manager *air_manager)
 
 	if(total_action_block > 0)
 	{
-		Action_Element *action_list = air_manager->action_list;
-		Action_Element *action = &(action_list[total_action_block - 1]);
+		Action *action_list = air_manager->action_list;
+		Action *action = &(action_list[total_action_block - 1]);
 		Element *anim_element = action->anim_element;
 		MU_Allocator *air_allocator = air_manager->air_allocator;
 		uint16_t elements_count = action->elements_count;
-
-		anim_element = (Element*) mu_realloc(air_allocator, anim_element, sizeof(Element) * elements_count);	
+		if(air_allocator->lp_memlist[mu_find_address(air_allocator, anim_element)].size <= sizeof(Element) * elements_count)
+		{
+			air_manager->action_list[total_action_block - 1].anim_element = (Element*) mu_realloc(air_allocator, anim_element, sizeof(Element) * elements_count);	
+		}
 	}
 }
 
@@ -65,17 +58,17 @@ void add_action(MU_Air_Manager *air_manager, int action_num)
 
 	uint16_t total_action_block = air_manager->total_action_block;
 	uint16_t action_list_size = air_manager->action_list_size;
-	Action_Element *action_list = air_manager->action_list;
+	Action *action_list = air_manager->action_list;
 	MU_Allocator *air_allocator = air_manager->air_allocator;
 
 	if(total_action_block > action_list_size - 1)
 	{
 		air_manager->action_list_size += 100;
-		air_manager->action_list = (Action_Element*) mu_realloc(air_allocator, action_list, sizeof(Action_Element) * air_manager->action_list_size);
+		air_manager->action_list = (Action*) mu_realloc(air_allocator, action_list, sizeof(Action) * air_manager->action_list_size);
 		action_list = air_manager->action_list; // mu_realloc returns a different address, so we need to update this value
 	}
 
-	Action_Element *action_list_last_elem = &action_list[total_action_block];
+	Action *action_list_last_elem = &action_list[total_action_block];
 	action_list_last_elem->loop_start = -1;
 	action_list_last_elem->action_num = action_num;
 	uint16_t element_list_size = air_manager->element_list_size;
@@ -89,7 +82,7 @@ void add_element(MU_Air_Manager *air_manager, int16_t values[5], uint16_t flip_f
 	// TODO: Handle ColorFlags
     // 32bit
     // 8Bit ADDOP 8bit ADDOPVALUE 8bit SUBOP 8Bit SUBOPVALUE
-	Action_Element *action_list = air_manager->action_list;
+	Action *action_list = air_manager->action_list;
 	uint16_t total_action_block = air_manager->total_action_block;
 	MU_Allocator *air_allocator = air_manager->air_allocator;
 	uint16_t element_list_size = air_manager->element_list_size;
@@ -101,7 +94,9 @@ void add_element(MU_Air_Manager *air_manager, int16_t values[5], uint16_t flip_f
 	if(total_elements > element_list_size - 1)
 	{
 		air_manager->element_list_size += 100;
-		curr_anim_element = (Element*) mu_realloc(air_allocator, curr_anim_element, sizeof(Element) * element_list_size);
+		element_list_size = air_manager->element_list_size;
+		action_list[total_action_block - 1].anim_element = (Element*) mu_realloc(air_allocator, curr_anim_element, sizeof(Element) * element_list_size);
+		curr_anim_element = action_list[total_action_block - 1].anim_element;
 	}
 
 	curr_anim_element[total_elements].group_num = values[0];
@@ -127,7 +122,7 @@ void add_element(MU_Air_Manager *air_manager, int16_t values[5], uint16_t flip_f
 
 void set_loop(MU_Air_Manager *air_manager)
 {
-	Action_Element *action_list = air_manager->action_list;
+	Action *action_list = air_manager->action_list;
 	uint16_t total_action_block = air_manager->total_action_block;
 
 	action_list[total_action_block - 1].loop_start = air_manager->total_elements;
@@ -348,7 +343,7 @@ void open_air(MU_Air_Manager *air_manager, char *filename)
 	mu_close_file(tok);
 }
 
-Action_Element *get_action(MU_Air_Manager *air_manager, int action_num)
+Action *get_action(MU_Air_Manager *air_manager, int action_num)
 {
 	for(uint16_t i = 0; i < air_manager->total_action_block; i++)
 	{

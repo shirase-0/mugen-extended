@@ -179,7 +179,7 @@ struct Element
 };
 typedef struct Element Element;
 
-struct Action_Element
+struct Action
 {
 	int action_num;
 	Element *anim_element;
@@ -193,13 +193,13 @@ struct Action_Element
 	uint16_t current_image_time;
 	bool has_loop; 
 };
-typedef struct Action_Element Action_Element;
+typedef struct Action Action;
 
 // This struct has a lot of temp data fields for initialising a character's .air file
 // TODO: declare all temp variables on the heap so they can be freed once used? (especially clsn_arr)
 struct MU_Air_Manager
 {
-	Action_Element *action_list;
+	Action *action_list;
 	MU_Allocator *air_allocator;
 	uint16_t total_action_block;
 	uint16_t action_list_size;
@@ -297,7 +297,7 @@ struct MU_SFF_Manager
     SFF_Sprite *sprite_list;
     float x_scale_value; // TODO: if it doesn't break anything, change these to doubles
     float y_scale_value;
-    Action_Element *anim;
+    Action *anim;
 };
 typedef struct MU_SFF_Manager MU_SFF_Manager;
 

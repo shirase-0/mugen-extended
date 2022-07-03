@@ -36,7 +36,7 @@ void run_game(Game *game)
 {
 	MU_Graphics_Manager *graphics = game->graphics_manager;
 	SDL_Texture *texture = SDL_CreateTexture(graphics->renderer, 
-											 graphics->screen_surface->format->format, 
+											 graphics->colour_format->format, 
 											 SDL_TEXTUREACCESS_STREAMING, 
 											 XMAX, YMAX);
 	uint32_t current_ticks;
@@ -60,7 +60,7 @@ void run_game(Game *game)
 		mu_draw(graphics, texture);
 
 		current_ticks = SDL_GetTicks();
-		if(current_ticks >= 5000)
+		if(current_ticks >= 25000)
 		{
 			game->in_game = false;
 		}

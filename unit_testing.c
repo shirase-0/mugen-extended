@@ -167,7 +167,7 @@ void unit_test()
 	assert(air_manager->action_list[107].action_num == 5300);
 	// Unsure how to test reallocate_action_block()
 	debug_print("add_action working as intended");
-	Action_Element *test_action = get_action(air_manager, 5040);
+	Action *test_action = get_action(air_manager, 5040);
 	assert(test_action != NULL);
 	assert(get_action(air_manager, 1) == NULL);
 	debug_print("get_action working as intended");

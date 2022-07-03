@@ -313,7 +313,7 @@ bool load_act_to_sff(MU_SFF_Manager *sff_manager, const char *act_filename)
 void prepare_anim(MU_SFF_Manager *sff_manager, int anim_id)
 {
 	sff_manager->anim = get_action(sff_manager->air_manager, anim_id);
-	Action_Element *anim = sff_manager->anim;
+	Action *anim = sff_manager->anim;
 
 	anim->during_time = get_game_time(sff_manager->timer) + anim->anim_element[0].during_time;
 	anim->current_image = 0;
@@ -361,7 +361,7 @@ void blit_anim(MU_SFF_Manager *sff_manager, int16_t x, int16_t y)
 {
 	Element *anim_element = &sff_manager->anim->anim_element[sff_manager->anim->current_image];
 	blit_sprite(sff_manager, anim_element->group_num, anim_element->image_num, x, y);
-	Action_Element *anim = sff_manager->anim;
+	Action *anim = sff_manager->anim;
 
 	// Is it time for the next sprite in the animation?
 	if(anim->during_time <= get_game_time(sff_manager->timer) && anim_element->during_time != 1)

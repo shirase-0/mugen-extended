@@ -13,6 +13,6 @@ void set_loop(MU_Air_Manager *air_manager);
 void add_clsn_box(MU_Air_Manager *air_manager, int16_t coor[4], int clsn_count);
 void create_clsn_box(MU_Air_Manager *air_manager, uint16_t clsn_count, bool is_clsn1, bool is_default_clsn);
 void open_air(MU_Air_Manager *air_manager, char *filename);
-Action_Element *get_action(MU_Air_Manager *air_manager, int action_num);
+Action *get_action(MU_Air_Manager *air_manager, int action_num);
 
 #endif
