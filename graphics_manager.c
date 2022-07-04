@@ -182,11 +182,13 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 	uint32_t *colour_palette = sprite_list->colour_palette;
 
 	// Calculate x and y values
+	// The initial value of x and y is always the default coordinates (where each player spawns in)
+	//mu_log_message("%d -= %d - (%d - %d) = %d", y, height, height, sprite_list->y, (y - height - (height - sprite_list->y)));
 	y -= height - (height - sprite_list->y);
 	x -= width - (width - sprite_list->x);
 
 	work_data = (uint32_t*) graphics_manager->screen_surface->pixels; 
-	pitch = graphics_manager->screen_surface->pitch / 2;
+	pitch = graphics_manager->screen_surface->pitch / 4;
 
 	uint16_t y_clip = 0;
 	uint16_t x_clip = 0;
@@ -225,7 +227,7 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 		{
 			if(blank_row)
 			{
-				work_data += pitch / 2;
+				work_data += pitch;
 				blank_row = true;
 			}
 
@@ -241,7 +243,7 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2;
+			work_data += pitch;
 		}
 	}
 	else
@@ -254,7 +256,7 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; 
+			work_data += pitch; 
 		}
 	}
 }
@@ -273,7 +275,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 	x -= width - sprite_list->x; // Is this line wrong? See the function above for clarification
 
 	work_data = (uint32_t*) graphics_manager->screen_surface->pixels; 
-	pitch = graphics_manager->screen_surface->pitch / 2;
+	pitch = graphics_manager->screen_surface->pitch / 4;
 
 	uint16_t y_clip = 0;
 	uint16_t x_clip = 0;
@@ -316,7 +318,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 		{
 			if(blank_row)
 			{
-				work_data += pitch / 2;
+				work_data += pitch;
 				blank_row = true;
 			}
 
@@ -330,7 +332,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; 
+			work_data += pitch; 
 		}
 	}
 	else
@@ -343,7 +345,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 				work_data++;
 			}
 			work_data -= width - x_clip;
-			work_data += pitch / 2; 
+			work_data += pitch; 
 		}
 	}
 }

@@ -60,7 +60,7 @@ void run_game(Game *game)
 		mu_draw(graphics, texture);
 
 		current_ticks = SDL_GetTicks();
-		if(current_ticks >= 25000)
+		if(current_ticks >= 10000)
 		{
 			game->in_game = false;
 		}
