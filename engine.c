@@ -23,8 +23,9 @@ MU_Engine *mu_engine_init(MU_Allocator *mem_manager, MU_Graphics_Manager *graphi
 	// engine->p2->vm = engine->vm_p2;
 
 	// TODO: the following values should be read out of the stage def
-	engine->p1->ground = 350; // Should be 440
-	engine->p2->ground = 350; // Should be 440
+	// Fix this when sprites have proper scaling
+	engine->p1->ground = 350;
+	engine->p2->ground = 350;
 
 	// TODO: calculate these values based on XMAX and YMAX (graphics_manager.h)
 	engine->p1->x = 70;

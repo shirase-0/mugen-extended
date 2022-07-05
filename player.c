@@ -77,10 +77,10 @@ bool load_player(Player *player, const char *player_def_filename)
 	// Maybe set the allocator for the state parser in this function
 	// Also, remember to free() state_parser at the bottom of this function
 	//parse_statefile(state_parser, "chars\\kfm\\kfm.cns", player->state_manager, player->player_allocator);
-	// open_air(player->air_manager, "chars\\kfm\\kfm.air");
+	open_air(player->air_manager, "chars\\kfm\\kfm.air");
 
-	// load_act_to_sff(player->sff_manager, "chars\\kfm\\kfm6.act");
-	// load_sff_file(player->sff_manager, "chars\\kfm\\kfm.sff");
+	load_act_to_sff(player->sff_manager, "chars\\kfm\\kfm6.act");
+	load_sff_file(player->sff_manager, "chars\\kfm\\kfm.sff");
 
 	// ===Additional characters for testing purposes===
 	// open_air(player->air_manager, "chars\\OrochiBest\\Orochi_.air");
@@ -88,10 +88,15 @@ bool load_player(Player *player, const char *player_def_filename)
 	// load_act_to_sff(player->sff_manager, "chars\\OrochiBest\\original.act");
 	// load_sff_file(player->sff_manager, "chars\\OrochiBest\\Orochi_.sff");
 
-	open_air(player->air_manager, "Iori_Yagami\\Iori_Yagami.air");
+	// open_air(player->air_manager, "Iori_Yagami\\Iori_Yagami.air");
 
-	load_act_to_sff(player->sff_manager, "Iori_Yagami\\Paletas\\Iori_01.act");
-	load_sff_file(player->sff_manager, "Iori_Yagami\\Iori_Yagami.SFF");
+	// load_act_to_sff(player->sff_manager, "Iori_Yagami\\Paletas\\Iori_01.act");
+	// load_sff_file(player->sff_manager, "Iori_Yagami\\Iori_Yagami.SFF");
+
+	// open_air(player->air_manager, "chars\\H-SaikiXIII\\H-SaikiXIII.air");
+
+	// load_act_to_sff(player->sff_manager, "chars\\H-SaikiXIII\\H-SaikiXIII.act");
+	// load_sff_file(player->sff_manager, "chars\\H-SaikiXIII\\H-SaikiXIII.sff");
 
 
 	// Make always masked blit

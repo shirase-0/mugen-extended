@@ -41,6 +41,9 @@ void run_game(Game *game)
 											 XMAX, YMAX);
 	uint32_t current_ticks;
 
+	int i = 0;
+	int next_anim = 0;
+	int prev_anim = 0;
 	while(game->in_game)
 	{
 		mu_update_timer(game->timer);
@@ -60,9 +63,19 @@ void run_game(Game *game)
 		mu_draw(graphics, texture);
 
 		current_ticks = SDL_GetTicks();
-		if(current_ticks >= 10000)
+		// if(current_ticks >= 10000)
+		// {
+		// 	game->in_game = false;
+		// }
+
+		// Test code which cycles through every animation on a character
+		i = current_ticks / 5000;
+		if(prev_anim != i)
 		{
-			game->in_game = false;
+			next_anim = game->engine->p1->air_manager->action_list[i].action_num;
+			prepare_anim(game->engine->p1->sff_manager, next_anim);
+			prepare_anim(game->engine->p2->sff_manager, next_anim);
+			prev_anim = i;
 		}
 	}
 }

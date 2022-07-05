@@ -1,31 +1,31 @@
 Logging: Init Successful
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000001f787951b80
+Allocator address: 000002a4d40a1b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 000001f787951cb0
+Allocator address: 000002a4d40a1cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 000001f787951de0
+Allocator address: 000002a4d40a1de0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000001f7879599d0
+Allocator address: 000002a4d40a99d0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000001f78795a470
+Allocator address: 000002a4d40aa470
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000001f78795af10
+Allocator address: 000002a4d40aaf10
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000001f78795b9b0
+Allocator address: 000002a4d40ab9b0
 Memory Manager: Init Successful
-Freed block 000001f78959b6a0 from Tokenizer
-Freed block 000001f7922d67a0 from Tokenizer
+Freed block 000002a4d5cbb770 from Tokenizer
+Freed block 000002a4dd5bd700 from Tokenizer
 ======================Memory Manager============================
 |Name:               |Allocated bytes                          |
 ----------------------------------------------------------------
 |           Main Menu                  |                   0  | 
 |               Stage                  |                   0  | 
 |              Engine                  |                   0  | 
-|            Player 1                  |            20946587  | 
-|            Player 2                  |            20946587  | 
+|            Player 1                  |             2067701  | 
+|            Player 2                  |             2067701  | 
 |            Player 3                  |                   0  | 
 |            Player 4                  |                   0  | 
-Total memory usage: 41893174
+Total memory usage: 4135402
 ================================================================

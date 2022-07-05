@@ -227,11 +227,11 @@ struct PCX_Header
     uint16_t height;
     uint16_t hres;
     uint16_t vres;
-    uint8_t colour_map[48];
+    uint8_t colour_map[48]; // Unused?
     uint8_t reserved;
     uint8_t planes_count;
     uint8_t bytes_per_line;
-    uint8_t palette_info;
+    uint8_t palette_info; // Unused?
     uint8_t filler[58]; // Can we remove this and just discard it when we encounter it?
 };
 typedef struct PCX_Header PCX_Header;
@@ -247,7 +247,7 @@ struct SFF_Header
     uint32_t images_count;
     uint32_t subheader_file_offset;
     uint32_t sizeof_subheader;
-    uint8_t palette_type;
+    uint8_t palette_type; // Unused?
     uint8_t blank[476]; // Can we remove this and just discard it when we encounter it?
 };
 typedef struct SFF_Header SFF_Header;

@@ -182,13 +182,11 @@ void mu_normal_blt(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_lis
 	uint32_t *colour_palette = sprite_list->colour_palette;
 
 	// Calculate x and y values
-	// The initial value of x and y is always the default coordinates (where each player spawns in)
-	//mu_log_message("%d -= %d - (%d - %d) = %d", y, height, height, sprite_list->y, (y - height - (height - sprite_list->y)));
 	y -= height - (height - sprite_list->y);
 	x -= width - (width - sprite_list->x);
 
 	work_data = (uint32_t*) graphics_manager->screen_surface->pixels; 
-	pitch = graphics_manager->screen_surface->pitch / 4;
+	pitch = graphics_manager->screen_surface->pitch / 4; // Originally this was divided by 2, but it has to be 4 or it doesn't work for some reason
 
 	uint16_t y_clip = 0;
 	uint16_t x_clip = 0;
@@ -275,7 +273,7 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 	x -= width - sprite_list->x; // Is this line wrong? See the function above for clarification
 
 	work_data = (uint32_t*) graphics_manager->screen_surface->pixels; 
-	pitch = graphics_manager->screen_surface->pitch / 4;
+	pitch = graphics_manager->screen_surface->pitch / 4; // Originally this was divided by 2, but it has to be 4 or it doesn't work for some reason
 
 	uint16_t y_clip = 0;
 	uint16_t x_clip = 0;

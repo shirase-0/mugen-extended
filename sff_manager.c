@@ -46,7 +46,7 @@ uint8_t *decode_pcx(MU_SFF_Manager *sff_manager, uint8_t *pcx_byte, PCX_Header h
 {
 	uint8_t *byte_image_buffer = 0;
 	uint8_t bpp = header.planes_count * BIT_DEPTH;
-	uint8_t byte_data;
+	uint8_t byte_data = 0;
 	uint16_t size = 0;
 	int16_t x = 0; // Current position along the current line
 	int16_t y = 0; // Current line in the header
@@ -143,9 +143,6 @@ void decode_sff_file(MU_SFF_Manager *sff_manager)
 		sprite_list->y = subheader.y;
 
 		// Is it a linked sprite?
-		// Note to self: this section can never be reached because subheader_len is never set
-		// This should probably at least be zeroed out at the start of this function to prevent undefined behaviour
-		// CHECK: test to ensure this can't cause undefined behaviour
 		if(subheader.subheader_len != 0)
 		{
 			// Read the PCX header
@@ -168,12 +165,13 @@ void decode_sff_file(MU_SFF_Manager *sff_manager)
 			fseek(sff_file, -768L, SEEK_CUR);
 
 			// Eat empty byte
-			fgetc(sff_file);
+			// This was causing us to skip a crucial byte, not sure why this was here to begin with
+			//fgetc(sff_file);
 
 			if(fgetc(sff_file) == 12 &&
-			   !subheader.is_same_palette &&
-			   !sff_manager->is_palette_loaded &&
-			   sprite_list->pcx_header.planes_count <= 1)
+				!subheader.is_same_palette && // This value should get read in from the sff file
+				sprite_list->pcx_header.planes_count <= 1
+				)
 			{
 				for(int j = 0; j < COLOUR_PALETTE_SIZE; j++)
 				{
@@ -183,13 +181,14 @@ void decode_sff_file(MU_SFF_Manager *sff_manager)
 					g = fgetc(sff_file);
 					b = fgetc(sff_file);
 
-					sff_manager->colour_palette[j] = mu_map_rgb(sff_manager->graphics_manager, r, g, b);
+					sprite_list->colour_palette[j] = mu_map_rgb(sff_manager->graphics_manager, r, g, b);
 				}
 			}
+			else
+			{
+				memcpy(&sprite_list->colour_palette, sff_manager->colour_palette, sizeof(uint32_t) * COLOUR_PALETTE_SIZE);
+			}
 
-			// This line worked in the previous version, but I'm unsure why
-			// TODO: figure out why this one worked and the others ones didn't
-			memcpy(&sprite_list->colour_palette, sff_manager->colour_palette, sizeof(uint32_t) * COLOUR_PALETTE_SIZE);
 		}
 		else
 		{
