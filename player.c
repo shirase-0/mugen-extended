@@ -115,6 +115,10 @@ Player_Def *parse_player_def (const char *player_name)
 							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
 						}
 						sprintf(filenames->sff_filename, "chars\\%s\\%s", player_name, get_token(tok));
+						while(!tok->at_end_of_line)
+						{
+							sprintf(filenames->sff_filename, "%s%s", filenames->sff_filename, get_token(tok));
+						}
 					}
 					else if(check_token(tok, "anim", false))
 					{
@@ -124,6 +128,10 @@ Player_Def *parse_player_def (const char *player_name)
 							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
 						}
 						sprintf(filenames->air_filename, "chars\\%s\\%s", player_name, get_token(tok));
+						while(!tok->at_end_of_line)
+						{
+							sprintf(filenames->air_filename, "%s%s", filenames->air_filename, get_token(tok));
+						}
 					}
 					else if(check_token(tok, "pal1", false))
 					{
@@ -133,6 +141,10 @@ Player_Def *parse_player_def (const char *player_name)
 							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
 						}
 						sprintf(filenames->act_filename, "chars\\%s\\%s", player_name, get_token(tok));
+						while(!tok->at_end_of_line)
+						{
+							sprintf(filenames->act_filename, "%s%s", filenames->act_filename, get_token(tok));
+						}
 					}
 					else
 					{
