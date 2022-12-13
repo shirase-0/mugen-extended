@@ -3,7 +3,8 @@
 
 Player *player_init();
 void mu_set_player_pointers(Player *player, MU_Graphics_Manager *graphics_manager, MU_Allocator *allocator, MU_Timer *timer);
-bool load_player(Player *player, const char *player_def_filename);
+Player_Def *parse_player_def (const char *player_name);
+bool load_player(Player *player, const char *player_name);
 //bool check_state(PL_State *temp_state); // TODO: write this once FSM is implemented
 //void handle_physics(Player *player); // TODO: write this once FSM is implemented
 //void handle_fsm(); // TODO: write this once FSM is implemented

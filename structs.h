@@ -150,6 +150,19 @@ struct MU_Timer
 };
 typedef struct MU_Timer MU_Timer;
 
+// =============Player Def================
+
+struct Player_Def
+{
+    char air_filename[255];
+    char sff_filename[255];
+    char act_filename[255];
+    //char *cmd_filename;
+    //char *cns_filename;
+    //char *snd_filename;
+};
+typedef struct Player_Def Player_Def;
+
 // ============Air Manager================
 
 struct Clsn

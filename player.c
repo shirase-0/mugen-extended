@@ -60,8 +60,95 @@ void mu_set_player_pointers(Player *player, MU_Graphics_Manager *graphics_manage
 	//player->cmd_manager->cmd_timer = timer;
 }
 
+Player_Def *parse_player_def (const char *player_name)
+{
+	Tokenizer *tok = tokenizer_init(100, NULL, NULL, 23);
+	Player_Def *filenames = (Player_Def*) malloc(sizeof(Player_Def));
+	memset(filenames, 0, sizeof(Player_Def));
+
+	char player_def_filename[255];
+	sprintf(player_def_filename, "chars\\%s\\%s.def", player_name, player_name);
+
+	if(!mu_open_file(tok, player_def_filename))
+	{
+		debug_print("Player: Failed to open %s", player_def_filename);
+	}
+
+	while(!tok->at_eof)
+	{
+		if(check_token(tok, "[", true))
+		{
+			if(check_token(tok, "Info", true))
+			{
+				if(!check_token(tok, "]", true))
+				{
+					debug_print("Invalid Player Declaration, expected ] after Info delcaration on line %d", tok->cur_file_line);
+				}
+				else //grab info, TODO
+				{
+					while(!tok->at_eof)
+					{
+						if(check_token(tok, "[", false))
+						{
+							break;
+						}
+						else
+						{
+							get_token(tok);
+						}
+					}
+				}
+			}
+			else if(check_token(tok, "Files", true))
+			{
+				if(!check_token(tok, "]", true))
+				{
+					debug_print("Invalid Player Declaration, expected ] after Info delcaration on line %d", tok->cur_file_line);
+				}
+				while(!tok->at_eof)
+				{
+					if(check_token(tok, "sprite", false))
+					{
+						get_token(tok);
+						if(!check_token(tok, "=", true))
+						{
+							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
+						}
+						sprintf(filenames->sff_filename, "chars\\%s\\%s", player_name, get_token(tok));
+					}
+					else if(check_token(tok, "anim", false))
+					{
+						get_token(tok);
+						if(!check_token(tok, "=", true))
+						{
+							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
+						}
+						sprintf(filenames->air_filename, "chars\\%s\\%s", player_name, get_token(tok));
+					}
+					else if(check_token(tok, "pal1", false))
+					{
+						get_token(tok);
+						if(!check_token(tok, "=", true))
+						{
+							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
+						}
+						sprintf(filenames->act_filename, "chars\\%s\\%s", player_name, get_token(tok));
+					}
+					else
+					{
+						get_token(tok);
+					}
+				}
+			}
+		}
+	}
+	mu_close_file(tok);
+	free_tokenizer(tok);
+	return filenames;
+}
+
 // TODO: If any of these files can't be found, this function should return false
-bool load_player(Player *player, const char *player_def_filename)
+bool load_player(Player *player, const char *player_name)
 {
 	//MU_State_Parser *state_parser = (MU_State_Parser*) malloc(sizeof(MU_State_Parser));
 
@@ -71,33 +158,18 @@ bool load_player(Player *player, const char *player_def_filename)
 	reset_sff_manager(player->sff_manager);
 	//reset_state_manager(player->state_manager);
 
-	// TODO: use player_def_filename to load players using their .def file
+	Player_Def *filenames = parse_player_def(player_name);
 	//load_cmd_file(player->cmd_manager, "chars\\kfm\\kfm.cmd");
 	// TODO: does this function really need all these arguments?
 	// Maybe set the allocator for the state parser in this function
 	// Also, remember to free() state_parser at the bottom of this function
 	//parse_statefile(state_parser, "chars\\kfm\\kfm.cns", player->state_manager, player->player_allocator);
-	open_air(player->air_manager, "chars\\kfm\\kfm.air");
 
-	load_act_to_sff(player->sff_manager, "chars\\kfm\\kfm6.act");
-	load_sff_file(player->sff_manager, "chars\\kfm\\kfm.sff");
+	open_air(player->air_manager, filenames->air_filename);
 
-	// ===Additional characters for testing purposes===
-	// open_air(player->air_manager, "chars\\OrochiBest\\Orochi_.air");
-
-	// load_act_to_sff(player->sff_manager, "chars\\OrochiBest\\original.act");
-	// load_sff_file(player->sff_manager, "chars\\OrochiBest\\Orochi_.sff");
-
-	// open_air(player->air_manager, "Iori_Yagami\\Iori_Yagami.air");
-
-	// load_act_to_sff(player->sff_manager, "Iori_Yagami\\Paletas\\Iori_01.act");
-	// load_sff_file(player->sff_manager, "Iori_Yagami\\Iori_Yagami.SFF");
-
-	// open_air(player->air_manager, "chars\\H-SaikiXIII\\H-SaikiXIII.air");
-
-	// load_act_to_sff(player->sff_manager, "chars\\H-SaikiXIII\\H-SaikiXIII.act");
-	// load_sff_file(player->sff_manager, "chars\\H-SaikiXIII\\H-SaikiXIII.sff");
-
+	load_act_to_sff(player->sff_manager, filenames->act_filename);
+	load_sff_file(player->sff_manager, filenames->sff_filename);
+	free(filenames);
 
 	// Make always masked blit
 	// This ensures alpha transparency on sprites

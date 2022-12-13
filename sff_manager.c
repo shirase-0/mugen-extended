@@ -69,16 +69,18 @@ uint8_t *decode_pcx(MU_SFF_Manager *sff_manager, uint8_t *pcx_byte, PCX_Header h
 		return byte_image_buffer;
 	}
 
+	// For each row of pixels in this PCX image
 	for(y = 0; y < header.height; y++) // Should I change this from y = 0 to just y;
 	{
 		x = 0;
+		// For each column in this row of pixels
 		while(x < header_width)
 		{
 			byte_data = pcx_byte[pos++];
 
-			if((byte_data & 0xC0) == 0xC0)
+			if((byte_data & 0xC0) == 0xC0) // is this the same as byte_data == 192?
 			{
-				size = byte_data & 0x3F;
+				size = byte_data & 0x3F; // 3F = 63 base 10
 				byte_data = pcx_byte[pos++];
 			}
 			else
@@ -154,6 +156,9 @@ void decode_sff_file(MU_SFF_Manager *sff_manager)
 
 			// Read the PCX data
 			// TODO: check subheader.subheader_len
+			// The following line is most likely causing a segfault, but this has only happened when trying to
+			// load H-SaikiXIII. Further testing will be required to see if this happens with any other characters,
+			// and to see why exactly it happens with H-SaikiXIII.
 			temp_bytes = (uint8_t*) mu_alloc(allocator, sizeof(uint8_t) * (subheader.subheader_len - 127));
 			fread(temp_bytes, sizeof(uint8_t) * (subheader.subheader_len - 127), 1, sff_file);
 

@@ -1,22 +1,4 @@
 Logging: Init Successful
-Memory Manager: Begin Init
-Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 000002a4d40a1b80
-Memory Manager: Initialising Stage memory allocator
-Allocator address: 000002a4d40a1cb0
-Memory Manager: Initialising Engine memory allocator
-Allocator address: 000002a4d40a1de0
-Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 000002a4d40a99d0
-Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 000002a4d40aa470
-Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 000002a4d40aaf10
-Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 000002a4d40ab9b0
-Memory Manager: Init Successful
-Freed block 000002a4d5cbb770 from Tokenizer
-Freed block 000002a4dd5bd700 from Tokenizer
 ======================Memory Manager============================
 |Name:               |Allocated bytes                          |
 ----------------------------------------------------------------

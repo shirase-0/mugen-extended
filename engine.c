@@ -33,9 +33,10 @@ MU_Engine *mu_engine_init(MU_Allocator *mem_manager, MU_Graphics_Manager *graphi
 	engine->p2->x = 570; // 640 - 70
 	engine->p2->y = engine->p2->ground;
 
-	// Strings are empty because the player being loaded is hardcoded into this function for now
-	load_player(engine->p1, "");
-	load_player(engine->p2, "");
+	char *p1_name = "kfm";
+	char *p2_name = "kfm";
+	load_player(engine->p1, p1_name);
+	load_player(engine->p2, p2_name);
 
 	engine->p2->right_faced = false;
 	engine->p1->debug_info = true;

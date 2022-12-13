@@ -12,3 +12,5 @@ files.txt
 notes.txt
 Test this section of the get_token algorithm.txt
 get_token algorithm.txt
+/bin/chars/problem_chars
+/bin/chars/working_chars
