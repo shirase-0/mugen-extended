@@ -24,7 +24,7 @@ Player *player_init()
 	player->sff_manager = sff_manager_init();
 	//player->state_manager = state_manager_init();
 	//player->cmd_manager = cmd_manager_init(120); // Default of 120 in the original version
-	//player->kb = keyboard_data_init();
+	player->kb = keyboard_data_init();
 	memset(player->player_vars.var, 0, sizeof(int) * 60);
 	memset(player->player_vars.fvar, 0, sizeof(double) * 40);
 	player->right_faced = true;

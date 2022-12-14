@@ -45,6 +45,29 @@ enum BLT_Flags
    BLT_SUBALPHA   
 };
 
+enum KEY_NAMES
+{
+    KEY_UP,
+    KEY_DOWN,
+    KEY_LEFT,
+    KEY_RIGHT,
+    KEY_BUTTON_A,
+    KEY_BUTTON_B,
+    KEY_BUTTON_C,
+    KEY_BUTTON_X,
+    KEY_BUTTON_Y,
+    KEY_BUTTON_Z,
+    KEY_BUTTON_START,
+    KEY_BUTTON_PAUSE,
+    KEY_COUNT           // Used in CMD Manager
+};
+
+enum KEY_PRESSED
+{
+    NOT_PRESSED = 0,
+    PRESSED = 1
+};
+
 enum Program_State
 {
 	GMENU = 1,
@@ -313,6 +336,15 @@ struct MU_SFF_Manager
 };
 typedef struct MU_SFF_Manager MU_SFF_Manager;
 
+// ==============Input==============================
+struct Key
+{
+    uint8_t is_pressed; // 0 = not pressed, 1 = key is pressed
+    unsigned sdl_keycode;
+};
+typedef struct Key Key;
+
+
 // Skipping a few sections that require a lot of reworking, to get to a "bare minimum" working game_time
 // Will come back to these and rework them once I can render animated sprites to the screen
 // ========CMD Manager==============================
@@ -365,6 +397,8 @@ struct Player
 	//Statedef *current_statedef;
 	Player_Vars player_vars;
 	// Player_Const player_const;
+
+    Key *kb;
 };
 typedef struct Player Player;
 

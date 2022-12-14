@@ -59,9 +59,9 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 
 	// Set up rectangles for rendering
 	graphics_manager->destination_rect.x = 0;
-	graphics_manager->destination_rect.y = 100;
+	graphics_manager->destination_rect.y = 120;
 	graphics_manager->destination_rect.w = XMAX / 2;
-	graphics_manager->destination_rect.h = (YMAX / 2) - 101;
+	graphics_manager->destination_rect.h = (YMAX / 2) - 121;
 
 	graphics_manager->src_rect.x = 0;
 	graphics_manager->src_rect.y = 0;
@@ -373,7 +373,7 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 	//  scale2x(work,screen);
 
 	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
-	SDL_RenderCopy(renderer, texture, &src, &destination);
+	SDL_RenderCopy(renderer, texture, &src, &destination);;
 	// Test code to render a boundary around the destination rectangle
 	// SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	// SDL_RenderClear(renderer);
