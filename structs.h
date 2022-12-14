@@ -123,8 +123,12 @@ struct MU_Graphics_Manager
     SDL_Renderer *renderer;
     SDL_Texture *font_texture;
     SDL_PixelFormat *colour_format;
-    SDL_Rect destination_rect;
-    SDL_Rect src_rect;
+    SDL_Rect whole_screen_rect;
+    SDL_Rect characters_rect; // This will probably not be needed once SCREEN_SCALE_FACTOR is properly utilised
+    // Do we need a backgrounds texture?
+    // Do we need an FX texture?
+    // Do we need a UI texture?
+    SDL_Texture *text_texture;
 
     uint8_t delta_ptr;
     uint32_t now_time;

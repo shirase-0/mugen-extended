@@ -35,7 +35,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 	}
 
 	graphics_manager->screen_surface = SDL_GetWindowSurface(graphics_manager->window);
-	graphics_manager->renderer = SDL_CreateRenderer(graphics_manager->window, -1, 0);
+	graphics_manager->renderer = SDL_CreateRenderer(graphics_manager->window, -1, SDL_RENDERER_TARGETTEXTURE);
 	if(graphics_manager->renderer == NULL)
 	{
 		debug_print("Could not create renderer: %s\n", SDL_GetError());
@@ -56,19 +56,20 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 
 	// Load raster font
 	mu_load_font(graphics_manager);
-
+	graphics_manager->text_texture = SDL_CreateTexture(graphics_manager->renderer, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_TARGET, XMAX / 3, YMAX / 3);
+	debug_print("%s", SDL_GetError());
 	// Set up rectangles for rendering
-	graphics_manager->destination_rect.x = 0;
-	graphics_manager->destination_rect.y = 0; 
+	graphics_manager->whole_screen_rect.x = 0;
+	graphics_manager->whole_screen_rect.y = 0; 
 	// Change these two to be divided by SCREEN_SCALE_FACTOR once debug info is no longer needed (eg: XMAX / SCREEN_SCALE_FACTOR)
-	graphics_manager->destination_rect.w = XMAX;
-	graphics_manager->destination_rect.h = YMAX;
+	graphics_manager->whole_screen_rect.w = XMAX;
+	graphics_manager->whole_screen_rect.h = YMAX;
 
-	graphics_manager->src_rect.x = 0;
-	graphics_manager->src_rect.y = 0;
+	graphics_manager->characters_rect.x = 0;
+	graphics_manager->characters_rect.y = 0;
 	// Change these two to be divided by SCREEN_SCALE_FACTOR once debug info is no longer needed (eg: XMAX / SCREEN_SCALE_FACTOR)
-	graphics_manager->src_rect.w = XMAX / 2.5;
-	graphics_manager->src_rect.h = YMAX / 2.5;
+	graphics_manager->characters_rect.w = XMAX / 2.5;
+	graphics_manager->characters_rect.h = YMAX / 2.5;
 
 	return graphics_manager;
 }
@@ -129,6 +130,8 @@ void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, const cha
 	screen_rect.x = x;
 	screen_rect.y = y;
 
+	SDL_SetRenderTarget(graphics_manager->renderer, graphics_manager->text_texture);
+
 	// For every character in the temp string (255)
 	for(int i = 0; i < strlen(temp); i++)
 	{
@@ -160,6 +163,7 @@ void mu_draw_text(MU_Graphics_Manager *graphics_manager, int x, int y, const cha
 			screen_rect.x += 5;
 		}
 	}
+	SDL_SetRenderTarget(graphics_manager->renderer, NULL);
 }
 
 void mu_clear_screen(MU_Graphics_Manager *graphics_manager)
@@ -354,8 +358,8 @@ void mu_normal_flip_h(MU_Graphics_Manager *graphics_manager, SFF_Sprite *sprite_
 void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 {
 	SDL_Renderer *renderer = graphics_manager->renderer;
-	SDL_Rect destination = graphics_manager->destination_rect;
-	SDL_Rect src = graphics_manager->src_rect;
+	SDL_Rect whole_screen_rect = graphics_manager->whole_screen_rect;
+	SDL_Rect characters_rect = graphics_manager->characters_rect;
 
 	graphics_manager->now_time = SDL_GetTicks();
 	uint32_t now_time = graphics_manager->now_time;
@@ -372,21 +376,29 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 	// FilterImage();
 	//  scale2x(work,screen);
 
-	// TODO: Render pipeline order:
-	// - backgrounds
-	// - characters
-	// - FX
-	// - game interface/UI
-	// - debug info
-
-	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
-	SDL_RenderCopy(renderer, texture, &src, &destination);;
 	mu_draw_text(graphics_manager, 0, 0, "%2.2f FPS", graphics_manager->fps);
-	// Test code to render a boundary around the destination rectangle
+
+	// ==================== Render Pipeline ==================================
+
+	// Backgrounds
+
+	// Characters
+	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
+	SDL_RenderCopy(renderer, texture, &characters_rect, &whole_screen_rect);
+
+	// FX
+	// Game Interface/UI
+
+	// Debug Info/Other Text
+	SDL_RenderCopy(renderer, graphics_manager->text_texture, NULL, NULL);
+
+	// Test code to render a boundary around the whole_screen_rect rectangle
 	// SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	// SDL_RenderClear(renderer);
 	// SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	// SDL_RenderDrawRect(renderer, &src);
+	// SDL_RenderDrawRect(renderer, &characters_rect);
+
+	// Render!
 	SDL_RenderPresent(renderer);
 
 	// Limit the framerate to 60 Hz
@@ -394,6 +406,12 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 	graphics_manager->fps_count++;
 
 	// Clear screen before next frame renders
-	SDL_RenderClear(graphics_manager->renderer);
+	SDL_RenderClear(renderer);
 	SDL_FillRect(graphics_manager->screen_surface, NULL, 0x000000);
+
+	SDL_SetRenderTarget(renderer, graphics_manager->text_texture);
+	SDL_SetTextureBlendMode(graphics_manager->text_texture, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(renderer, 0,0,0,0);
+	SDL_RenderClear(renderer);
+	SDL_SetRenderTarget(renderer, NULL);
 }
