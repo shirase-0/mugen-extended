@@ -24,13 +24,16 @@ MU_Engine *mu_engine_init(MU_Allocator *mem_manager, MU_Graphics_Manager *graphi
 
 	// TODO: the following values should be read out of the stage def
 	// Fix this when sprites have proper scaling
-	engine->p1->ground = 350;
-	engine->p2->ground = 350;
+	// engine->p1->ground = 350;
+	// engine->p2->ground = 350;
+	engine->p1->ground = (YMAX / SCREEN_SCALE_FACTOR) - 20;
+	engine->p2->ground = (YMAX / SCREEN_SCALE_FACTOR) - 20;
 
 	// TODO: calculate these values based on XMAX and YMAX (graphics_manager.h)
-	engine->p1->x = 70;
+	engine->p1->x = 40;
 	engine->p1->y = engine->p1->ground;
-	engine->p2->x = 570; // 640 - 70
+	//engine->p2->x = 570; // 640 - 70
+	engine->p2->x = (XMAX / SCREEN_SCALE_FACTOR) - 40;
 	engine->p2->y = engine->p2->ground;
 
 	char *p1_name = "kfm";

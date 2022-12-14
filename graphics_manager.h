@@ -7,6 +7,7 @@
 #define SCREENY_LIMIT 1049
 #define XMAX 1680
 #define YMAX 1050
+#define SCREEN_SCALE_FACTOR 5
 
 MU_Graphics_Manager *mu_init_graphics_manager();
 void mu_load_font(MU_Graphics_Manager *graphics_manager);

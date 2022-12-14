@@ -119,7 +119,7 @@ typedef struct MUGENFONT MUGENFONT;
 struct MU_Graphics_Manager
 {
     SDL_Window *window;
-    SDL_Surface *screen_surface; // TODO: Remove if unused
+    SDL_Surface *screen_surface;
     SDL_Renderer *renderer;
     SDL_Texture *font_texture;
     SDL_PixelFormat *colour_format;

@@ -2,36 +2,36 @@ Logging: Init Successful
 Welcome to Mugen Extended Version Alpha
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 00000276e0e41b80
+Allocator address: 0000027587ae1b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 00000276e0e41cb0
+Allocator address: 0000027587ae1cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 00000276e0e41de0
+Allocator address: 0000027587ae1de0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 00000276e0e499d0
+Allocator address: 0000027587ae99d0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 00000276e0e4a470
+Allocator address: 0000027587aea470
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 00000276e0e4af10
+Allocator address: 0000027587aeaf10
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 00000276e0e4b9b0
+Allocator address: 0000027587aeb9b0
 Memory Manager: Init Successful
 Graphics Manager: Initialising
 SDL Initialisation successful!
 Graphics Manager: Loading font...
-Freed block 00000276e2cbbc40 from Tokenizer
+Freed block 000002758977bc40 from Tokenizer
 SFF: chars\kfm\kfm.sff
 AIR: chars\kfm\kfm.air
 ACT: chars\kfm\kfm6.act
-Freed block 00000276e2cbbc40 from Tokenizer
+Freed block 000002758977bc40 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
-Freed block 00000276e2d8e9c0 from Tokenizer
+Freed block 000002758984e9c0 from Tokenizer
 SFF: chars\kfm\kfm.sff
 AIR: chars\kfm\kfm.air
 ACT: chars\kfm\kfm6.act
-Freed block 00000276ea6bd3d0 from Tokenizer
+Freed block 000002759111d3d0 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded

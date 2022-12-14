@@ -45,7 +45,7 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 
 	//SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best"); // Make the scaled rendering look smoother.
 	SDL_RenderSetLogicalSize(graphics_manager->renderer, XMAX, YMAX);
-	SDL_RenderSetScale(graphics_manager->renderer, 2.0, 2.0);
+	SDL_RenderSetScale(graphics_manager->renderer, 2, 2); // TODO: Change this to use SCREEN_SCALE_FACTOR once debug info is no longer needed
 	// Not really necessary in fullscreen mode, but in the future, users should have an option to switch to windowed
 	SDL_SetWindowIcon(graphics_manager->window, SDL_LoadBMP("icon.bmp")); 
 	mu_clear_screen(graphics_manager);
@@ -59,14 +59,16 @@ MU_Graphics_Manager *mu_init_graphics_manager()
 
 	// Set up rectangles for rendering
 	graphics_manager->destination_rect.x = 0;
-	graphics_manager->destination_rect.y = 120;
-	graphics_manager->destination_rect.w = XMAX / 2;
-	graphics_manager->destination_rect.h = (YMAX / 2) - 121;
+	graphics_manager->destination_rect.y = 0; 
+	// Change these two to be divided by SCREEN_SCALE_FACTOR once debug info is no longer needed (eg: XMAX / SCREEN_SCALE_FACTOR)
+	graphics_manager->destination_rect.w = XMAX;
+	graphics_manager->destination_rect.h = YMAX;
 
 	graphics_manager->src_rect.x = 0;
 	graphics_manager->src_rect.y = 0;
-	graphics_manager->src_rect.w = XMAX / 2;
-	graphics_manager->src_rect.h = YMAX / 2;
+	// Change these two to be divided by SCREEN_SCALE_FACTOR once debug info is no longer needed (eg: XMAX / SCREEN_SCALE_FACTOR)
+	graphics_manager->src_rect.w = XMAX / 2.5;
+	graphics_manager->src_rect.h = YMAX / 2.5;
 
 	return graphics_manager;
 }
@@ -366,19 +368,25 @@ void mu_draw(MU_Graphics_Manager *graphics_manager, SDL_Texture *texture)
 		graphics_manager->last_time = now_time;
 	}
 
-	mu_draw_text(graphics_manager, 0, 0, "%2.2f FPS", graphics_manager->fps);
-
 	// TODO: Implement the following functions
 	// FilterImage();
 	//  scale2x(work,screen);
 
+	// TODO: Render pipeline order:
+	// - backgrounds
+	// - characters
+	// - FX
+	// - game interface/UI
+	// - debug info
+
 	SDL_UpdateTexture(texture, NULL, graphics_manager->screen_surface->pixels, XMAX * sizeof(uint32_t));
 	SDL_RenderCopy(renderer, texture, &src, &destination);;
+	mu_draw_text(graphics_manager, 0, 0, "%2.2f FPS", graphics_manager->fps);
 	// Test code to render a boundary around the destination rectangle
 	// SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	// SDL_RenderClear(renderer);
 	// SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	// SDL_RenderDrawRect(renderer, &destination);
+	// SDL_RenderDrawRect(renderer, &src);
 	SDL_RenderPresent(renderer);
 
 	// Limit the framerate to 60 Hz
