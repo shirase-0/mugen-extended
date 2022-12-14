@@ -197,7 +197,6 @@ void decode_sff_file(MU_SFF_Manager *sff_manager)
 		}
 		else
 		{
-			// TODO: implement this?
 			// The previous version seemed to work fine without it, but maybe I didn't conduct enough testing
 			// subheader.index_of_previous - 1 if the first element is 1 and not 0
 			// we have a linked image here
@@ -279,6 +278,7 @@ bool load_sff_file(MU_SFF_Manager *sff_manager, const char *sff_filename)
 	uint16_t total_images = sff_manager->total_images;
 
 	sff_manager->sprite_list = (SFF_Sprite*) mu_realloc(allocator, sprite_list, sizeof(SFF_Sprite) * total_images);
+	sff_manager->image_list_size = total_images;
 
 	return true;
 }

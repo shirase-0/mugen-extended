@@ -6,7 +6,9 @@ int main(int argc, char *argv[])
 {
     if(DEBUG)
     {
-        unit_test();
+        //unit_test();
+        Game *mugen = init_game();
+        run_game(mugen);
     }
     else
     {

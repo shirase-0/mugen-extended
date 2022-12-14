@@ -1,4 +1,40 @@
 Logging: Init Successful
+Welcome to Mugen Extended Version Alpha
+Memory Manager: Begin Init
+Memory Manager: Initialising Main Menu memory allocator
+Allocator address: 000001b944f01b80
+Memory Manager: Initialising Stage memory allocator
+Allocator address: 000001b944f01cb0
+Memory Manager: Initialising Engine memory allocator
+Allocator address: 000001b944f01de0
+Memory Manager: Initialising Player 1 memory allocator
+Allocator address: 000001b944f099d0
+Memory Manager: Initialising Player 2 memory allocator
+Allocator address: 000001b944f0a470
+Memory Manager: Initialising Player 3 memory allocator
+Allocator address: 000001b944f0af10
+Memory Manager: Initialising Player 4 memory allocator
+Allocator address: 000001b944f0b9b0
+Memory Manager: Init Successful
+Graphics Manager: Initialising
+SDL Initialisation successful!
+Graphics Manager: Loading font...
+Freed block 000001b946c3bbb0 from Tokenizer
+SFF: chars\kfm\kfm.sff
+AIR: chars\kfm\kfm.air
+ACT: chars\kfm\kfm6.act
+Freed block 000001b946c3bbb0 from Tokenizer
+SFF Manager: Loading chars\kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+SFF Manager: 264 images have been decoded
+Freed block 000001b94e4a7fa0 from Tokenizer
+SFF: chars\kfm\kfm.sff
+AIR: chars\kfm\kfm.air
+ACT: chars\kfm\kfm6.act
+Freed block 000001b94e5fd3d0 from Tokenizer
+SFF Manager: Loading chars\kfm\kfm.sff
+SFF Manager: SFF file contains 264 images
+SFF Manager: 264 images have been decoded
 ======================Memory Manager============================
 |Name:               |Allocated bytes                          |
 ----------------------------------------------------------------

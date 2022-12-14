@@ -1,6 +1,6 @@
 #include "mu_headers.h"
 
-char token_default_comment_chars[] = ";"; // TODO: change this to const?
+char token_default_comment_chars[] = ";";
 char *token_default_operators[TOKEN_DEFAULT_OPERATORS_COUNT] =
 {
 	"~",
@@ -355,6 +355,7 @@ const char *get_token(Tokenizer *tok)
 	}
 	tok->buffer_is_next_token = false;
 
+	//mu_log_message("%s", tok->buffer);
 	return tok->buffer;
 }
 

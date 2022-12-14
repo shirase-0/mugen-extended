@@ -65,6 +65,7 @@ Player_Def *parse_player_def (const char *player_name)
 	Tokenizer *tok = tokenizer_init(100, NULL, NULL, 23);
 	Player_Def *filenames = (Player_Def*) malloc(sizeof(Player_Def));
 	memset(filenames, 0, sizeof(Player_Def));
+	tok->case_sensitive = false;
 
 	char player_def_filename[255];
 	sprintf(player_def_filename, "chars\\%s\\%s.def", player_name, player_name);
@@ -153,9 +154,16 @@ Player_Def *parse_player_def (const char *player_name)
 				}
 			}
 		}
+		else
+		{
+			get_token(tok);
+		}
 	}
 	mu_close_file(tok);
 	free_tokenizer(tok);
+	debug_print("SFF: %s", filenames->sff_filename);
+	debug_print("AIR: %s", filenames->air_filename);
+	debug_print("ACT: %s", filenames->act_filename);
 	return filenames;
 }
 

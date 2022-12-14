@@ -184,7 +184,6 @@ struct Element
 	int16_t x;
 	int16_t y;
 	uint32_t during_time; // Number of ticks the current sprite is displayed in this animation
-	// TODO: Couldn't flip_flags be an int8_t? Or even a uint8_t
 	uint16_t flip_flags; // Horizontal/Vertical sprite flipping
 	uint32_t colour_flags; // Transparency blending (colour addition/subtraction)
 	Clsn *clsn_data;

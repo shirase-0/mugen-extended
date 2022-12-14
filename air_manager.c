@@ -338,6 +338,7 @@ void open_air(MU_Air_Manager *air_manager, char *filename)
 		else
 		{
 			debug_print("An unexpected error has likely occurred on line %d, will try to continue execution", tok->cur_file_line);
+			get_token(tok);
 		}
 	}
 	mu_close_file(tok);

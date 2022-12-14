@@ -1,7 +1,7 @@
 #ifndef __MUHEADERS__H
 #define __MUHEADERS__H
 
-#define DEBUG 0
+#define DEBUG 1
 
 //Standard Libraries
 #include <stdio.h>
