@@ -59,7 +59,7 @@ void run_game(Game *game)
 											 SDL_TEXTUREACCESS_STREAMING, 
 											 XMAX, YMAX);
 	//==================debug code only, to be removed==================
-	uint32_t current_ticks;
+	uint32_t current_ticks = 0;
 
 	int i = 0;
 	int next_anim = 0;
@@ -126,21 +126,16 @@ void run_game(Game *game)
 		mu_draw(graphics, texture);
 
 		//==================== debug code only, to be removed=================
-		// current_ticks = SDL_GetTicks();
-		// // if(current_ticks >= 10000)
-		// // {
-		// // 	game->in_game = false;
-		// // }
-
-		// // Test code which cycles through every animation on a character
-		// i = current_ticks / 5000;
-		// if(prev_anim != i)
-		// {
-		// 	next_anim = game->engine->p1->air_manager->action_list[i].action_num;
-		// 	prepare_anim(game->engine->p1->sff_manager, next_anim);
-		// 	prepare_anim(game->engine->p2->sff_manager, next_anim);
-		// 	prev_anim = i;
-		// }
+		// Test code which cycles through every animation on a character
+		current_ticks = SDL_GetTicks();
+		i = current_ticks / 5000;
+		if(prev_anim != i)
+		{
+			next_anim = game->engine->p1->air_manager->action_list[i].action_num;
+			prepare_anim(game->engine->p1->sff_manager, next_anim);
+			prepare_anim(game->engine->p2->sff_manager, next_anim);
+			prev_anim = i;
+		}
 		//===================================================================
 	}
 }

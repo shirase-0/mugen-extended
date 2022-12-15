@@ -29,6 +29,7 @@
 #include "timer.h"
 #include "air_manager.h"
 #include "sff_manager.h"
+#include "cmd_manager.h"
 
 #include "input.h"
 #include "player.h"

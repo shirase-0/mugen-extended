@@ -3,8 +3,8 @@
 CC   = gcc.exe
 CFLAGS = -g -Wall
 BIN  = bin\MugenExtended.exe
-OBJ  = obj\main.o obj\logging.o obj\unit_testing.o obj\mem_manager.o obj\sdl_framerate.o obj\graphics_manager.o obj\tokenizer.o obj\timer.o obj\air_manager.o obj\sff_manager.o obj\input.o obj\player.o obj\engine.o obj\game.o
-LINKOBJ = obj/main.o obj/logging.o obj/unit_testing.o obj/mem_manager.o obj/sdl_framerate.o obj/graphics_manager.o obj/tokenizer.o obj/timer.o obj/air_manager.o obj/sff_manager.o obj/input.o obj/player.o obj/engine.o obj/game.o 
+OBJ  = obj\main.o obj\logging.o obj\unit_testing.o obj\mem_manager.o obj\sdl_framerate.o obj\graphics_manager.o obj\tokenizer.o obj\timer.o obj\air_manager.o obj\sff_manager.o obj\cmd_manager.o obj\input.o obj\player.o obj\engine.o obj\game.o
+LINKOBJ = obj/main.o obj/logging.o obj/unit_testing.o obj/mem_manager.o obj/sdl_framerate.o obj/graphics_manager.o obj/tokenizer.o obj/timer.o obj/air_manager.o obj/sff_manager.o obj/cmd_manager.o obj/input.o obj/player.o obj/engine.o obj/game.o 
 #LIBS = -I/opt/local/x86_64-w64-mingw32/include/SDL2 -Dmain=SDL_main -L/opt/local/x86_64-w64-mingw32/lib -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_mixer
 LIBS = -L"lib" -lmingw32 -lSDL2_mixer -lSDL2main -lSDL2
 # The mwindows library supresses/hides the console window, hence we're using the incorrect library config here
@@ -43,6 +43,9 @@ obj\air_manager.o: air_manager.c
 
 obj\sff_manager.o: sff_manager.c
 	$(CC) $(CFLAGS) -c sff_manager.c -o obj/sff_manager.o
+
+obj\cmd_manager.o: cmd_manager.c
+	$(CC) $(CFLAGS) -c cmd_manager.c -o obj/cmd_manager.o
 
 obj\input.o: input.c
 	$(CC) $(CFLAGS) -c input.c -o obj/input.o

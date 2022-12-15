@@ -2,37 +2,43 @@ Logging: Init Successful
 Welcome to Mugen Extended Version Alpha
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 0000028eb8bf1b80
+Allocator address: 00000235fa871b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 0000028eb8bf1cb0
+Allocator address: 00000235fa871cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 0000028eb8bf1de0
+Allocator address: 00000235fa871de0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 0000028eb8bf99d0
+Allocator address: 00000235fa8799d0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 0000028eb8bfa470
+Allocator address: 00000235fa87a470
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 0000028eb8bfaf10
+Allocator address: 00000235fa87af10
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 0000028eb8bfb9b0
+Allocator address: 00000235fa87b9b0
 Memory Manager: Init Successful
 Graphics Manager: Initialising
 SDL Initialisation successful!
 Graphics Manager: Loading font...
 
-Freed block 0000028eba8bbc40 from Tokenizer
+Freed block 00000235fc48c500 from Tokenizer
 SFF: chars\kfm\kfm.sff
 AIR: chars\kfm\kfm.air
+CMD: chars\kfm\kfm.cmd
 ACT: chars\kfm\kfm6.act
-Freed block 0000028eba8bbc40 from Tokenizer
+Freed block 00000235fc48c500 from Tokenizer
+Freed block 00000235fc48c500 from Tokenizer
+Freed block 00000235fc495440 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
-Freed block 0000028eba98e9c0 from Tokenizer
+Freed block 00000235fc475940 from Tokenizer
 SFF: chars\kfm\kfm.sff
 AIR: chars\kfm\kfm.air
+CMD: chars\kfm\kfm.cmd
 ACT: chars\kfm\kfm6.act
-Freed block 0000028ec222d3d0 from Tokenizer
+Freed block 00000235ffd67250 from Tokenizer
+Freed block 00000235ffd67250 from Tokenizer
+Freed block 00000235ffdcd820 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded

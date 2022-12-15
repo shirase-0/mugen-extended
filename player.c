@@ -23,7 +23,7 @@ Player *player_init()
 	player->air_manager = air_manager_init();
 	player->sff_manager = sff_manager_init();
 	//player->state_manager = state_manager_init();
-	//player->cmd_manager = cmd_manager_init(120); // Default of 120 in the original version
+	player->cmd_manager = cmd_manager_init(120); // Default of 120 in the original version
 	player->kb = keyboard_data_init();
 	memset(player->player_vars.var, 0, sizeof(int) * 60);
 	memset(player->player_vars.fvar, 0, sizeof(double) * 40);
@@ -57,7 +57,7 @@ void mu_set_player_pointers(Player *player, MU_Graphics_Manager *graphics_manage
 	player->air_manager->air_allocator = allocator;
 	mu_set_sff_pointers(player->sff_manager, graphics_manager, allocator, timer, player->air_manager);
 	//player->state_manager->state_allocator = allocator;
-	//player->cmd_manager->cmd_timer = timer;
+	player->cmd_manager->cmd_timer = timer;
 }
 
 Player_Def *parse_player_def (const char *player_name)
@@ -108,6 +108,7 @@ Player_Def *parse_player_def (const char *player_name)
 				}
 				while(!tok->at_eof)
 				{
+					// TODO: Can this section be abstracted into its own function to reduce repeated code?
 					if(check_token(tok, "sprite", false))
 					{
 						get_token(tok);
@@ -132,6 +133,19 @@ Player_Def *parse_player_def (const char *player_name)
 						while(!tok->at_end_of_line)
 						{
 							sprintf(filenames->air_filename, "%s%s", filenames->air_filename, get_token(tok));
+						}
+					}
+					else if(check_token(tok, "cmd", false))
+					{
+						get_token(tok);
+						if(!check_token(tok, "=", true))
+						{
+							debug_print("Invalid file declaration, expected = on line %d", tok->cur_file_line);
+						}
+						sprintf(filenames->cmd_filename, "chars\\%s\\%s", player_name, get_token(tok));
+						while(!tok->at_end_of_line)
+						{
+							sprintf(filenames->cmd_filename, "%s%s", filenames->cmd_filename, get_token(tok));
 						}
 					}
 					else if(check_token(tok, "pal1", false))
@@ -163,6 +177,7 @@ Player_Def *parse_player_def (const char *player_name)
 	free_tokenizer(tok);
 	debug_print("SFF: %s", filenames->sff_filename);
 	debug_print("AIR: %s", filenames->air_filename);
+	debug_print("CMD: %s", filenames->cmd_filename);
 	debug_print("ACT: %s", filenames->act_filename);
 	return filenames;
 }
@@ -179,7 +194,7 @@ bool load_player(Player *player, const char *player_name)
 	//reset_state_manager(player->state_manager);
 
 	Player_Def *filenames = parse_player_def(player_name);
-	//load_cmd_file(player->cmd_manager, "chars\\kfm\\kfm.cmd");
+	load_cmd_file(player->cmd_manager, filenames->cmd_filename);
 	// TODO: does this function really need all these arguments?
 	// Maybe set the allocator for the state parser in this function
 	// Also, remember to free() state_parser at the bottom of this function

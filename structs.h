@@ -8,7 +8,18 @@
 #define COLOUR_PALETTE_SIZE 256
 #define ONE_SECOND 1000
 #define HALF_SECOND 500
+#define MAX_COMMANDS 30
 #define VER "Alpha"
+
+// Macros
+// These are used in cmd_manager.c to create and manage the key bitfield
+#define KEYMOD_MUST_BE_HELD    ( 1 << 0 )
+#define KEYMOD_DETECT_AS_4WAY  ( 1 << 1 )
+#define KEYMOD_BAN_OTHER_INPUT ( 1 << 2 )
+#define KEYMOD_ON_RELEASE      ( 1 << 3 )
+#define KEYCODE(x)             ( 1 << x )
+#define IS_KEY_IN_KEYCODE( k, c )  ((( KEYCODE( k ) & c ) > 0 )
+#define ALL_DIRECTIONS_BITFIELD ( KEYCODE( KEY_UP ) + KEYCODE( KEY_DOWN ) + KEYCODE( KEY_LEFT ) + KEYCODE( KEY_RIGHT ) )
 
 // Enums
 enum MEM_ALLOCATOR_NAMES
@@ -184,7 +195,7 @@ struct Player_Def
     char air_filename[255];
     char sff_filename[255];
     char act_filename[255];
-    //char *cmd_filename;
+    char cmd_filename[255];
     //char *cns_filename;
     //char *snd_filename;
 };
@@ -348,10 +359,50 @@ struct Key
 };
 typedef struct Key Key;
 
+// ========CMD Manager==============================
+struct Command_Key
+{
+    int keycode;
+    uint16_t key_modifier;
+    uint16_t game_ticks_for_hold;
+};
+typedef struct Command_Key Command_Key;
+
+struct Command
+{
+    Command_Key cmd_keys[MAX_COMMANDS]; // TODO: add MAX_COMMANDS
+    uint8_t cmd_keys_count;
+    uint8_t command_time;
+    uint8_t buffer_time;
+    char str_command[255];
+};
+typedef struct Command Command;
+
+struct Cmd_Frame_Input
+{
+    uint16_t key_bitfield;
+    uint32_t game_ticks;
+};
+typedef struct Cmd_Frame_Input Cmd_Frame_Input;
+
+struct MU_CMD_Manager
+{
+    MU_Timer *cmd_timer;
+    Command *commands;
+    int command_count;
+    const char *current_command_name;
+
+    // Keyboard buffer
+    Cmd_Frame_Input *key_buffer;
+    int16_t key_buffer_size;
+    int16_t key_index;
+};
+typedef struct MU_CMD_Manager MU_CMD_Manager;
+
 
 // Skipping a few sections that require a lot of reworking, to get to a "bare minimum" working game_time
 // Will come back to these and rework them once I can render animated sprites to the screen
-// ========CMD Manager==============================
+
 // =========State Manager==============================
 // ==========State Parser============================
 // ==========Player==================================
@@ -372,7 +423,7 @@ struct Player
 	// MU_State_Manager *state_manager;
 	// VM *vm;
 	// MU_Controller_Executer *controller_exec;
-	// MU_CMD_Manager *cmd_manager;
+	MU_CMD_Manager *cmd_manager;
 
 	// Variable player information
 	// These doubles were formerly floats

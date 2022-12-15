@@ -9,12 +9,12 @@ Key *keyboard_data_init()
 		keyboard[k].sdl_keycode = 0;
 	}
 
+	// TODO: implement player 2 controls
+	// Maybe have the player number passed in as a parameter to this function?
 	keyboard[0].sdl_keycode = SDL_SCANCODE_W;
 	keyboard[1].sdl_keycode = SDL_SCANCODE_S;
-
 	keyboard[2].sdl_keycode = SDL_SCANCODE_A;
 	keyboard[3].sdl_keycode = SDL_SCANCODE_D;
-
 	keyboard[4].sdl_keycode = SDL_SCANCODE_U;
 	keyboard[5].sdl_keycode = SDL_SCANCODE_I;
 	keyboard[6].sdl_keycode = SDL_SCANCODE_O;
