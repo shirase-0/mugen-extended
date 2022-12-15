@@ -199,6 +199,20 @@ void open_air(MU_Air_Manager *air_manager, char *filename)
 				return;
 			}
 
+			// TODO: abstract this into a separate function?
+			// Save memory by reallocing unused element memory
+			if(air_manager->total_action_block > 0)
+			{
+				// While I wasn't able to prove in testing that this deallocates the memory as expected (i.e. I can no longer access/modify it)
+				// It *does* reduce the memory of the allocator, and nothing breaks, so I guess it works...?
+				Action *action_list = air_manager->action_list;
+				uint16_t total_action_block = air_manager->total_action_block;
+				MU_Allocator *air_allocator = air_manager->air_allocator;
+				uint16_t elements_count = action_list[total_action_block - 1].elements_count;
+				Element *curr_anim_element = action_list[total_action_block - 1].anim_element;
+				action_list[total_action_block - 1].anim_element = (Element*) mu_realloc(air_allocator, curr_anim_element, sizeof(Element) * elements_count);
+			}
+			
 			add_action(air_manager, action_num);
 		}
 		else if(check_token(tok, "Clsn1Default:", false) ||
@@ -341,6 +355,14 @@ void open_air(MU_Air_Manager *air_manager, char *filename)
 			get_token(tok);
 		}
 	}
+	Action *action_list = air_manager->action_list;
+	uint16_t total_action_block = air_manager->total_action_block;
+	MU_Allocator *air_allocator = air_manager->air_allocator;
+	uint16_t elements_count = action_list[total_action_block - 1].elements_count;
+	Element *curr_anim_element = action_list[total_action_block - 1].anim_element;
+	action_list[total_action_block - 1].anim_element = (Element*) mu_realloc(air_allocator, curr_anim_element, sizeof(Element) * elements_count);
+	// While I wasn't able to prove in testing that this deallocates the memory as expected (i.e. I can no longer access/modify it)
+	// It *does* reduce the memory of the allocator, and nothing breaks, so I guess it works...?
 	mu_close_file(tok);
 }
 

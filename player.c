@@ -253,7 +253,7 @@ void mu_player_debug(Player *player)
 void update_player(Player *player)
 {
 	// Update player inputs
-	//mu_cmd_update(player->cmd_manager, player->kb, false);
+	mu_cmd_update(player->cmd_manager, player->kb, false);
 
 	//handle_fsm();
 	//handle_physics(player);

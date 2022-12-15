@@ -370,7 +370,7 @@ typedef struct Command_Key Command_Key;
 
 struct Command
 {
-    Command_Key cmd_keys[MAX_COMMANDS]; // TODO: add MAX_COMMANDS
+    Command_Key cmd_keys[MAX_COMMANDS];
     uint8_t cmd_keys_count;
     uint8_t command_time;
     uint8_t buffer_time;

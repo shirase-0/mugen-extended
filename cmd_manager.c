@@ -289,6 +289,10 @@ bool load_cmd_file(MU_CMD_Manager *cmd_manager, const char *file)
 			// If no command is found, skip
 			get_token(tok);
 		}
+		else // Save Memory by reallocing any unused Command_Keys
+		{
+
+		}
 	}
 	mu_close_file(tok);
 	free_tokenizer(tok);
@@ -335,7 +339,7 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Key *keys, bool facing_right) //
 		// TODO: name these variables more appropriately?
 		int time = -1;
 		int last_time = -1;
-		int current_key_index = 0;
+		// If current_key_index causes problems, initialise it here instead
 
 		// For every command in the CMD file
 		for(int b = current_command->cmd_keys_count - 1; b >= 0; b--)
@@ -349,10 +353,7 @@ void mu_cmd_update(MU_CMD_Manager *cmd_manager, Key *keys, bool facing_right) //
 			int game_ticks_to_hold = current_command->cmd_keys[b].game_ticks_for_hold;
 			int keycode = current_command->cmd_keys[b].keycode;
 
-			// TODO: define current_key_index in this for loop?
-			// There should be no adverse effects to doing so
-			// Implement this once CMD Manager has been shown to work
-			for( ; current_key_index < cmd_manager->key_buffer_size; current_key_index++)
+			for(int current_key_index = 0; current_key_index < cmd_manager->key_buffer_size; current_key_index++)
 			{
 				// CHECK: make sure this line works properly
 				Cmd_Frame_Input *frame_input = &cmd_manager->key_buffer[adjust_key_index(cmd_manager, cmd_manager->key_index, -current_key_index)];
