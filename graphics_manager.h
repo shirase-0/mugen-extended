@@ -7,6 +7,9 @@
 #define SCREENY_LIMIT 1049
 #define XMAX 1680
 #define YMAX 1050
+// TODO: implement scaling per character (separate surface/texture per character?)
+// There has to be a way to figure out the scaling factor from the character files, since HD characters
+// are scaled to the same size, but in reality their sprites are way larger
 #define SCREEN_SCALE_FACTOR 5
 
 MU_Graphics_Manager *mu_init_graphics_manager();

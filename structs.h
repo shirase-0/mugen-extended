@@ -79,6 +79,19 @@ enum KEY_PRESSED
     PRESSED = 1
 };
 
+enum STATE_TYPES
+{
+    STAND = 0,
+    CROUCH,
+    AIR,
+    LIEDOWN,
+    ATTACK,
+    IDLE,
+    HIT,
+    NONE,
+    UNTOUCH
+};
+
 enum Program_State
 {
 	GMENU = 1,
@@ -399,11 +412,89 @@ struct MU_CMD_Manager
 };
 typedef struct MU_CMD_Manager MU_CMD_Manager;
 
+// =========State Manager==============================
+struct Instruction
+{
+    uint16_t opcode;
+    float value; // TODO: change this to double if possible
+    char *str_value;
+};
+typedef struct Instruction Instruction;
+
+struct Trigger
+{
+    uint8_t trigger_type;
+    Instruction *inst; // TODO: Rename to inst_list?
+};
+typedef struct Trigger Trigger;
+
+struct State
+{
+    int state_number;
+    uint16_t type;
+    Trigger *triggers;
+    uint16_t trigger_count;
+    bool persist;
+    bool ignore_pause;
+    void *controller; // TODO: try to make this safer?
+};
+typedef struct State State;
+
+struct Statedef
+{
+    // Recommended Parameters
+    int state_number;
+    uint8_t type;
+    uint8_t movetype;
+    uint8_t physics;
+    int anim;
+
+    // Optional parameters
+    float velset_x; // TODO: change these to doubles if there are no adverse effects to doing so
+    float velset_y;
+    int8_t has_ctrl; // Why is this int8 and not bool?
+    int16_t poweradd;
+    int16_t juggle;
+    bool facep2;
+
+    // Some flags
+    bool hitdef_persist;
+    bool movehit_persist;
+    bool hitcount_persist;
+
+    ////////////
+    uint8_t spr_priority;
+    uint16_t state_count;
+
+    State *state_list;
+};
+typedef struct Statedef Statedef;
+
+struct MU_State_Manager
+{
+    MU_Allocator *state_allocator;
+    Instruction inst[200];
+    Statedef *statedef_list;
+    // Hitvars hitvars;
+
+    uint16_t total_statedef; // Number of statedefs that have been parsed
+    uint16_t alloc_statedef_size; // Number of Statedef structs that have been allocated
+    uint16_t total_state;
+    uint16_t alloc_state_size;
+    uint16_t total_triggers;
+    uint16_t trigger_list_size;
+    uint16_t current_inst;
+    uint16_t current_param_inst;
+    uint16_t current_param;
+
+    bool is_param;
+};
+typedef struct MU_State_Manager MU_State_Manager;
+
 
 // Skipping a few sections that require a lot of reworking, to get to a "bare minimum" working game_time
 // Will come back to these and rework them once I can render animated sprites to the screen
 
-// =========State Manager==============================
 // ==========State Parser============================
 // ==========Player==================================
 struct Player_Vars

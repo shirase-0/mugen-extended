@@ -2,43 +2,43 @@ Logging: Init Successful
 Welcome to Mugen Extended Version Alpha
 Memory Manager: Begin Init
 Memory Manager: Initialising Main Menu memory allocator
-Allocator address: 00000166cc311b80
+Allocator address: 00000250a3be1b80
 Memory Manager: Initialising Stage memory allocator
-Allocator address: 00000166cc311cb0
+Allocator address: 00000250a3be1cb0
 Memory Manager: Initialising Engine memory allocator
-Allocator address: 00000166cc311de0
+Allocator address: 00000250a3be1de0
 Memory Manager: Initialising Player 1 memory allocator
-Allocator address: 00000166cc3199d0
+Allocator address: 00000250a3be99d0
 Memory Manager: Initialising Player 2 memory allocator
-Allocator address: 00000166cc31a470
+Allocator address: 00000250a3bea470
 Memory Manager: Initialising Player 3 memory allocator
-Allocator address: 00000166cc31af10
+Allocator address: 00000250a3beaf10
 Memory Manager: Initialising Player 4 memory allocator
-Allocator address: 00000166cc31b9b0
+Allocator address: 00000250a3beb9b0
 Memory Manager: Init Successful
 Graphics Manager: Initialising
 SDL Initialisation successful!
 Graphics Manager: Loading font...
 
-Freed block 00000166cdf2c500 from Tokenizer
+Freed block 00000250a57fc500 from Tokenizer
 SFF: chars\kfm\kfm.sff
 AIR: chars\kfm\kfm.air
 CMD: chars\kfm\kfm.cmd
 ACT: chars\kfm\kfm6.act
-Freed block 00000166cdf2c500 from Tokenizer
-Freed block 00000166cdf2c500 from Tokenizer
-Freed block 00000166cdf35440 from Tokenizer
+Freed block 00000250a57fc500 from Tokenizer
+Freed block 00000250a57fc500 from Tokenizer
+Freed block 00000250a5805440 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
-Freed block 00000166cdf2bba0 from Tokenizer
+Freed block 00000250a57fbba0 from Tokenizer
 SFF: chars\kfm\kfm.sff
 AIR: chars\kfm\kfm.air
 CMD: chars\kfm\kfm.cmd
 ACT: chars\kfm\kfm6.act
-Freed block 00000166d57c7610 from Tokenizer
-Freed block 00000166d57c7610 from Tokenizer
-Freed block 00000166d5823390 from Tokenizer
+Freed block 00000250ad107610 from Tokenizer
+Freed block 00000250ad107610 from Tokenizer
+Freed block 00000250ad163390 from Tokenizer
 SFF Manager: Loading chars\kfm\kfm.sff
 SFF Manager: SFF file contains 264 images
 SFF Manager: 264 images have been decoded
