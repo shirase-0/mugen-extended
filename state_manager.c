@@ -14,7 +14,7 @@ char *str_opcode[] =
 	"OP_LESS",
 	"OP_GREATER",
 	"OP_LESSEQUAL",
-	"OP_GRAETEREQUAL",
+	"OP_GREATEREQUAL",
 	"OP_INTERVALOP1",
 	"OP_INTERVALOP2",
 	"OP_INTERVALOP3",
@@ -149,19 +149,24 @@ char *str_opcode[] =
 MU_State_Manager *state_manager_init()
 {
 	MU_State_Manager *state_manager = (MU_State_Manager*) calloc(1, sizeof(MU_State_Manager));
+	state_manager->statedef_list = NULL;
 
 	return state_manager;
 }
 
 void reset_state_manager(MU_State_Manager *state_manager)
 {
+	if(state_manager->statedef_list != NULL)
+	{
+		// TODO: free currently stored statedef list first before allocating new memory
+	}
+
 	state_manager->total_statedef = 0;
 	state_manager->current_inst = 0;
 	state_manager->total_triggers = 0;
-	// TODO: make sure this doesn't cause a memory leak
-	// If statedef_list already has some memory allocated, it **must** be freed before this function is run
 	state_manager->alloc_statedef_size = 100;
 	uint16_t size = state_manager->alloc_statedef_size;
+	
 	state_manager->statedef_list = (Statedef*) mu_alloc(state_manager->state_allocator, sizeof(Statedef) * size);
 }
 

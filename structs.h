@@ -209,7 +209,7 @@ struct Player_Def
     char sff_filename[255];
     char act_filename[255];
     char cmd_filename[255];
-    //char *cns_filename;
+    char cns_filename[255];
     //char *snd_filename;
 };
 typedef struct Player_Def Player_Def;
@@ -511,7 +511,7 @@ struct Player
 	MU_SFF_Manager *sff_manager;
 	MU_Air_Manager *air_manager;
 	MU_Timer *timer;
-	// MU_State_Manager *state_manager;
+	MU_State_Manager *state_manager;
 	// VM *vm;
 	// MU_Controller_Executer *controller_exec;
 	MU_CMD_Manager *cmd_manager;
@@ -540,7 +540,7 @@ struct Player
 	bool hitdef;
 	bool alive;
 	char command[50];
-	//Statedef *current_statedef;
+	Statedef *current_statedef;
 	Player_Vars player_vars;
 	// Player_Const player_const;
 
